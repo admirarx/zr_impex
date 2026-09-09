@@ -71,14 +71,7 @@
 }
 
 @layer base {
-    html {
-        overflow-x: hidden;
-        overscroll-behavior-y: none;
-    }
-
     body {
-        overflow-x: hidden;
-        overscroll-behavior-y: none;
         background-color: var(--color-surface-dim);
         color: var(--color-on-surface);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;

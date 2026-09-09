@@ -63,7 +63,7 @@
     @endphp
 
     <!-- FIXED TOP INDUSTRIAL HEADER -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-surface-dim/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.6)] border-b border-surface-container-high">
+    <header class="fixed top-0 left-0 right-0 z-50 transform-gpu bg-surface-dim/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.6)] border-b border-surface-container-high">
         <!-- Main Nav Bar -->
         <div class="h-20 bg-surface/95">
             <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop h-full flex items-center justify-between gap-space-lg">
