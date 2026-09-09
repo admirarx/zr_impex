@@ -6,7 +6,7 @@
 @section('content')
 <div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 <!-- Primary Machine Showcase Stage -->
-<section class="w-full py-space-xl lg:py-space-2xl bg-transparent">
+<section class="w-full py-space-3xl lg:py-space-4xl bg-transparent">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-space-2xl items-start">
 <!-- Left: Industrial Gallery (7 Cols Desktop) -->

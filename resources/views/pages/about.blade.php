@@ -7,7 +7,7 @@
 <div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 
 <!-- Hero Section: Mechanical Mastery & Direct Factory OEM -->
-<section class="relative w-full bg-transparent py-space-3xl overflow-hidden">
+<section class="relative w-full bg-transparent py-space-3xl lg:py-space-4xl overflow-hidden">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
 <div class="lg:col-span-7 flex flex-col gap-space-md">
 <div class="flex items-center gap-space-sm">

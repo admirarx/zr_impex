@@ -7,9 +7,8 @@
 <div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 
 <!-- PROPER INDUSTRIAL HERO SECTION -->
-<section class="w-full bg-transparent py-space-xl lg:py-space-2xl relative overflow-hidden border-b border-surface-container">
-  <!-- Subtle Industrial Grid & Ambient Accents -->
-  <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(rgba(229,169,16,0.18)_1px,transparent_1px)] [background-size:32px_32px]"></div>
+<section class="w-full bg-transparent py-space-3xl lg:py-space-4xl relative overflow-hidden border-b border-surface-container">
+  <!-- Ambient Accents -->
   <div class="absolute -right-24 -top-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -left-24 bottom-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
 

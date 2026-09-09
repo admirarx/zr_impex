@@ -7,7 +7,7 @@
 <div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 
 <!-- Page Header & Industrial Context -->
-<section class="w-full bg-transparent py-space-2xl">
+<section class="w-full bg-transparent py-space-3xl lg:py-space-4xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-end">
 <div class="lg:col-span-8 flex flex-col gap-space-sm">

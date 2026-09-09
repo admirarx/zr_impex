@@ -50,7 +50,7 @@
     </section>
 
     <!-- Spare Part Main Detail Section -->
-    <section class="py-12 bg-surface-dim border-b border-surface-container-high"
+    <section class="py-space-3xl lg:py-space-4xl bg-transparent border-b border-surface-container-high"
              x-data="{ activeImage: '{{ $sparePart->primary_image_url }}' }">
         <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
