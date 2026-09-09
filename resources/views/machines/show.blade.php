@@ -1097,70 +1097,171 @@ No complementary machines currently listed.
   });
 
   // Sample Designs Gallery Carousel Engine
+  function getCarouselStops() {
+    const track = document.getElementById('sampleCarouselTrack');
+    if (!track) return [0];
+    const cards = track.querySelectorAll('.sample-carousel-card');
+    if (!cards.length) return [0];
+
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+    if (maxScroll <= 15) {
+      // All cards fit in the viewport without needing to scroll
+      return [0];
+    }
+
+    // Measure exact card step distance between adjacent cards
+    let cardStep = 380;
+    if (cards.length > 1) {
+      cardStep = cards[1].offsetLeft - cards[0].offsetLeft;
+      if (!cardStep || cardStep <= 0) {
+        cardStep = cards[0].offsetWidth + 24;
+      }
+    } else {
+      cardStep = cards[0].offsetWidth + 24;
+    }
+
+    const stops = [0];
+    let current = 0;
+    while (current + cardStep < maxScroll - 15) {
+      current += cardStep;
+      stops.push(current);
+    }
+    stops.push(maxScroll);
+
+    return stops;
+  }
+
+  function getActiveStopIndex(stops, scrollLeft) {
+    let closestIdx = 0;
+    let minDiff = Infinity;
+    for (let i = 0; i < stops.length; i++) {
+      const diff = Math.abs(scrollLeft - stops[i]);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = i;
+      }
+    }
+    return closestIdx;
+  }
+
   function slideSampleCarousel(direction) {
     const track = document.getElementById('sampleCarouselTrack');
     if (!track) return;
-    const card = track.querySelector('.sample-carousel-card');
-    const scrollAmount = card ? (card.offsetWidth + 24) : 380;
-    track.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    const stops = getCarouselStops();
+    if (stops.length <= 1) return;
+
+    const currentIdx = getActiveStopIndex(stops, track.scrollLeft);
+    let targetIdx = currentIdx + direction;
+    targetIdx = Math.max(0, Math.min(stops.length - 1, targetIdx));
+
+    track.scrollTo({ left: stops[targetIdx], behavior: 'smooth' });
+  }
+
+  function renderCarouselDots(stops, activeIdx) {
+    const dotsContainer = document.getElementById('sampleCarouselDots');
+    if (!dotsContainer) return;
+
+    if (stops.length <= 1) {
+      dotsContainer.innerHTML = '';
+      dotsContainer.classList.add('hidden');
+      return;
+    }
+
+    dotsContainer.classList.remove('hidden');
+    dotsContainer.innerHTML = '';
+
+    stops.forEach((stopPos, idx) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.title = `Go to view ${idx + 1} of ${stops.length}`;
+      dot.setAttribute('aria-label', `Go to view ${idx + 1} of ${stops.length}`);
+      dot.className = (idx === activeIdx)
+        ? 'carousel-dot w-6 h-2 rounded-full bg-primary transition-all duration-300 cursor-pointer'
+        : 'carousel-dot w-2 h-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
+
+      dot.onclick = function() {
+        const track = document.getElementById('sampleCarouselTrack');
+        if (track) {
+          track.scrollTo({ left: stopPos, behavior: 'smooth' });
+        }
+      };
+      dotsContainer.appendChild(dot);
+    });
   }
 
   function updateSampleCarouselState() {
     const track = document.getElementById('sampleCarouselTrack');
     if (!track) return;
-    const cards = track.querySelectorAll('.sample-carousel-card');
-    if (!cards.length) return;
 
-    const cardWidth = cards[0].offsetWidth + 24;
-    const activeIndex = Math.min(Math.round(track.scrollLeft / cardWidth), cards.length - 1);
-    
+    const stops = getCarouselStops();
+    const currentIdx = getActiveStopIndex(stops, track.scrollLeft);
+
+    // Update Counter
     const counter = document.getElementById('sampleSlideCounter');
     if (counter) {
-      counter.textContent = `${activeIndex + 1} / ${cards.length}`;
+      counter.textContent = `${currentIdx + 1} / ${stops.length}`;
     }
 
+    // Update Next / Prev buttons
     const prevBtn = document.getElementById('samplePrevBtn');
     const nextBtn = document.getElementById('sampleNextBtn');
-    if (prevBtn) prevBtn.disabled = track.scrollLeft <= 10;
-    if (nextBtn) nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+    if (prevBtn) {
+      prevBtn.disabled = (currentIdx === 0) || (stops.length <= 1);
+    }
+    if (nextBtn) {
+      nextBtn.disabled = (currentIdx === stops.length - 1) || (stops.length <= 1);
+    }
 
-    // Update indicator dots
+    // Update Dots
     const dotsContainer = document.getElementById('sampleCarouselDots');
     if (dotsContainer) {
       const dots = dotsContainer.querySelectorAll('.carousel-dot');
-      dots.forEach((dot, idx) => {
-        if (idx === activeIndex) {
-          dot.className = 'carousel-dot w-6 h-2 rounded-full bg-primary transition-all duration-300 cursor-pointer';
+      if (dots.length !== stops.length) {
+        renderCarouselDots(stops, currentIdx);
+      } else {
+        dots.forEach((dot, idx) => {
+          if (idx === currentIdx) {
+            dot.className = 'carousel-dot w-6 h-2 rounded-full bg-primary transition-all duration-300 cursor-pointer';
+          } else {
+            dot.className = 'carousel-dot w-2 h-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
+          }
+        });
+        if (stops.length <= 1) {
+          dotsContainer.classList.add('hidden');
         } else {
-          dot.className = 'carousel-dot w-2 h-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
+          dotsContainer.classList.remove('hidden');
         }
-      });
+      }
     }
   }
 
-  // Initialize Sample Carousel Dots & Scroll Listener
+  // Initialize Sample Carousel Dots & Scroll / Resize Listeners
   document.addEventListener('DOMContentLoaded', function() {
     const track = document.getElementById('sampleCarouselTrack');
-    const dotsContainer = document.getElementById('sampleCarouselDots');
-    if (track && dotsContainer) {
-      const cards = track.querySelectorAll('.sample-carousel-card');
-      dotsContainer.innerHTML = '';
-      cards.forEach((_, idx) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.title = `Go to sample ${idx + 1}`;
-        dot.className = idx === 0 
-          ? 'carousel-dot w-6 h-2 rounded-full bg-primary transition-all duration-300 cursor-pointer' 
-          : 'carousel-dot w-2 h-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
-        dot.onclick = function() {
-          const cardWidth = cards[0].offsetWidth + 24;
-          track.scrollTo({ left: cardWidth * idx, behavior: 'smooth' });
-        };
-        dotsContainer.appendChild(dot);
+    if (track) {
+      const stops = getCarouselStops();
+      renderCarouselDots(stops, 0);
+      updateSampleCarouselState();
+
+      let scrollDebounce;
+      track.addEventListener('scroll', function() {
+        clearTimeout(scrollDebounce);
+        scrollDebounce = setTimeout(updateSampleCarouselState, 60);
+        updateSampleCarouselState();
+      }, { passive: true });
+
+      window.addEventListener('resize', function() {
+        const newStops = getCarouselStops();
+        renderCarouselDots(newStops, getActiveStopIndex(newStops, track.scrollLeft));
+        updateSampleCarouselState();
       });
 
-      track.addEventListener('scroll', updateSampleCarouselState, { passive: true });
-      updateSampleCarouselState();
+      window.addEventListener('load', function() {
+        updateSampleCarouselState();
+      });
+      if (document.readyState !== 'loading') {
+        updateSampleCarouselState();
+      }
     }
   });
 
