@@ -12,13 +12,13 @@
 <!-- Left: Industrial Gallery (7 Cols Desktop) -->
 <div class="lg:col-span-7 flex flex-col gap-space-md">
 <div class="relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-2xl border border-surface-container">
-<!-- Main High-Res Visual Frame with Interactive Hover Pan-Zoom & Lightbox Click -->
-<div id="productZoomStage" class="relative w-full aspect-[4/3] bg-surface-container-low flex items-center justify-center overflow-hidden cursor-zoom-in group select-none" onclick="openLightbox(currentViewImageUrl, currentViewCaption)">
-<img id="mainProductImage" class="w-full h-full object-cover transition-transform duration-150 ease-out will-change-transform" src="{{ $machine->primary_image_url }}" alt="{{ $machine->name }} - Industrial heavy machinery" />
-<!-- Hover Clue Overlay -->
-<div class="absolute bottom-space-sm right-space-sm bg-surface-dim/80 backdrop-blur-md px-space-sm py-space-2xs rounded flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none">
-<span class="material-symbols-outlined text-primary text-[15px]">zoom_in</span>
-<span>Click for Full Image</span>
+<!-- Main High-Res Visual Frame (Click opens Full View with Zoom & Pan) -->
+<div id="productZoomStage" class="relative w-full aspect-[4/3] bg-surface-container-low flex items-center justify-center overflow-hidden cursor-pointer group select-none" onclick="openLightbox(currentViewImageUrl, currentViewCaption)">
+<img id="mainProductImage" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" src="{{ $machine->primary_image_url }}" alt="{{ $machine->name }} - Industrial heavy machinery" />
+<!-- Full View & Zoom Clue Overlay -->
+<div class="absolute bottom-space-sm right-space-sm bg-surface-dim/85 backdrop-blur-md px-space-sm py-space-2xs rounded-md flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface border border-surface-container-highest shadow-lg opacity-85 group-hover:opacity-100 transition-all pointer-events-none">
+<span class="material-symbols-outlined text-primary text-[16px]">fullscreen</span>
+<span>Click for Full View &amp; Zoom</span>
 </div>
 </div>
 </div>
@@ -117,28 +117,43 @@ Rotary Axis
 <span class="font-body-sm text-body-sm text-on-surface-variant">Operating Hours MTBF</span>
 </div>
 </div>
-<!-- Key Highlights Bullet Matrix -->
-<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded">
-<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold tracking-wider">
-              Core Engineering Specifications
-            </span>
+<!-- Key Features (Cirotechs Standard) -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded-xl border border-surface-container">
+<span class="font-label-caps text-label-caps uppercase text-primary font-semibold tracking-wider flex items-center gap-space-2xs">
+  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+  Key Features
+</span>
 <ul class="flex flex-col gap-space-xs font-body-md text-body-md text-on-surface-variant">
+@if(!empty($machine->key_features) && is_array($machine->key_features))
+@foreach($machine->key_features as $feature)
+@php
+  $featureText = is_array($feature) ? ($feature['feature'] ?? '') : $feature;
+@endphp
+@if(!empty($featureText))
 <li class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">verified</span>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span>{{ $featureText }}</span>
+</li>
+@endif
+@endforeach
+@else
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
 <span>Genuine <strong class="text-on-surface font-semibold">MAX Photonics or Raycus Q-switched/MOPA</strong> pulsed fiber laser module with zero scheduled consumable maintenance.</span>
 </li>
 <li class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">verified</span>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
 <span>High-Speed Digital Galvo Head achieving <strong class="text-on-surface font-semibold">0.01mm micro-character resolution</strong> and deep metal engraving capability.</span>
 </li>
 <li class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">verified</span>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
 <span>Equipped with genuine <strong class="text-on-surface font-semibold">BJJCZ EzCAD2/EzCAD3 motherboard</strong> supporting Windows 10/11 64-bit and vector integration.</span>
 </li>
 <li class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">verified</span>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
 <span>Dual red focus-finder targeting beams for instantaneous, tool-free millimeter focus adjustment.</span>
 </li>
+@endif
 </ul>
 </div>
 <!-- Power Configuration Selector (Interactive Micro-Toggles) -->
@@ -207,10 +222,10 @@ Rotary Axis
 </div>
 </div>
 </section>
-<!-- Sample Designs & Machined Workpieces Gallery Section -->
-<section class="w-full py-space-2xl bg-surface-container-lowest border-y border-surface-container">
+<!-- Sample Designs & Machined Workpieces Gallery Carousel Section -->
+<section class="w-full py-space-2xl bg-surface-container-lowest border-y border-surface-container relative">
   <div class="max-w-max-width-content mx-auto px-gutter-desktop">
-    <!-- Section Header -->
+    <!-- Section Header with Carousel Navigation -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
       <div class="flex flex-col gap-space-2xs">
         <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest font-bold flex items-center gap-space-2xs">
@@ -221,24 +236,33 @@ Rotary Axis
           Sample Designs &amp; Finished Workpieces
         </h2>
         <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
-          High-definition production specimens produced by our {{ $machine->name }}. Click any sample to inspect fine details, depths, and surface edge quality.
+          High-definition production specimens produced by our {{ $machine->name }}. Use carousel controls or swipe to inspect samples, fine depths, and surface edge quality.
         </p>
       </div>
-      <div class="font-tech-spec text-tech-spec text-on-surface-variant flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded">
-        <span class="material-symbols-outlined text-secondary text-[18px]">photo_library</span>
-        <span>Factory Verified Precision</span>
+      
+      <!-- Carousel Controls & Status Counter -->
+      @php
+        $sampleList = $machine->sampleImages;
+        $totalSamplesCount = $sampleList->isNotEmpty() ? $sampleList->count() : 4;
+      @endphp
+      <div class="flex items-center gap-space-sm self-start md:self-auto">
+        <span id="sampleSlideCounter" class="font-tech-spec text-tech-spec text-primary bg-surface-container px-space-md py-space-2xs rounded-lg border border-surface-container-highest">
+          1 / {{ $totalSamplesCount }}
+        </span>
+        <button id="samplePrevBtn" type="button" class="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface hover:text-primary transition-all flex items-center justify-center border border-surface-container-highest cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed shadow-md" onclick="slideSampleCarousel(-1)" title="Previous Sample" aria-label="Previous Sample">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        </button>
+        <button id="sampleNextBtn" type="button" class="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface hover:text-primary transition-all flex items-center justify-center border border-surface-container-highest cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed shadow-md" onclick="slideSampleCarousel(1)" title="Next Sample" aria-label="Next Sample">
+          <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
       </div>
     </div>
 
-    <!-- Sample Cards Grid -->
-    @php
-      $sampleList = $machine->sampleImages;
-    @endphp
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+    <!-- Carousel Track Container -->
+    <div id="sampleCarouselTrack" class="flex gap-space-lg overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-space-md pt-space-xs -mx-gutter-desktop px-gutter-desktop">
       @if($sampleList->isNotEmpty())
         @foreach($sampleList as $sample)
-          <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+          <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
             <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
               <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ $sample->url }}" alt="{{ $sample->caption ?? 'Machined Sample Design' }}" />
               <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
@@ -257,7 +281,7 @@ Rotary Axis
                   </span>
                 @endif
               </div>
-              <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
+              <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
                 <span>View Full Resolution</span>
                 <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
               </button>
@@ -265,8 +289,8 @@ Rotary Axis
           </div>
         @endforeach
       @else
-        <!-- Curated Fallbacks for immediate rich showcase -->
-        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+        <!-- Curated Fallback Carousel Cards -->
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
           <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX" alt="Deep 3D Brass Seal Relief Engraving" />
             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
@@ -283,14 +307,14 @@ Rotary Axis
                 Solid Brass C36000 • 1.2mm depth
               </span>
             </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
               <span>View Full Resolution</span>
               <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
           </div>
         </div>
 
-        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
           <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D" alt="Stainless Steel 304 Color Oxide Annealing" />
             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
@@ -307,14 +331,14 @@ Rotary Axis
                 Mirror SS304 • Spectral Oxide Layers
               </span>
             </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
               <span>View Full Resolution</span>
               <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
           </div>
         </div>
 
-        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
           <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz" alt="Anodized Aluminum UID & 2D Data Matrix" />
             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
@@ -331,14 +355,14 @@ Rotary Axis
                 MIL-STD-130 Traceability UID
               </span>
             </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
               <span>View Full Resolution</span>
               <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
           </div>
         </div>
 
-        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
           <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP" alt="Titanium Surgical Dial Micro-Lettering" />
             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
@@ -355,7 +379,7 @@ Rotary Axis
                 Grade 5 Titanium • 0.15mm Characters
               </span>
             </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
               <span>View Full Resolution</span>
               <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </button>
@@ -363,17 +387,37 @@ Rotary Axis
         </div>
       @endif
     </div>
+
+    <!-- Carousel Indicator Dots -->
+    <div id="sampleCarouselDots" class="flex justify-center items-center gap-space-xs mt-space-md"></div>
   </div>
 </section>
 <!-- Technical Specification & Architecture Tabs -->
 <section class="w-full py-space-3xl bg-surface">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
+
+@if(!empty($machine->description))
+<!-- Machine Overview (Cirotechs Industrial Briefing) -->
+<div class="mb-space-2xl bg-surface-container-lowest p-space-lg lg:p-space-xl rounded-xl border border-surface-container shadow-xl">
+  <div class="flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider mb-space-xs">
+    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+    <span>Machine Overview</span>
+  </div>
+  <h3 class="font-headline-lg text-headline-lg text-on-surface font-bold mb-space-sm">
+    {{ $machine->name }} — Industrial Summary
+  </h3>
+  <div class="font-body-md text-body-md text-on-surface-variant leading-relaxed space-y-space-sm">
+    {!! nl2br(e($machine->description)) !!}
+  </div>
+</div>
+@endif
+
 <!-- Section Header -->
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
 <div>
 <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">Engineering Documentation</span>
 <h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight mt-space-2xs">
-            Technical Specifications &amp; Machine Parameters
+            Technical Specifications &amp; Machine Architecture
           </h2>
 </div>
 <div class="font-tech-spec text-tech-spec text-on-surface-variant flex items-center gap-space-xs">
@@ -383,21 +427,24 @@ Rotary Axis
 </div>
 <!-- Tab Buttons Navigation -->
 <div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs mb-space-lg">
-<button class="tab-trigger active px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-primary text-on-primary transition-all" onclick="switchTab('specs', this)">
+<button class="tab-trigger active px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-primary text-on-primary transition-all cursor-pointer" onclick="switchTab('specs', this)">
           1. Technical Parameters
         </button>
-<button class="tab-trigger px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all" onclick="switchTab('included', this)">
-          2. Standard Included Kit
+<button class="tab-trigger px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all cursor-pointer" onclick="switchTab('applications', this)">
+          2. Applications
         </button>
-<button class="tab-trigger px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all" onclick="switchTab('materials', this)">
-          3. Industrial Materials Matrix
+<button class="tab-trigger px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all cursor-pointer" onclick="switchTab('benefits', this)">
+          3. Benefits &amp; Advantages
         </button>
-<button class="tab-trigger px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all" onclick="switchTab('downloads', this)">
-          4. Compliance &amp; Downloads
+<button class="tab-trigger px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all cursor-pointer" onclick="switchTab('included', this)">
+          4. Standard Included Kit
+        </button>
+<button class="tab-trigger px-space-lg py-space-sm rounded font-headline-sm text-headline-sm font-semibold whitespace-nowrap bg-surface-container text-on-surface-variant hover:text-on-surface transition-all cursor-pointer" onclick="switchTab('downloads', this)">
+          5. Compliance &amp; Downloads
         </button>
 </div>
 <!-- Tab Content Area -->
-<div class="bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-xl">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-xl border border-surface-container">
 <!-- Tab 1: Comprehensive Parameters Table -->
 <div class="tab-panel flex flex-col gap-space-lg" id="tab-specs">
 <div class="flex items-center justify-between flex-wrap gap-space-md">
@@ -494,63 +541,30 @@ Rotary Axis
 </div>
 @endif
 </div>
-<!-- Tab 2: Standard Machine Configuration & Scope -->
-<div class="tab-panel hidden flex flex-col gap-space-lg" id="tab-included">
+<!-- Tab 2: Applications & Substrates (Cirotechs Model) -->
+<div class="tab-panel hidden flex flex-col gap-space-lg" id="tab-applications">
 <div>
-<h3 class="font-headline-md text-headline-md text-on-surface font-bold">What is Included in Standard Package</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Zero hidden add-on costs. Turnkey system ready for immediate factory deployment.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Industrial Applications &amp; Machined Substrates</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Validated processing profiles across industrial materials and end-use manufacturing domains.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
-<div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-primary text-[28px]">domain_verification</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Fiber Generator Unit</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Integrated MAX/Raycus 30W/50W source in dust-sealed gantry compartment.</p>
+
+@if(!empty($machine->applications) && is_array($machine->applications))
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+@foreach($machine->applications as $app)
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs border border-surface-container-highest/60 hover:border-primary/40 transition-colors">
+<div class="flex items-center gap-space-xs text-primary font-headline-sm text-headline-sm font-semibold">
+<span class="material-symbols-outlined text-[22px]">precision_manufacturing</span>
+<span>{{ $app['title'] ?? ($app['industry'] ?? 'Industrial Application') }}</span>
 </div>
-<div class="bg-surface-container p-space-sm rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-primary text-[28px]">speed</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Digital Galvo Scanner</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Sino-Galvo SG7110 with dual red dot focus positioning pointers.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mt-space-2xs">
+{{ $app['description'] ?? ($app['detail'] ?? '') }}
+</p>
 </div>
-<div class="bg-surface-container p-space-sm rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-primary text-[28px]">center_focus_strong</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">F-Theta Optical Lens</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Wavelength 1064nm Singapore optical glass high-transmittance lens.</p>
+@endforeach
 </div>
-<div class="bg-surface-container p-space-sm rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-primary text-[28px]">developer_board</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">BJJCZ Control Board</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Genuine Beijing JCZ USB EzCAD board with licensed EzCAD2 software suite.</p>
-</div>
-<div class="bg-surface-container p-space-sm rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-secondary text-[28px]">keyboard_double_arrow_down</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Production Foot Switch</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Heavy-duty cast aluminum foot pedal for high-cadence assembly operations.</p>
-</div>
-<div class="bg-surface-container p-space-sm rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-secondary text-[28px]">height</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Z-Axis Lift Column</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">500mm travel precision scale height adjustment column with aluminum handwheel.</p>
-</div>
-<div class="bg-surface-container p-space-sm rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-secondary text-[28px]">construction</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Tool Kit &amp; Spares</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Hex wrench set, lens cleaning papers, laser safety glasses, and grounding clamp.</p>
-</div>
-<div class="bg-surface-container p-space-sm rounded flex flex-col gap-space-xs shadow-sm">
-<span class="material-symbols-outlined text-secondary text-[28px]">school</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Training &amp; Documentation</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Complete operator manuals, parameter library presets, and video tutorial USB drive.</p>
-</div>
-</div>
-</div>
-<!-- Tab 3: Industrial Applications & Materials -->
-<div class="tab-panel hidden flex flex-col gap-space-lg" id="tab-materials">
-<div>
-<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Machining Substrates &amp; Industry Sectors</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">High photon absorption for micro-welding, annealing, etching, and black marking.</p>
-</div>
+@else
 <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
-<div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs">
 <div class="flex items-center gap-space-xs text-primary font-headline-sm text-headline-sm font-semibold">
 <span class="material-symbols-outlined">precision_manufacturing</span>
 <span>Ferrous &amp; Non-Ferrous Metals</span>
@@ -563,7 +577,7 @@ Rotary Axis
 <li>• Titanium &amp; Surgical Medical Grade Alloys</li>
 </ul>
 </div>
-<div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs">
 <div class="flex items-center gap-space-xs text-secondary font-headline-sm text-headline-sm font-semibold">
 <span class="material-symbols-outlined">view_in_ar</span>
 <span>Non-Metallic Engineered Solids</span>
@@ -576,7 +590,7 @@ Rotary Axis
 <li>• Silicon Wafers &amp; IC Encapsulation Epoxy</li>
 </ul>
 </div>
-<div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs">
 <div class="flex items-center gap-space-xs text-tertiary font-headline-sm text-headline-sm font-semibold">
 <span class="material-symbols-outlined">factory</span>
 <span>Target Industries</span>
@@ -588,6 +602,104 @@ Rotary Axis
 <li>• Electronics Components, Keypads &amp; PCB Traceability</li>
 <li>• Jewelry Hallmark Engraving &amp; Fine Watch Dial Cutout</li>
 </ul>
+</div>
+</div>
+@endif
+</div>
+
+<!-- Tab 3: Benefits & Advantages (Cirotechs Model) -->
+<div class="tab-panel hidden flex flex-col gap-space-lg" id="tab-benefits">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Industrial Benefits &amp; Operational ROI</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Engineered advantages ensuring lower unit cost and unmatched factory reliability.</p>
+</div>
+
+@if(!empty($machine->benefits) && is_array($machine->benefits))
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+@foreach($machine->benefits as $ben)
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs border border-surface-container-highest/60 hover:border-primary/40 transition-colors">
+<div class="flex items-center gap-space-xs text-primary font-headline-sm text-headline-sm font-semibold">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+<span>{{ $ben['title'] ?? 'Operational Advantage' }}</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mt-space-2xs">
+{{ $ben['description'] ?? '' }}
+</p>
+</div>
+@endforeach
+</div>
+@else
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[28px]">speed</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Ultra-High Speed</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Galvanometer vector speeds up to 9,000 mm/s ensure massive throughput on high-cadence assembly lines.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[28px]">build_circle</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Zero Maintenance</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Solid-state fiber source with 100,000+ hours MTBF eliminates mirrors, laser tube refilling, or alignment downtime.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[28px]">eco</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">High Energy Efficiency</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Consumes less than 650W total peak power with forced air-cooling, avoiding expensive water chiller systems.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[28px]">target</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Micro Repeatability</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">±0.002 mm positioning accuracy guarantees crisp 0.15mm micro-characters and perfect 2D Data Matrix codes.</p>
+</div>
+</div>
+@endif
+</div>
+
+<!-- Tab 4: Standard Machine Configuration & Scope -->
+<div class="tab-panel hidden flex flex-col gap-space-lg" id="tab-included">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">What is Included in Standard Package</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Zero hidden add-on costs. Turnkey system ready for immediate factory deployment.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">domain_verification</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Fiber Generator Unit</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Integrated MAX/Raycus 30W/50W source in dust-sealed gantry compartment.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">speed</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Digital Galvo Scanner</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sino-Galvo SG7110 with dual red dot focus positioning pointers.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">center_focus_strong</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">F-Theta Optical Lens</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Wavelength 1064nm Singapore optical glass high-transmittance lens.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">developer_board</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">BJJCZ Control Board</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Genuine Beijing JCZ USB EzCAD board with licensed EzCAD2 software suite.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[28px]">keyboard_double_arrow_down</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Production Foot Switch</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Heavy-duty cast aluminum foot pedal for high-cadence assembly operations.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[28px]">height</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Z-Axis Lift Column</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">500mm travel precision scale height adjustment column with aluminum handwheel.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[28px]">construction</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Tool Kit &amp; Spares</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hex wrench set, lens cleaning papers, laser safety glasses, and grounding clamp.</p>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[28px]">school</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Training &amp; Documentation</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Complete operator manuals, parameter library presets, and video tutorial USB drive.</p>
 </div>
 </div>
 </div>
@@ -815,28 +927,47 @@ No complementary machines currently listed.
 </div>
 </div>
 </div>
-<!-- Fullscreen Lightbox Modal for High-Resolution Visual Inspection -->
+<!-- Fullscreen Lightbox Modal for High-Resolution Visual Inspection with Interactive Zoom & Pan -->
 <div id="imageLightboxModal" class="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md hidden items-center justify-center p-space-md select-none transition-opacity duration-200" onclick="closeLightbox(event)">
-  <!-- Top Bar -->
-  <div class="absolute top-space-md left-space-md right-space-md flex items-center justify-between pointer-events-none z-10">
-    <div class="bg-surface-dim/80 backdrop-blur-md px-space-md py-space-xs rounded font-tech-spec text-tech-spec text-on-surface flex items-center gap-space-xs pointer-events-auto shadow-lg">
-      <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
-      <span id="lightboxCaption">ZR IMPEX Machinery Inspection</span>
+  <!-- Top Bar: Caption & Zoom Controls -->
+  <div class="absolute top-space-md left-space-md right-space-md flex items-center justify-between pointer-events-none z-20 gap-space-md">
+    <!-- Caption / Inspection Tag -->
+    <div class="bg-surface-dim/90 backdrop-blur-md px-space-md py-space-xs rounded-lg font-tech-spec text-tech-spec text-on-surface flex items-center gap-space-xs pointer-events-auto shadow-xl border border-surface-container-high truncate max-w-[55vw]">
+      <span class="material-symbols-outlined text-primary text-[18px] shrink-0">verified</span>
+      <span id="lightboxCaption" class="truncate">ZR IMPEX Machinery Inspection</span>
     </div>
-    <button type="button" class="text-white/80 hover:text-white bg-surface-container/70 hover:bg-surface-container p-space-sm rounded-full transition-colors flex items-center justify-center pointer-events-auto shadow-lg cursor-pointer" onclick="closeLightboxDirect()" title="Close (Esc)">
-      <span class="material-symbols-outlined text-[24px]">close</span>
-    </button>
+
+    <!-- Zoom & Close Controls -->
+    <div class="flex items-center gap-space-xs pointer-events-auto bg-surface-dim/90 backdrop-blur-md p-1.5 rounded-lg border border-surface-container-high shadow-xl">
+      <button type="button" id="lbZoomOutBtn" onclick="zoomLightbox(-0.25)" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Zoom Out (-)">
+        <span class="material-symbols-outlined text-[20px]">zoom_out</span>
+      </button>
+      <span id="lbZoomBadge" class="font-tech-spec text-tech-spec text-primary px-space-xs py-0.5 rounded bg-surface-container border border-surface-container-highest min-w-[52px] text-center text-xs font-bold">
+        100%
+      </span>
+      <button type="button" id="lbZoomInBtn" onclick="zoomLightbox(0.25)" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Zoom In (+)">
+        <span class="material-symbols-outlined text-[20px]">zoom_in</span>
+      </button>
+      <button type="button" id="lbResetZoomBtn" onclick="resetLightboxZoom()" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Reset Zoom (1:1)">
+        <span class="material-symbols-outlined text-[20px]">restart_alt</span>
+      </button>
+      <div class="w-px h-5 bg-surface-container-highest mx-0.5"></div>
+      <button type="button" class="text-white/80 hover:text-white hover:bg-red-500/20 hover:text-red-400 p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" onclick="closeLightboxDirect()" title="Close (Esc)">
+        <span class="material-symbols-outlined text-[22px]">close</span>
+      </button>
+    </div>
   </div>
 
-  <!-- Main Lightbox Image Container -->
-  <div class="relative max-h-[85vh] max-w-[90vw] flex items-center justify-center overflow-hidden" onclick="event.stopPropagation()">
-    <img id="lightboxImg" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transition-transform duration-200" src="" alt="Full Resolution Machinery Inspection" />
+  <!-- Main Lightbox Image Container & Pan-Zoom Viewport -->
+  <div id="lightboxViewport" class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing" onclick="event.stopPropagation()">
+    <img id="lightboxImg" class="max-h-[80vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transition-transform duration-75 select-none pointer-events-auto will-change-transform" src="" alt="Full Resolution Machinery Inspection" draggable="false" />
   </div>
 
   <!-- Bottom Hint Bar -->
-  <div class="absolute bottom-space-md inset-x-0 flex justify-center pointer-events-none">
-    <div class="bg-surface-dim/80 backdrop-blur-md px-space-lg py-space-xs rounded-full font-label-badge text-label-badge text-outline flex items-center gap-space-sm shadow-md">
-      <span>Press <kbd class="px-1.5 py-0.5 bg-surface-container rounded text-primary font-mono text-xs">ESC</kbd> or click outside to close</span>
+  <div class="absolute bottom-space-md inset-x-0 flex justify-center pointer-events-none z-20">
+    <div class="bg-surface-dim/90 backdrop-blur-md px-space-lg py-space-xs rounded-full font-label-badge text-label-badge text-outline flex items-center gap-space-sm shadow-md border border-surface-container-high">
+      <span class="material-symbols-outlined text-primary text-[14px]">mouse</span>
+      <span>Scroll wheel or buttons to zoom • Drag to pan • Double-click to toggle zoom • <kbd class="px-1.5 py-0.5 bg-surface-container rounded text-primary font-mono text-xs">ESC</kbd> to close</span>
     </div>
   </div>
 </div>
@@ -860,33 +991,49 @@ No complementary machines currently listed.
     btnElement.classList.add('active', 'ring-2', 'ring-primary');
     btnElement.classList.remove('opacity-70');
 
-    // Swap main view image directly
+    // Swap main view image directly without hover zoom
     const mainImg = document.getElementById('mainProductImage');
     if (mainImg) {
       mainImg.src = imgUrl;
     }
   }
 
-  // Smooth Interactive Hover Pan-Zoom on Main Product Image
-  const zoomStage = document.getElementById('productZoomStage');
-  const mainProductImg = document.getElementById('mainProductImage');
+  // Lightbox Zoom & Pan Engine (Full Interactive Inspection)
+  let lbScale = 1;
+  let lbPanX = 0;
+  let lbPanY = 0;
+  let lbIsDragging = false;
+  let lbStartX = 0;
+  let lbStartY = 0;
 
-  if (zoomStage && mainProductImg) {
-    zoomStage.addEventListener('mousemove', function(e) {
-      const rect = zoomStage.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      mainProductImg.style.transformOrigin = `${x}% ${y}%`;
-      mainProductImg.style.transform = 'scale(2)';
-    });
-
-    zoomStage.addEventListener('mouseleave', function() {
-      mainProductImg.style.transformOrigin = 'center center';
-      mainProductImg.style.transform = 'scale(1)';
-    });
+  function updateLightboxTransform() {
+    const img = document.getElementById('lightboxImg');
+    const badge = document.getElementById('lbZoomBadge');
+    if (img) {
+      img.style.transform = `translate(${lbPanX}px, ${lbPanY}px) scale(${lbScale})`;
+    }
+    if (badge) {
+      badge.textContent = Math.round(lbScale * 100) + '%';
+    }
   }
 
-  // Lightbox Modal Controls
+  function zoomLightbox(delta) {
+    const newScale = Math.min(Math.max(1, lbScale + delta), 4);
+    if (newScale === 1) {
+      lbPanX = 0;
+      lbPanY = 0;
+    }
+    lbScale = Math.round(newScale * 100) / 100;
+    updateLightboxTransform();
+  }
+
+  function resetLightboxZoom() {
+    lbScale = 1;
+    lbPanX = 0;
+    lbPanY = 0;
+    updateLightboxTransform();
+  }
+
   function openLightbox(imgUrl, caption) {
     const modal = document.getElementById('imageLightboxModal');
     const img = document.getElementById('lightboxImg');
@@ -898,6 +1045,7 @@ No complementary machines currently listed.
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
+      resetLightboxZoom();
     }
   }
 
@@ -913,8 +1061,140 @@ No complementary machines currently listed.
       modal.classList.add('hidden');
       modal.classList.remove('flex');
       document.body.style.overflow = '';
+      resetLightboxZoom();
     }
   }
+
+  // Lightbox Viewport Mouse/Touch Event Listeners
+  const lbViewport = document.getElementById('lightboxViewport');
+  if (lbViewport) {
+    // Wheel to Zoom
+    lbViewport.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      zoomLightbox(e.deltaY < 0 ? 0.25 : -0.25);
+    }, { passive: false });
+
+    // Double-click to Toggle 2.5x Zoom
+    lbViewport.addEventListener('dblclick', function(e) {
+      e.preventDefault();
+      if (lbScale > 1) {
+        resetLightboxZoom();
+      } else {
+        lbScale = 2.5;
+        updateLightboxTransform();
+      }
+    });
+
+    // Mouse Drag to Pan when Zoomed
+    lbViewport.addEventListener('mousedown', function(e) {
+      if (lbScale > 1) {
+        lbIsDragging = true;
+        lbStartX = e.clientX - lbPanX;
+        lbStartY = e.clientY - lbPanY;
+      }
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (lbIsDragging && lbScale > 1) {
+        lbPanX = e.clientX - lbStartX;
+        lbPanY = e.clientY - lbStartY;
+        updateLightboxTransform();
+      }
+    });
+
+    window.addEventListener('mouseup', function() {
+      lbIsDragging = false;
+    });
+
+    // Touch Support for Mobile Drag / Pan
+    lbViewport.addEventListener('touchstart', function(e) {
+      if (lbScale > 1 && e.touches.length === 1) {
+        lbIsDragging = true;
+        lbStartX = e.touches[0].clientX - lbPanX;
+        lbStartY = e.touches[0].clientY - lbPanY;
+      }
+    }, { passive: true });
+
+    lbViewport.addEventListener('touchmove', function(e) {
+      if (lbIsDragging && lbScale > 1 && e.touches.length === 1) {
+        lbPanX = e.touches[0].clientX - lbStartX;
+        lbPanY = e.touches[0].clientY - lbStartY;
+        updateLightboxTransform();
+      }
+    }, { passive: true });
+
+    lbViewport.addEventListener('touchend', function() {
+      lbIsDragging = false;
+    });
+  }
+
+  // Sample Designs Gallery Carousel Engine
+  function slideSampleCarousel(direction) {
+    const track = document.getElementById('sampleCarouselTrack');
+    if (!track) return;
+    const card = track.querySelector('.sample-carousel-card');
+    const scrollAmount = card ? (card.offsetWidth + 24) : 380;
+    track.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+  }
+
+  function updateSampleCarouselState() {
+    const track = document.getElementById('sampleCarouselTrack');
+    if (!track) return;
+    const cards = track.querySelectorAll('.sample-carousel-card');
+    if (!cards.length) return;
+
+    const cardWidth = cards[0].offsetWidth + 24;
+    const activeIndex = Math.min(Math.round(track.scrollLeft / cardWidth), cards.length - 1);
+    
+    const counter = document.getElementById('sampleSlideCounter');
+    if (counter) {
+      counter.textContent = `${activeIndex + 1} / ${cards.length}`;
+    }
+
+    const prevBtn = document.getElementById('samplePrevBtn');
+    const nextBtn = document.getElementById('sampleNextBtn');
+    if (prevBtn) prevBtn.disabled = track.scrollLeft <= 10;
+    if (nextBtn) nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+
+    // Update indicator dots
+    const dotsContainer = document.getElementById('sampleCarouselDots');
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.className = 'carousel-dot w-6 h-2 rounded-full bg-primary transition-all duration-300 cursor-pointer';
+        } else {
+          dot.className = 'carousel-dot w-2 h-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
+        }
+      });
+    }
+  }
+
+  // Initialize Sample Carousel Dots & Scroll Listener
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('sampleCarouselTrack');
+    const dotsContainer = document.getElementById('sampleCarouselDots');
+    if (track && dotsContainer) {
+      const cards = track.querySelectorAll('.sample-carousel-card');
+      dotsContainer.innerHTML = '';
+      cards.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.title = `Go to sample ${idx + 1}`;
+        dot.className = idx === 0 
+          ? 'carousel-dot w-6 h-2 rounded-full bg-primary transition-all duration-300 cursor-pointer' 
+          : 'carousel-dot w-2 h-2 rounded-full bg-surface-container-highest hover:bg-outline transition-all duration-300 cursor-pointer';
+        dot.onclick = function() {
+          const cardWidth = cards[0].offsetWidth + 24;
+          track.scrollTo({ left: cardWidth * idx, behavior: 'smooth' });
+        };
+        dotsContainer.appendChild(dot);
+      });
+
+      track.addEventListener('scroll', updateSampleCarouselState, { passive: true });
+      updateSampleCarouselState();
+    }
+  });
 
   // Keyboard shortcut ESC to close modals
   document.addEventListener('keydown', function(e) {

@@ -100,7 +100,7 @@ class ProductResource extends Resource
                                     ->placeholder('Short engineering summary for catalogue cards and preview boxes')
                                     ->columnSpanFull(),
                                 Forms\Components\RichEditor::make('description')
-                                    ->label('Full Technical Description & Engineering Overview')
+                                    ->label('Machine Overview & Technical Description')
                                     ->toolbarButtons([
                                         'bold',
                                         'bulletList',
@@ -112,6 +112,94 @@ class ProductResource extends Resource
                                         'strike',
                                         'undo',
                                     ])
+                                    ->columnSpanFull(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('Key Features')
+                            ->icon('heroicon-o-star')
+                            ->schema([
+                                Forms\Components\Repeater::make('key_features')
+                                    ->label('Key Features & Engineering Highlights (Bulleted Specs)')
+                                    ->simple(
+                                        Forms\Components\TextInput::make('feature')
+                                            ->placeholder('e.g. High-Speed Galvo: Up to 7000mm/s, 0.001mm resolution')
+                                            ->required()
+                                    )
+                                    ->addActionLabel('+ Add Feature Bullet Point')
+                                    ->reorderable()
+                                    ->collapsible()
+                                    ->defaultItems(1)
+                                    ->columnSpanFull(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('Applications & Benefits')
+                            ->icon('heroicon-o-briefcase')
+                            ->schema([
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\Repeater::make('applications')
+                                            ->label('Target Applications & Use Cases')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('title')
+                                                    ->label('Application Sector')
+                                                    ->placeholder('e.g. Industrial Marking, Jewelry Engraving')
+                                                    ->required(),
+                                                Forms\Components\TextInput::make('description')
+                                                    ->label('Details / Materials')
+                                                    ->placeholder('e.g. Serial numbers, barcodes on automotive parts')
+                                                    ->required(),
+                                            ])
+                                            ->columns(1)
+                                            ->addActionLabel('+ Add Application')
+                                            ->reorderable()
+                                            ->collapsible()
+                                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null),
+                                        Forms\Components\Repeater::make('benefits')
+                                            ->label('Engineering & Production Benefits')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('title')
+                                                    ->label('Benefit')
+                                                    ->placeholder('e.g. High Precision, Cost-Effective')
+                                                    ->required(),
+                                                Forms\Components\TextInput::make('description')
+                                                    ->label('Advantage Explanation')
+                                                    ->placeholder('e.g. Crisp, detailed marks for professional results')
+                                                    ->required(),
+                                            ])
+                                            ->columns(1)
+                                            ->addActionLabel('+ Add Benefit')
+                                            ->reorderable()
+                                            ->collapsible()
+                                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null),
+                                    ]),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('Technical Specifications')
+                            ->icon('heroicon-o-table-cells')
+                            ->schema([
+                                Forms\Components\Repeater::make('specifications')
+                                    ->relationship('specifications')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('spec_group')
+                                            ->label('Group')
+                                            ->placeholder('e.g. Laser Source, Galvo, Dimensions')
+                                            ->default('General')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('spec_name')
+                                            ->label('Parameter / Metric')
+                                            ->placeholder('e.g. Wavelength, Marking Area, Speed')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('spec_value')
+                                            ->label('Specification Value')
+                                            ->placeholder('e.g. 1064nm, 200 x 200 mm, 7000 mm/s')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('sort_order')
+                                            ->label('Order')
+                                            ->numeric()
+                                            ->default(0),
+                                    ])
+                                    ->columns(4)
+                                    ->addActionLabel('+ Add Specification Metric')
+                                    ->reorderable('sort_order')
+                                    ->collapsible()
+                                    ->itemLabel(fn (array $state): ?string => isset($state['spec_name']) ? "{$state['spec_group']}: {$state['spec_name']} = {$state['spec_value']}" : null)
                                     ->columnSpanFull(),
                             ]),
                         Forms\Components\Tabs\Tab::make('Media & Documents')

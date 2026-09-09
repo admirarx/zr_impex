@@ -50,8 +50,13 @@
     @stack('schema')
     @stack('styles')
 </head>
-<body class="bg-surface-dim text-on-surface min-h-screen flex flex-col font-sans selection:bg-primary selection:text-on-primary antialiased"
+<body class="bg-surface-container-lowest text-on-surface min-h-screen flex flex-col font-sans selection:bg-primary selection:text-on-primary antialiased relative"
       x-data="{ mobileMenuOpen: false, quoteModalOpen: false, activeQuoteProduct: null }">
+
+    <!-- GLOBAL INDUSTRIAL AMBIANCE (HOMEPAGE HERO THEME ACROSS ENTIRE WEBSITE) -->
+    <div class="fixed inset-0 opacity-20 pointer-events-none bg-machined-grid z-0"></div>
+    <div class="fixed -top-40 right-1/4 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-10 -left-20 w-[500px] h-[500px] rounded-full bg-secondary/5 blur-[140px] pointer-events-none z-0"></div>
 
     @php
         $phone = \App\Models\SiteSetting::get('primary_phone', '+91 98765 43210');
@@ -179,7 +184,7 @@
     </header>
 
     <!-- Main Content Area with Header Offset -->
-    <main class="flex-grow pt-20">
+    <main class="flex-grow pt-20 relative z-10">
         <!-- Flash Notifications -->
         @if(session('success'))
             <div class="max-w-max-width-content mx-auto px-gutter-desktop pt-space-md">

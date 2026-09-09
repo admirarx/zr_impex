@@ -22,6 +22,9 @@ class Product extends Model
         'slug',
         'short_description',
         'description',
+        'key_features',
+        'applications',
+        'benefits',
         'primary_image',
         'brochure_path',
         'certificate_path',
@@ -34,6 +37,9 @@ class Product extends Model
     protected function casts(): array
     {
         return [
+            'key_features' => 'array',
+            'applications' => 'array',
+            'benefits' => 'array',
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
             'sort_order' => 'integer',
