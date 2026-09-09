@@ -29,7 +29,6 @@ Thumbs.db
 # Documentation, AI Agents & Planning
 AGENTS.md
 CLAUDE.md
-README.md
 boost.json
 /.agents/
 /docs/
