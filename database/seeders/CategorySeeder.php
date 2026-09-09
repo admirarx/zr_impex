@@ -130,6 +130,24 @@ class CategorySeeder extends Seeder
                 'sort_order' => 15,
                 'is_active' => true,
             ],
+            [
+                'name' => 'Laser Optics & Nozzles',
+                'slug' => 'laser-optics-and-nozzles',
+                'type' => 'spare_part',
+                'description' => 'Certified OEM Raytools laser cutting nozzles, F-Theta scan lenses, and high-damage threshold quartz protective windows.',
+                'image_path' => 'images/categories/optics.jpg',
+                'sort_order' => 16,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Industrial Water Chillers',
+                'slug' => 'industrial-water-chillers',
+                'type' => 'spare_part',
+                'description' => 'Genuine S&A Teyu dual-temperature refrigeration water chillers for fiber laser sources, cutting heads, and CNC spindles.',
+                'image_path' => 'images/categories/chillers.jpg',
+                'sort_order' => 17,
+                'is_active' => true,
+            ],
         ];
 
         foreach ($categories as $data) {
