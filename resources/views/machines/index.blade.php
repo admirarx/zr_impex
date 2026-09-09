@@ -14,25 +14,6 @@
   <div class="absolute -left-24 bottom-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="max-w-max-width-content mx-auto px-gutter-desktop relative z-10 flex flex-col gap-space-xl">
-    <!-- Breadcrumb & Stock Status Row -->
-    <div class="flex flex-wrap items-center justify-between gap-space-sm border-b border-surface-container pb-space-sm">
-      <nav class="flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface-variant">
-        <a class="hover:text-primary transition-colors flex items-center gap-space-2xs" href="{{ route('home') }}">
-          <span class="material-symbols-outlined text-[15px]">home</span>
-          <span>Home</span>
-        </a>
-        <span class="text-outline">/</span>
-        <span class="text-primary font-semibold">CNC Machines &amp; Laser Systems</span>
-      </nav>
-      <div class="flex items-center gap-space-md font-label-badge text-label-badge tracking-widest text-outline uppercase">
-        <div class="flex items-center gap-space-2xs">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          <span class="text-on-surface">FACTORY DIRECT INVENTORY</span>
-        </div>
-        <span class="text-surface-container-highest">|</span>
-        <span class="text-secondary">READY FOR GLOBAL COMMISSIONING</span>
-      </div>
-    </div>
 
     <!-- Main Headline & Telemetry HUD Row -->
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-xl">

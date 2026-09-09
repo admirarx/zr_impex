@@ -221,6 +221,64 @@ class ProductSeeder extends Seeder
             foreach ($specs as $s) {
                 $product->specifications()->create($s);
             }
+
+            // Seed Gallery Images (Machine inspection angles)
+            $product->images()->delete();
+            $product->images()->create([
+                'image_path' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D',
+                'caption' => 'Digital Galvo Scanning Head',
+                'sort_order' => 1,
+                'is_primary' => false,
+                'is_sample' => false,
+            ]);
+            $product->images()->create([
+                'image_path' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz',
+                'caption' => 'MAX / Raycus Laser Module Bay',
+                'sort_order' => 2,
+                'is_primary' => false,
+                'is_sample' => false,
+            ]);
+            $product->images()->create([
+                'image_path' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP',
+                'caption' => 'Motorized Rotary Axis D80 Tooling',
+                'sort_order' => 3,
+                'is_primary' => false,
+                'is_sample' => false,
+            ]);
+
+            // Seed Sample Workpieces / Designs Produced By This Machine
+            $product->images()->create([
+                'image_path' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX',
+                'caption' => 'Deep 3D Brass Seal Engraving',
+                'material' => 'Solid Brass C36000 • 1.2mm depth',
+                'sort_order' => 1,
+                'is_primary' => false,
+                'is_sample' => true,
+            ]);
+            $product->images()->create([
+                'image_path' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D',
+                'caption' => 'Stainless Color Annealing',
+                'material' => 'Mirror SS304 • Spectral Oxide Layers',
+                'sort_order' => 2,
+                'is_primary' => false,
+                'is_sample' => true,
+            ]);
+            $product->images()->create([
+                'image_path' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz',
+                'caption' => 'Anodized Aluminum 2D Matrix',
+                'material' => 'MIL-STD-130 Traceability UID',
+                'sort_order' => 3,
+                'is_primary' => false,
+                'is_sample' => true,
+            ]);
+            $product->images()->create([
+                'image_path' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP',
+                'caption' => 'Titanium Micro-Lettering',
+                'material' => 'Grade 5 Titanium • 0.15mm Characters',
+                'sort_order' => 4,
+                'is_primary' => false,
+                'is_sample' => true,
+            ]);
         }
 
         // 2. SPARE PARTS

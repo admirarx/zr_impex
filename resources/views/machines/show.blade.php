@@ -5,110 +5,63 @@
 
 @section('content')
 <div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
-<!-- Top Specimen & Breadcrumb Gantry Strip -->
-<div class="w-full bg-surface-container-lowest">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-sm flex flex-wrap items-center justify-between gap-space-sm">
-<nav class="flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface-variant">
-<a class="hover:text-primary transition-colors flex items-center gap-space-2xs" href="{{ route('home') }}">
-<span class="material-symbols-outlined text-[15px]">home</span>
-<span>Home</span>
-</a>
-<span class="text-outline">/</span>
-<a class="hover:text-primary transition-colors" href="{{ route('machines.index') }}">CNC Machines</a>
-<span class="text-outline">/</span>
-@if($machine->category)
-<a class="hover:text-primary transition-colors" href="{{ route('machines.index') }}?category={{ $machine->category->slug }}">{{ $machine->category->name }}</a>
-<span class="text-outline">/</span>
-@endif
-<span class="text-primary font-semibold truncate max-w-[280px] sm:max-w-none">{{ $machine->name }}</span>
-</nav>
-<div class="flex items-center gap-space-md font-label-badge text-label-badge tracking-widest text-outline uppercase">
-<div class="flex items-center gap-space-2xs">
-<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-<span class="text-on-surface">STOCK ID: {{ $machine->model_number ? $machine->model_number : 'ZR-' . strtoupper(substr(md5($machine->id), 0, 6)) }}</span>
-</div>
-<span class="text-surface-variant">|</span>
-<span class="text-secondary">EXPORT SPECIFICATION GRADE-A</span>
-</div>
-</div>
-</div>
 <!-- Primary Machine Showcase Stage -->
 <section class="w-full py-space-xl lg:py-space-2xl bg-surface">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-space-2xl items-start">
 <!-- Left: Industrial Gallery (7 Cols Desktop) -->
 <div class="lg:col-span-7 flex flex-col gap-space-md">
-<div class="relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-2xl">
-<!-- Badges Bar -->
-<div class="absolute top-space-md left-space-md right-space-md z-10 flex items-center justify-between pointer-events-none">
-<div class="flex flex-wrap items-center gap-space-xs pointer-events-auto">
-<span class="inline-flex items-center gap-space-2xs bg-surface-container-highest/90 backdrop-blur-md px-space-sm py-space-2xs rounded font-label-badge text-label-badge text-primary uppercase shadow-md">
-<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-                  Ready to Ship (Factory Stock)
-                </span>
-<span class="inline-flex items-center gap-space-2xs bg-surface-container/90 backdrop-blur-md px-space-sm py-space-2xs rounded font-label-badge text-label-badge text-secondary uppercase shadow-md">
-<span class="material-symbols-outlined text-[13px]">verified</span>
-                  CE &amp; ISO 9001:2015
-                </span>
-</div>
-<span class="hidden sm:inline-flex items-center gap-space-2xs bg-surface-dim/80 backdrop-blur-md px-space-xs py-space-2xs rounded font-label-caps text-label-caps text-outline">
-<span class="material-symbols-outlined text-[14px]">zoom_in</span>
-<span>Rollover Zoom</span>
-</span>
-</div>
-<!-- Main High-Res Visual Frame -->
-<div class="relative w-full aspect-[4/3] bg-surface-container-low flex items-center justify-center overflow-hidden group">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="{{ $machine->name }} - Industrial heavy machinery" id="mainProductImage" src="{{ $machine->primary_image_url }}"/>
-<!-- Subtle Reticle / Laser Focal Visual Overlay -->
-<div class="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(#ffc64d_1px,transparent_1px)] [background-size:24px_24px]"></div>
-<!-- Interactive Zoom Target indicator -->
-<div class="absolute bottom-space-md right-space-md bg-surface-dim/90 backdrop-blur-md px-space-md py-space-xs rounded flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface">
-<span class="material-symbols-outlined text-primary text-[16px]">crop_free</span>
-<span>Focal Length: F=254mm</span>
-</div>
-</div>
-<!-- Milled Telemetry Bar Below Main Image -->
-<div class="bg-surface-container-high px-space-lg py-space-sm flex flex-wrap items-center justify-between gap-space-md text-on-surface-variant font-tech-spec text-tech-spec">
-<div class="flex items-center gap-space-sm">
-<span class="text-outline font-label-caps uppercase">Source Wavelength:</span>
-<span class="text-primary font-bold">1064 ± 5 nm</span>
-</div>
-<div class="flex items-center gap-space-sm">
-<span class="text-outline font-label-caps uppercase">Galvo Repeatability:</span>
-<span class="text-secondary font-bold">±0.002 mm</span>
-</div>
-<div class="flex items-center gap-space-sm">
-<span class="text-outline font-label-caps uppercase">Duty Cycle:</span>
-<span class="text-on-surface font-bold">24/7 Continuous</span>
+<div class="relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-2xl border border-surface-container">
+<!-- Main High-Res Visual Frame with Interactive Hover Pan-Zoom & Lightbox Click -->
+<div id="productZoomStage" class="relative w-full aspect-[4/3] bg-surface-container-low flex items-center justify-center overflow-hidden cursor-zoom-in group select-none" onclick="openLightbox(currentViewImageUrl, currentViewCaption)">
+<img id="mainProductImage" class="w-full h-full object-cover transition-transform duration-150 ease-out will-change-transform" src="{{ $machine->primary_image_url }}" alt="{{ $machine->name }} - Industrial heavy machinery" />
+<!-- Hover Clue Overlay -->
+<div class="absolute bottom-space-sm right-space-sm bg-surface-dim/80 backdrop-blur-md px-space-sm py-space-2xs rounded flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none">
+<span class="material-symbols-outlined text-primary text-[15px]">zoom_in</span>
+<span>Click for Full Image</span>
 </div>
 </div>
 </div>
-<!-- Component Inspection Thumbnails -->
+<!-- Component Inspection Thumbnails (Dynamic or Curated) -->
+@php
+  $galleryPhotos = $machine->galleryImages;
+@endphp
 <div class="grid grid-cols-4 gap-space-sm">
-<button class="thumbnail-btn active relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none" onclick="switchProductView('main', this)">
-<img class="w-full h-full object-cover" data-alt="Close up view of the complete fiber laser marking machine enclosure with monitor bracket and foot switch accessories" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX"/>
+<button class="thumbnail-btn active relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none ring-2 ring-primary" onclick="switchProductView('{{ $machine->primary_image_url }}', '{{ addslashes($machine->name) }}', this)">
+<img class="w-full h-full object-cover" src="{{ $machine->primary_image_url }}" alt="{{ $machine->name }}" />
 <div class="absolute inset-x-0 bottom-0 bg-surface-dim/90 backdrop-blur-sm py-space-2xs text-center font-label-badge text-label-badge uppercase text-primary truncate px-space-2xs">
-                Full Unit
-              </div>
+Main View
+</div>
 </button>
-<button class="thumbnail-btn relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none opacity-70 hover:opacity-100" onclick="switchProductView('galvo', this)">
-<img class="w-full h-full object-cover" data-alt="High precision digital Sino-Galvo scanning head with dual red light pointer positioning beam and optical quartz F-theta lens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D"/>
+@if($galleryPhotos->isNotEmpty())
+@foreach($galleryPhotos->take(3) as $gImg)
+<button class="thumbnail-btn relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none opacity-70 hover:opacity-100" onclick="switchProductView('{{ $gImg->url }}', '{{ addslashes($gImg->caption ?? $machine->name) }}', this)">
+<img class="w-full h-full object-cover" src="{{ $gImg->url }}" alt="{{ $gImg->caption ?? $machine->name }}" />
 <div class="absolute inset-x-0 bottom-0 bg-surface-dim/90 backdrop-blur-sm py-space-2xs text-center font-label-badge text-label-badge uppercase text-on-surface truncate px-space-2xs">
-                Galvo Head
-              </div>
+{{ $gImg->caption ?? 'Angle ' . $loop->iteration }}
+</div>
 </button>
-<button class="thumbnail-btn relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none opacity-70 hover:opacity-100" onclick="switchProductView('source', this)">
-<img class="w-full h-full object-cover" data-alt="Industrial 30W 50W Raycus MAX solid state fiber laser generator module with optical fiber delivery conduit inside sealed bay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz"/>
+@endforeach
+@else
+<button class="thumbnail-btn relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none opacity-70 hover:opacity-100" onclick="switchProductView('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'High Precision Digital Scanning Head', this)">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D" alt="Precision Scanning Head" />
 <div class="absolute inset-x-0 bottom-0 bg-surface-dim/90 backdrop-blur-sm py-space-2xs text-center font-label-badge text-label-badge uppercase text-on-surface truncate px-space-2xs">
-                MAX / Raycus
-              </div>
+Galvo Head
+</div>
 </button>
-<button class="thumbnail-btn relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none opacity-70 hover:opacity-100" onclick="switchProductView('rotary', this)">
-<img class="w-full h-full object-cover" data-alt="Heavy duty chuck-type rotary attachment axis tool for cylindrical round bar laser marking on stainless steel tumblers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP"/>
+<button class="thumbnail-btn relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none opacity-70 hover:opacity-100" onclick="switchProductView('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Laser Generator Source Module', this)">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz" alt="Laser Generator Source" />
 <div class="absolute inset-x-0 bottom-0 bg-surface-dim/90 backdrop-blur-sm py-space-2xs text-center font-label-badge text-label-badge uppercase text-on-surface truncate px-space-2xs">
-                Rotary Axis D80
-              </div>
+Laser Source
+</div>
 </button>
+<button class="thumbnail-btn relative aspect-[4/3] bg-surface-container-low rounded overflow-hidden shadow-sm transition-all focus:outline-none opacity-70 hover:opacity-100" onclick="switchProductView('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Motorized Rotary Chuck Tooling', this)">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP" alt="Rotary Axis Attachment" />
+<div class="absolute inset-x-0 bottom-0 bg-surface-dim/90 backdrop-blur-sm py-space-2xs text-center font-label-badge text-label-badge uppercase text-on-surface truncate px-space-2xs">
+Rotary Axis
+</div>
+</button>
+@endif
 </div>
 </div>
 <!-- Right: Industrial Parameter & Purchase Control Unit (5 Cols Desktop) -->
@@ -254,37 +207,163 @@
 </div>
 </div>
 </section>
-<!-- Automated WhatsApp Lead Generation Demonstration Callout -->
-<section class="w-full py-space-lg bg-surface-container-lowest">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop">
-<div class="bg-surface-container-low p-space-lg lg:p-space-xl rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-space-lg">
-<div class="flex items-start gap-space-md max-w-xl">
-<div class="w-12 h-12 rounded-full bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-[28px]">mark_chat_read</span>
-</div>
-<div class="flex flex-col gap-space-2xs">
-<span class="font-label-caps text-label-caps uppercase text-primary tracking-wider">Fast-Track Procurement Protocol</span>
-<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">WhatsApp Instant Enquiry &amp; Direct Message Preview</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">
-              Clicking the inquiry trigger automatically initializes an encrypted sales chat with our engineering desk in Gujarat, pre-formatted with exact part identifiers:
-            </p>
-</div>
-</div>
-<!-- Simulated WhatsApp Chat Box Bubble -->
-<div class="w-full md:w-auto md:min-w-[420px] bg-[#0c1f17] p-space-md rounded shadow-inner flex flex-col gap-space-xs text-body-sm font-tech-spec">
-<div class="flex items-center justify-between text-[#25d366] text-label-badge font-label-badge uppercase">
-<span>Pre-Filled Text Payload</span>
-<span>Live Sync</span>
-</div>
-<p class="text-[#b9f4cf] leading-relaxed select-all" id="whatsAppPayloadText">
-            "Hello ZR IMPEX, I am interested in: Product: LASER Fiber Metal Marking Machine (Model: ZR-FLM-30W). Please send latest pricing, FOB/CIF delivery timeline, and PDF catalogue. URL: https://ZR IMPEX.in/machine/laser-fiber-metal-making-machine/"
-          </p>
-<div class="flex justify-end text-[#529d72] text-[10px]">
-<span>Delivered • Direct to Plant Manager</span>
-</div>
-</div>
-</div>
-</div>
+<!-- Sample Designs & Machined Workpieces Gallery Section -->
+<section class="w-full py-space-2xl bg-surface-container-lowest border-y border-surface-container">
+  <div class="max-w-max-width-content mx-auto px-gutter-desktop">
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
+      <div class="flex flex-col gap-space-2xs">
+        <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest font-bold flex items-center gap-space-2xs">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          Industrial Output Samples
+        </span>
+        <h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
+          Sample Designs &amp; Finished Workpieces
+        </h2>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          High-definition production specimens produced by our {{ $machine->name }}. Click any sample to inspect fine details, depths, and surface edge quality.
+        </p>
+      </div>
+      <div class="font-tech-spec text-tech-spec text-on-surface-variant flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded">
+        <span class="material-symbols-outlined text-secondary text-[18px]">photo_library</span>
+        <span>Factory Verified Precision</span>
+      </div>
+    </div>
+
+    <!-- Sample Cards Grid -->
+    @php
+      $sampleList = $machine->sampleImages;
+    @endphp
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+      @if($sampleList->isNotEmpty())
+        @foreach($sampleList as $sample)
+          <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+            <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ $sample->url }}" alt="{{ $sample->caption ?? 'Machined Sample Design' }}" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+                <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
+                <span>Inspect Sample</span>
+              </div>
+            </div>
+            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
+              <div class="flex flex-col">
+                <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
+                  {{ $sample->caption ?? 'Machined Sample' }}
+                </h4>
+                @if($sample->material)
+                  <span class="font-tech-spec text-tech-spec text-primary font-medium mt-space-2xs">
+                    {{ $sample->material }}
+                  </span>
+                @endif
+              </div>
+              <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
+                <span>View Full Resolution</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        @endforeach
+      @else
+        <!-- Curated Fallbacks for immediate rich showcase -->
+        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX" alt="Deep 3D Brass Seal Relief Engraving" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
+              <span>Inspect Sample</span>
+            </div>
+          </div>
+          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
+            <div class="flex flex-col">
+              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
+                Deep 3D Brass Seal Engraving
+              </h4>
+              <span class="font-tech-spec text-tech-spec text-primary font-medium mt-space-2xs">
+                Solid Brass C36000 • 1.2mm depth
+              </span>
+            </div>
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
+              <span>View Full Resolution</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D" alt="Stainless Steel 304 Color Oxide Annealing" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
+              <span>Inspect Sample</span>
+            </div>
+          </div>
+          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
+            <div class="flex flex-col">
+              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
+                Stainless Color Annealing
+              </h4>
+              <span class="font-tech-spec text-tech-spec text-secondary font-medium mt-space-2xs">
+                Mirror SS304 • Spectral Oxide Layers
+              </span>
+            </div>
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
+              <span>View Full Resolution</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz" alt="Anodized Aluminum UID & 2D Data Matrix" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
+              <span>Inspect Sample</span>
+            </div>
+          </div>
+          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
+            <div class="flex flex-col">
+              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
+                Anodized Aluminum 2D Matrix
+              </h4>
+              <span class="font-tech-spec text-tech-spec text-tertiary font-medium mt-space-2xs">
+                MIL-STD-130 Traceability UID
+              </span>
+            </div>
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
+              <span>View Full Resolution</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
+          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP" alt="Titanium Surgical Dial Micro-Lettering" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
+              <span>Inspect Sample</span>
+            </div>
+          </div>
+          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
+            <div class="flex flex-col">
+              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
+                Titanium Micro-Lettering
+              </h4>
+              <span class="font-tech-spec text-tech-spec text-outline font-medium mt-space-2xs">
+                Grade 5 Titanium • 0.15mm Characters
+              </span>
+            </div>
+            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
+              <span>View Full Resolution</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      @endif
+    </div>
+  </div>
 </section>
 <!-- Technical Specification & Architecture Tabs -->
 <section class="w-full py-space-3xl bg-surface">
@@ -330,6 +409,28 @@
               TOLERANCE COMPLIANT: ISO 2768-m
             </span>
 </div>
+@if($machine->specifications->isNotEmpty())
+<div class="overflow-x-auto">
+<table class="w-full text-left font-tech-spec text-tech-spec">
+<thead class="bg-surface-container-high text-outline uppercase font-label-caps text-label-caps">
+<tr>
+<th class="p-space-md">Specification Group</th>
+<th class="p-space-md">Parameter Metric</th>
+<th class="p-space-md">Engineering Specification / Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+@foreach($machine->specifications as $spec)
+<tr class="{{ $loop->even ? 'bg-surface-container-low' : 'bg-surface-container-lowest' }} hover:bg-surface-container transition-colors">
+<td class="p-space-md text-primary font-semibold">{{ $spec->spec_group }}</td>
+<td class="p-space-md text-on-surface font-bold">{{ $spec->spec_name }}</td>
+<td class="p-space-md text-secondary font-medium">{{ $spec->spec_value }}</td>
+</tr>
+@endforeach
+</tbody>
+</table>
+</div>
+@else
 <div class="overflow-x-auto">
 <table class="w-full text-left font-tech-spec text-tech-spec">
 <thead class="bg-surface-container-high text-outline uppercase font-label-caps text-label-caps">
@@ -369,13 +470,13 @@
 <td class="p-space-md text-on-surface font-bold">Laser Modulation Frequency</td>
 <td class="p-space-md text-on-surface">20 kHz – 80 kHz</td>
 <td class="p-space-md text-on-surface">20 kHz – 100 kHz (MOPA Optional 1-4000kHz)</td>
-<td class="p-space-md text-on-surface-variant">Allows precise thermal control on heat-sensitive alloys</td>
+<td class="p-space-md text-on-surface-variant">Wide pulse shaping range for heat control</td>
 </tr>
 <tr class="bg-surface-container-lowest hover:bg-surface-container transition-colors">
-<td class="p-space-md text-on-surface font-bold">Thermal Management</td>
-<td class="p-space-md text-tertiary font-bold">Forced Clean Air-Cooled</td>
-<td class="p-space-md text-tertiary font-bold">Forced Clean Air-Cooled</td>
-<td class="p-space-md text-on-surface-variant">Built-in dual centrifugal fans; no chiller required</td>
+<td class="p-space-md text-on-surface font-bold">Cooling System Architecture</td>
+<td class="p-space-md text-on-surface">Forced Dual Fan Air-Cooling</td>
+<td class="p-space-md text-on-surface">Forced High-CFM Air-Cooling</td>
+<td class="p-space-md text-on-surface-variant">No distilled water or chiller refilling required</td>
 </tr>
 <tr class="bg-surface-container-low hover:bg-surface-container transition-colors">
 <td class="p-space-md text-on-surface font-bold">Input Power Requirement</td>
@@ -391,6 +492,7 @@
 </tbody>
 </table>
 </div>
+@endif
 </div>
 <!-- Tab 2: Standard Machine Configuration & Scope -->
 <div class="tab-panel hidden flex flex-col gap-space-lg" id="tab-included">
@@ -501,36 +603,54 @@
 <span class="material-symbols-outlined text-primary text-[32px]">picture_as_pdf</span>
 <div class="flex flex-col">
 <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Technical Datasheet</span>
-<span class="font-tech-spec text-tech-spec text-outline">PDF • 4.2 MB (Rev 3.2)</span>
+<span class="font-tech-spec text-tech-spec text-outline">PDF • {{ $machine->brochure_path ? 'Official Factory Sheet' : 'Available on Request' }}</span>
 </div>
 </div>
-<a class="bg-surface-container-highest hover:bg-primary hover:text-on-primary text-primary p-space-xs rounded transition-colors" download="" href="#" title="Download Specification">
+@if($machine->brochure_url)
+<a class="bg-surface-container-highest hover:bg-primary hover:text-on-primary text-primary p-space-xs rounded transition-colors" download="{{ $machine->slug }}-datasheet.pdf" href="{{ $machine->brochure_url }}" target="_blank" title="Download Specification">
 <span class="material-symbols-outlined text-[20px]">download</span>
 </a>
+@else
+<button type="button" class="bg-surface-container-highest hover:bg-primary hover:text-on-primary text-primary p-space-xs rounded transition-colors" onclick="toggleQuoteModal(true)" title="Request Specification Sheet">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+@endif
 </div>
 <div class="bg-surface-container p-space-md rounded flex items-center justify-between gap-space-sm">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-secondary text-[32px]">verified</span>
 <div class="flex flex-col">
 <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">CE Conformity Certificate</span>
-<span class="font-tech-spec text-tech-spec text-outline">PDF • 1.8 MB (EN 60825-1)</span>
+<span class="font-tech-spec text-tech-spec text-outline">PDF • {{ $machine->certificate_path ? 'Audit Certified' : 'Available on Request' }}</span>
 </div>
 </div>
-<a class="bg-surface-container-highest hover:bg-secondary hover:text-on-secondary text-secondary p-space-xs rounded transition-colors" download="" href="#" title="Download Certificate">
+@if($machine->certificate_url)
+<a class="bg-surface-container-highest hover:bg-secondary hover:text-on-secondary text-secondary p-space-xs rounded transition-colors" download="{{ $machine->slug }}-ce-certificate.pdf" href="{{ $machine->certificate_url }}" target="_blank" title="Download Certificate">
 <span class="material-symbols-outlined text-[20px]">download</span>
 </a>
+@else
+<button type="button" class="bg-surface-container-highest hover:bg-secondary hover:text-on-secondary text-secondary p-space-xs rounded transition-colors" onclick="toggleQuoteModal(true)" title="Request Certificate">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+@endif
 </div>
 <div class="bg-surface-container p-space-md rounded flex items-center justify-between gap-space-sm">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-tertiary text-[32px]">menu_book</span>
 <div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">EzCAD Operation Manual</span>
-<span class="font-tech-spec text-tech-spec text-outline">PDF • 12.4 MB (English)</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Operation &amp; Safety Manual</span>
+<span class="font-tech-spec text-tech-spec text-outline">PDF • {{ $machine->manual_path ? 'Full Operator Guide' : 'Available on Request' }}</span>
 </div>
 </div>
-<a class="bg-surface-container-highest hover:bg-tertiary hover:text-on-tertiary text-tertiary p-space-xs rounded transition-colors" download="" href="#" title="Download Manual">
+@if($machine->manual_url)
+<a class="bg-surface-container-highest hover:bg-tertiary hover:text-on-tertiary text-tertiary p-space-xs rounded transition-colors" download="{{ $machine->slug }}-manual.pdf" href="{{ $machine->manual_url }}" target="_blank" title="Download Manual">
 <span class="material-symbols-outlined text-[20px]">download</span>
 </a>
+@else
+<button type="button" class="bg-surface-container-highest hover:bg-tertiary hover:text-on-tertiary text-tertiary p-space-xs rounded transition-colors" onclick="toggleQuoteModal(true)" title="Request Manual">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+@endif
 </div>
 </div>
 </div>
@@ -695,27 +815,114 @@ No complementary machines currently listed.
 </div>
 </div>
 </div>
+<!-- Fullscreen Lightbox Modal for High-Resolution Visual Inspection -->
+<div id="imageLightboxModal" class="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md hidden items-center justify-center p-space-md select-none transition-opacity duration-200" onclick="closeLightbox(event)">
+  <!-- Top Bar -->
+  <div class="absolute top-space-md left-space-md right-space-md flex items-center justify-between pointer-events-none z-10">
+    <div class="bg-surface-dim/80 backdrop-blur-md px-space-md py-space-xs rounded font-tech-spec text-tech-spec text-on-surface flex items-center gap-space-xs pointer-events-auto shadow-lg">
+      <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+      <span id="lightboxCaption">ZR IMPEX Machinery Inspection</span>
+    </div>
+    <button type="button" class="text-white/80 hover:text-white bg-surface-container/70 hover:bg-surface-container p-space-sm rounded-full transition-colors flex items-center justify-center pointer-events-auto shadow-lg cursor-pointer" onclick="closeLightboxDirect()" title="Close (Esc)">
+      <span class="material-symbols-outlined text-[24px]">close</span>
+    </button>
+  </div>
+
+  <!-- Main Lightbox Image Container -->
+  <div class="relative max-h-[85vh] max-w-[90vw] flex items-center justify-center overflow-hidden" onclick="event.stopPropagation()">
+    <img id="lightboxImg" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transition-transform duration-200" src="" alt="Full Resolution Machinery Inspection" />
+  </div>
+
+  <!-- Bottom Hint Bar -->
+  <div class="absolute bottom-space-md inset-x-0 flex justify-center pointer-events-none">
+    <div class="bg-surface-dim/80 backdrop-blur-md px-space-lg py-space-xs rounded-full font-label-badge text-label-badge text-outline flex items-center gap-space-sm shadow-md">
+      <span>Press <kbd class="px-1.5 py-0.5 bg-surface-container rounded text-primary font-mono text-xs">ESC</kbd> or click outside to close</span>
+    </div>
+  </div>
+</div>
+
 <!-- Client-side Interactive Engine -->
 <script>
   let currentWattage = '30W';
+  let currentViewImageUrl = @json($machine->primary_image_url);
+  let currentViewCaption = @json($machine->name);
 
-  function switchProductView(viewKey, btnElement) {
+  function switchProductView(imgUrl, caption, btnElement) {
+    currentViewImageUrl = imgUrl;
+    currentViewCaption = caption || @json($machine->name);
+
     // Reset thumbnail active classes
     const buttons = document.querySelectorAll('.thumbnail-btn');
     buttons.forEach(b => {
-      b.classList.remove('active');
+      b.classList.remove('active', 'ring-2', 'ring-primary');
       b.classList.add('opacity-70');
     });
-    btnElement.classList.add('active');
+    btnElement.classList.add('active', 'ring-2', 'ring-primary');
     btnElement.classList.remove('opacity-70');
 
     // Swap main view image directly
     const mainImg = document.getElementById('mainProductImage');
-    const thumbImg = btnElement.querySelector('img');
-    if (thumbImg && mainImg) {
-      mainImg.src = thumbImg.src;
+    if (mainImg) {
+      mainImg.src = imgUrl;
     }
   }
+
+  // Smooth Interactive Hover Pan-Zoom on Main Product Image
+  const zoomStage = document.getElementById('productZoomStage');
+  const mainProductImg = document.getElementById('mainProductImage');
+
+  if (zoomStage && mainProductImg) {
+    zoomStage.addEventListener('mousemove', function(e) {
+      const rect = zoomStage.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      mainProductImg.style.transformOrigin = `${x}% ${y}%`;
+      mainProductImg.style.transform = 'scale(2)';
+    });
+
+    zoomStage.addEventListener('mouseleave', function() {
+      mainProductImg.style.transformOrigin = 'center center';
+      mainProductImg.style.transform = 'scale(1)';
+    });
+  }
+
+  // Lightbox Modal Controls
+  function openLightbox(imgUrl, caption) {
+    const modal = document.getElementById('imageLightboxModal');
+    const img = document.getElementById('lightboxImg');
+    const cap = document.getElementById('lightboxCaption');
+
+    if (modal && img) {
+      img.src = imgUrl || currentViewImageUrl;
+      if (cap) cap.textContent = caption || currentViewCaption;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeLightbox(event) {
+    if (event.target.id === 'imageLightboxModal') {
+      closeLightboxDirect();
+    }
+  }
+
+  function closeLightboxDirect() {
+    const modal = document.getElementById('imageLightboxModal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Keyboard shortcut ESC to close modals
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLightboxDirect();
+      toggleQuoteModal(false);
+    }
+  });
 
   function selectWattage(watt, btnElement) {
     currentWattage = watt;

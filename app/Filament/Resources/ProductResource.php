@@ -131,6 +131,20 @@ class ProductResource extends Resource
                                     ->directory('brochures')
                                     ->visible(fn (Forms\Get $get) => $get('type') === 'machine')
                                     ->columnSpanFull(),
+                                Forms\Components\FileUpload::make('certificate_path')
+                                    ->label('CE Conformity & Quality Audit Certificate PDF')
+                                    ->acceptedFileTypes(['application/pdf'])
+                                    ->disk('public')
+                                    ->directory('certificates')
+                                    ->visible(fn (Forms\Get $get) => $get('type') === 'machine')
+                                    ->columnSpanFull(),
+                                Forms\Components\FileUpload::make('manual_path')
+                                    ->label('Operation, Safety & Programming Manual PDF')
+                                    ->acceptedFileTypes(['application/pdf'])
+                                    ->disk('public')
+                                    ->directory('manuals')
+                                    ->visible(fn (Forms\Get $get) => $get('type') === 'machine')
+                                    ->columnSpanFull(),
                             ]),
                     ])
                     ->columnSpanFull(),
@@ -213,6 +227,7 @@ class ProductResource extends Resource
         return [
             RelationManagers\SpecificationsRelationManager::class,
             RelationManagers\ImagesRelationManager::class,
+            RelationManagers\SampleDesignsRelationManager::class,
         ];
     }
 

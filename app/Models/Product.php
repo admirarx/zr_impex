@@ -24,6 +24,8 @@ class Product extends Model
         'description',
         'primary_image',
         'brochure_path',
+        'certificate_path',
+        'manual_path',
         'is_featured',
         'is_published',
         'sort_order',
@@ -69,6 +71,16 @@ class Product extends Model
     public function images(): HasMany
     {
         return $this->hasMany(ProductImage::class)->orderBy('sort_order', 'asc');
+    }
+
+    public function galleryImages(): HasMany
+    {
+        return $this->hasMany(ProductImage::class)->where('is_sample', false)->orderBy('sort_order', 'asc');
+    }
+
+    public function sampleImages(): HasMany
+    {
+        return $this->hasMany(ProductImage::class)->where('is_sample', true)->orderBy('sort_order', 'asc');
     }
 
     public function compatibleMachines(): BelongsToMany
@@ -138,6 +150,45 @@ class Product extends Model
         }
 
         return asset('images/brand/logo.jpeg');
+    }
+
+    public function getBrochureUrlAttribute(): ?string
+    {
+        if (! $this->brochure_path) {
+            return null;
+        }
+
+        if (str_starts_with($this->brochure_path, 'http://') || str_starts_with($this->brochure_path, 'https://')) {
+            return $this->brochure_path;
+        }
+
+        return asset('storage/'.$this->brochure_path);
+    }
+
+    public function getCertificateUrlAttribute(): ?string
+    {
+        if (! $this->certificate_path) {
+            return null;
+        }
+
+        if (str_starts_with($this->certificate_path, 'http://') || str_starts_with($this->certificate_path, 'https://')) {
+            return $this->certificate_path;
+        }
+
+        return asset('storage/'.$this->certificate_path);
+    }
+
+    public function getManualUrlAttribute(): ?string
+    {
+        if (! $this->manual_path) {
+            return null;
+        }
+
+        if (str_starts_with($this->manual_path, 'http://') || str_starts_with($this->manual_path, 'https://')) {
+            return $this->manual_path;
+        }
+
+        return asset('storage/'.$this->manual_path);
     }
 
     public function getIsMachineAttribute(): bool
