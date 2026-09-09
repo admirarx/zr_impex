@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /whatsapp-click/
+
+Sitemap: https://zrimpex.com/sitemap.xml
