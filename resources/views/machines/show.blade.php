@@ -14,16 +14,18 @@
 <span>Home</span>
 </a>
 <span class="text-outline">/</span>
-<a class="hover:text-primary transition-colors" data-path="cnc-machines" href="#">CNC Machines</a>
+<a class="hover:text-primary transition-colors" href="{{ route('machines.index') }}">CNC Machines</a>
 <span class="text-outline">/</span>
-<a class="hover:text-primary transition-colors" data-path="fiber-laser-and-cutting" href="#">Fiber Laser</a>
+@if($machine->category)
+<a class="hover:text-primary transition-colors" href="{{ route('machines.index') }}?category={{ $machine->category->slug }}">{{ $machine->category->name }}</a>
 <span class="text-outline">/</span>
-<span class="text-primary font-semibold">LASER Fiber Metal Marking Machine</span>
+@endif
+<span class="text-primary font-semibold truncate max-w-[280px] sm:max-w-none">{{ $machine->name }}</span>
 </nav>
 <div class="flex items-center gap-space-md font-label-badge text-label-badge tracking-widest text-outline uppercase">
 <div class="flex items-center gap-space-2xs">
 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-<span class="text-on-surface">STOCK ID: ZR-FLM-8842</span>
+<span class="text-on-surface">STOCK ID: {{ $machine->model_number ? $machine->model_number : 'ZR-' . strtoupper(substr(md5($machine->id), 0, 6)) }}</span>
 </div>
 <span class="text-surface-variant">|</span>
 <span class="text-secondary">EXPORT SPECIFICATION GRADE-A</span>
@@ -56,7 +58,7 @@
 </div>
 <!-- Main High-Res Visual Frame -->
 <div class="relative w-full aspect-[4/3] bg-surface-container-low flex items-center justify-center overflow-hidden group">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Industrial heavy-duty fiber laser metal marking machine workstation mounted with high-speed Sino-Galvo scanner head, precision Z-axis motorized column, aluminum T-slot tooling bed, Raycus fiber laser generator cabinet, illuminated control switches, deep slate gray and titanium alloy chassis with metallic amber trim inside a pristine high-tech engineering cleanroom workshop" id="mainProductImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzh6xXG-3gwR-m95Kl64Z0KFx-WKfXQRE7OpOk_WDz-XhEBljCzRwPbjrAivJ34JEFeYP3_II-8MEMs4oEuipy7eKbOFbLUzkGLZj-Lm0dUwgrCy3JauR6fCnb-IMqVCXoVvbcdR5CyeVt3aempDfLwUyy8a78xhLH6iNL_tuqImiwvnDXRexRGG65kegzduT-uRLjvhAuzjASJ6ZY3VXJDCenxESNhYs128gT5oo1NSJ47FwPk4Gc"/>
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="{{ $machine->name }} - Industrial heavy machinery" id="mainProductImage" src="{{ $machine->primary_image_url }}"/>
 <!-- Subtle Reticle / Laser Focal Visual Overlay -->
 <div class="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(#ffc64d_1px,transparent_1px)] [background-size:24px_24px]"></div>
 <!-- Interactive Zoom Target indicator -->
@@ -130,13 +132,13 @@
 </div>
 </div>
 <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
-              LASER Fiber Metal Marking Machine
+              {{ $machine->name }}
             </h1>
 <p class="font-headline-sm text-headline-sm text-secondary font-medium">
-              Series 30W / 50W High-Speed Precision
+              {{ $machine->model_number ? 'Model ' . $machine->model_number . ' High-Speed Precision' : 'Series High-Speed Industrial Precision' }}
             </p>
 <div class="font-tech-spec text-tech-spec text-outline">
-              SKU: <span class="text-on-surface">ZR-FLM-30/50W-PRO</span> • HS Code: 84561100
+              SKU: <span class="text-on-surface">{{ $machine->sku ?? ($machine->model_number ?? 'ZR-CNC-PRO') }}</span> • HS Code: 84561100
             </div>
 </div>
 <!-- Fast Spec Matrix Pods -->
@@ -213,12 +215,12 @@
 <div class="flex flex-col gap-space-sm pt-space-xs">
 <!-- WhatsApp Conversion Engine (High Prominence) -->
 <div class="relative group">
-<a class="w-full bg-[#25D366] hover:bg-[#20ba59] active:translate-y-[1px] text-[#071d12] p-space-md rounded font-headline-sm text-headline-sm font-bold flex items-center justify-between gap-space-md shadow-[0_4px_20px_rgba(37,211,102,0.35)] transition-all" href="https://api.whatsapp.com/send?phone=919876543210&amp;text=Hello%20ZR%20Impex%20/%20ZR IMPEX,%20I%20am%20interested%20in:%20Product:%20LASER%20Fiber%20Metal%20Marking%20Machine%20(Model:%20ZR-FLM-30W).%20Please%20send%20latest%20pricing,%20FOB/CIF%20delivery%20timeline,%20and%20PDF%20catalogue.%20URL:%20https://ZR IMPEX.in/machine/laser-fiber-metal-making-machine/" rel="noopener noreferrer" target="_blank">
+<a id="mainWhatsAppLink" class="w-full bg-[#25D366] hover:bg-[#20ba59] active:translate-y-[1px] text-[#071d12] p-space-md rounded font-headline-sm text-headline-sm font-bold flex items-center justify-between gap-space-md shadow-[0_4px_20px_rgba(37,211,102,0.35)] transition-all" href="{{ \App\Services\WhatsAppUrlBuilder::build($machine) }}" rel="noopener noreferrer" target="_blank">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-[26px]">chat</span>
 <div class="flex flex-col text-left">
 <span class="leading-none">Inquire on WhatsApp</span>
-<span class="font-label-badge text-label-badge uppercase tracking-wider text-[#0e3723] mt-space-2xs">Pre-filled with Model ZR-FLM-30W Specs</span>
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-[#0e3723] mt-space-2xs">Pre-filled with Model {{ $machine->model_number ?? 'ZR-SERIES' }} Specs</span>
 </div>
 </div>
 <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
@@ -292,7 +294,7 @@
 <div>
 <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">Engineering Documentation</span>
 <h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight mt-space-2xs">
-            Machine Configurations &amp; Parameters
+            Technical Specifications &amp; Machine Parameters
           </h2>
 </div>
 <div class="font-tech-spec text-tech-spec text-on-surface-variant flex items-center gap-space-xs">
@@ -545,126 +547,59 @@
             Complementary Industrial CNC Systems
           </h2>
 </div>
-<a class="font-tech-spec text-tech-spec text-primary hover:underline flex items-center gap-space-2xs" data-path="cnc-machines" href="#">
+<a class="font-tech-spec text-tech-spec text-primary hover:underline flex items-center gap-space-2xs" href="{{ route('machines.index') }}">
 <span>View All CNC &amp; Laser Inventory</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-<!-- Card 1: Heavy Duty Wood CNC Router 1325 -->
+@forelse($relatedMachines as $rel)
 <div class="bg-surface-container-low rounded-xl overflow-hidden shadow-lg flex flex-col group hover:shadow-2xl transition-all">
 <div class="relative aspect-video bg-surface-container overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Heavy duty industrial 1325 Wood CNC Router with vacuum table bed, 6.0kW air-cooled electrospindle, Syntec controller, and helical rack and pinion gantry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRze-hTfsXfNsua8SEc2rW-FYInAYmkpsmg72hYTyNa8nG0t6hYvnNov7uymZHw6WKXZGHE0IUpV0WNP8go9BSv2Jz5w84VZiiTS5miu3x5T-1EI9ZxfknJB25xY8QkkZBp9Q4ONwULtlIb2d6B4GBn0k1hJbYqhyxHSziAI6Cizhu7hI5Yv07vGkj6Cxs-15XGHHLKngT5C0tKN8Dr2xrxLkK2M5ZWPVqUkQPC4KfD2NfjiQA-D-1"/>
+<a href="{{ route('machines.show', $rel->slug) }}" class="block w-full h-full">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="{{ $rel->primary_image_url }}" alt="{{ $rel->name }}"/>
+</a>
 <div class="absolute top-space-sm left-space-sm bg-surface-dim/90 backdrop-blur-sm px-space-sm py-space-2xs rounded font-label-badge text-label-badge text-primary uppercase">
-              CNC ROUTER
-            </div>
+{{ $rel->category->name ?? 'INDUSTRIAL CNC' }}
+</div>
 </div>
 <div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
 <div class="flex flex-col gap-space-xs">
 <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
-                Heavy Duty Wood CNC Router 1325 (3-Axis)
-              </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-                Vacuum adsorption bed with 6.0kW Italian-spec spindle for high-speed acoustic paneling, furniture routing, and solid wood processing.
-              </p>
+<a href="{{ route('machines.show', $rel->slug) }}">
+{{ $rel->name }}
+</a>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+{{ $rel->short_description ?? 'Heavy-duty industrial CNC and laser manufacturing system.' }}
+</p>
 </div>
 <div class="flex flex-col gap-space-md pt-space-xs">
 <div class="grid grid-cols-3 gap-space-xs font-tech-spec text-tech-spec bg-surface-container p-space-xs rounded text-center">
 <div>
-<span class="text-outline text-[10px] block uppercase">Bed Size</span>
-<span class="text-on-surface font-semibold">1.3×2.5m</span>
+<span class="text-outline text-[10px] block uppercase">Model</span>
+<span class="text-on-surface font-semibold truncate block">{{ $rel->model_number ?? 'ZR-SERIES' }}</span>
 </div>
 <div>
-<span class="text-outline text-[10px] block uppercase">Spindle</span>
-<span class="text-primary font-semibold">6.0 kW</span>
+<span class="text-outline text-[10px] block uppercase">Grade</span>
+<span class="text-primary font-semibold">Heavy Duty</span>
 </div>
 <div>
-<span class="text-outline text-[10px] block uppercase">Max Speed</span>
-<span class="text-secondary font-semibold">32 m/min</span>
+<span class="text-outline text-[10px] block uppercase">Warranty</span>
+<span class="text-secondary font-semibold">2 Years</span>
 </div>
 </div>
-<a class="w-full bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface py-space-xs rounded text-center font-headline-sm text-headline-sm font-semibold transition-colors" data-path="cnc-machines" href="#">
-                View Specifications
-              </a>
-</div>
-</div>
-</div>
-<!-- Card 2: CO2 Laser Acrylic Cutting Machine 1390 -->
-<div class="bg-surface-container-low rounded-xl overflow-hidden shadow-lg flex flex-col group hover:shadow-2xl transition-all">
-<div class="relative aspect-video bg-surface-container overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High precision industrial CO2 laser cutting machine model 1390 with glass tube, motorized honeycomb bed, knife table, and Ruida 6442 digital DSP controller" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2-A7QvQvffpXQ0b8dPHtXxxNfU0V3fEC-6jV1oFxjm3raXyTKXT2xX8aCTg7zqethoQ4u91cphFs_7xImvQAhwg1pkHDMEb5VJtm5Q5--ddCxR5p6200fQWHMJsFGoKnjuZqRzfPkG8lPvxLnIc5kRVGnZqnivps_FCv3NhAQSUO-ufhOihvll5UTDcZHy--dywUsAF-MFRVJLUsGonI9UlrGeN-NMGspMXJ8grODx8R0hGKgXIeH"/>
-<div class="absolute top-space-sm left-space-sm bg-surface-dim/90 backdrop-blur-sm px-space-sm py-space-2xs rounded font-label-badge text-label-badge text-secondary uppercase">
-              CO2 LASER
-            </div>
-</div>
-<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
-<div class="flex flex-col gap-space-xs">
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
-                CO2 Laser Acrylic Cutting Machine 1390 (130W)
-              </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-                Sealed RECI W6 CO2 laser tube engineered for polished edge acrylic signage cutting, wood fretwork, and high-detail leather engraving.
-              </p>
-</div>
-<div class="flex flex-col gap-space-md pt-space-xs">
-<div class="grid grid-cols-3 gap-space-xs font-tech-spec text-tech-spec bg-surface-container p-space-xs rounded text-center">
-<div>
-<span class="text-outline text-[10px] block uppercase">Scope</span>
-<span class="text-on-surface font-semibold">1300×900</span>
-</div>
-<div>
-<span class="text-outline text-[10px] block uppercase">Tube Power</span>
-<span class="text-primary font-semibold">130 Watt</span>
-</div>
-<div>
-<span class="text-outline text-[10px] block uppercase">Controller</span>
-<span class="text-secondary font-semibold">Ruida 6445</span>
-</div>
-</div>
-<a class="w-full bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface py-space-xs rounded text-center font-headline-sm text-headline-sm font-semibold transition-colors" data-path="fiber-laser-and-cutting" href="#">
-                View Specifications
-              </a>
+<a class="w-full bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface py-space-xs rounded text-center font-headline-sm text-headline-sm font-semibold transition-colors" href="{{ route('machines.show', $rel->slug) }}">
+View Specifications
+</a>
 </div>
 </div>
 </div>
-<!-- Card 3: Sheet Metal Fiber Laser Cutter (1.5kW - 3kW) -->
-<div class="bg-surface-container-low rounded-xl overflow-hidden shadow-lg flex flex-col group hover:shadow-2xl transition-all">
-<div class="relative aspect-video bg-surface-container overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Heavy duty gantry sheet metal fiber laser cutting machine with dual platform exchange, Raytools laser cutting head, CypCut industrial computer station, and protective enclosure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq2u2kTvtZ3ckmXWoD7owIi56qk757yyk7JgWBntuxaBAUyc1vHtFLZZntvQfsvzF8w8QXk2jgLTBalvlGUcOwk6WcaF73wYjZFECX9w--NcuxNJHJMW4zJxDp74_76JO2F7p9zZ6tt2B4ESseyoIRblK30xgtfP6OhV7TdfXJBmicdaos0vO2edJVMnL5fBHHtdS6fkySB-3eb357xfFplUsTSXAJNq5NEMbp4gKOhpupYrCKmT8r"/>
-<div class="absolute top-space-sm left-space-sm bg-surface-dim/90 backdrop-blur-sm px-space-sm py-space-2xs rounded font-label-badge text-label-badge text-tertiary uppercase">
-              HIGH-POWER FIBER
-            </div>
+@empty
+<div class="col-span-3 text-center py-space-xl text-on-surface-variant font-body-md">
+No complementary machines currently listed.
 </div>
-<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
-<div class="flex flex-col gap-space-xs">
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
-                Sheet Metal Fiber Laser Cutter (1.5kW – 3kW)
-              </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-                Cast iron heavy bed machine for cutting up to 20mm mild carbon steel and 10mm stainless steel with automated Raytools autofocus torch.
-              </p>
-</div>
-<div class="flex flex-col gap-space-md pt-space-xs">
-<div class="grid grid-cols-3 gap-space-xs font-tech-spec text-tech-spec bg-surface-container p-space-xs rounded text-center">
-<div>
-<span class="text-outline text-[10px] block uppercase">Working Area</span>
-<span class="text-on-surface font-semibold">1.5×3.0m</span>
-</div>
-<div>
-<span class="text-outline text-[10px] block uppercase">Generator</span>
-<span class="text-primary font-semibold">3000 W</span>
-</div>
-<div>
-<span class="text-outline text-[10px] block uppercase">Max Accel</span>
-<span class="text-secondary font-semibold">1.2 G</span>
-</div>
-</div>
-<a class="w-full bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface py-space-xs rounded text-center font-headline-sm text-headline-sm font-semibold transition-colors" data-path="fiber-laser-and-cutting" href="#">
-                View Specifications
-              </a>
-</div>
-</div>
-</div>
+@endforelse
 </div>
 </div>
 </section>
@@ -723,30 +658,36 @@
 <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Request Formal Quotation</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Receive FOB/CIF pricing, technical catalog, and shipping schedule within 2 hours.</p>
 </div>
-<form class="flex flex-col gap-space-sm font-body-md text-body-md" onsubmit="handleQuoteSubmit(event)">
+<form class="flex flex-col gap-space-sm font-body-md text-body-md" method="POST" action="{{ route('enquiry.store') }}">
+@csrf
+<input type="hidden" name="source" value="quote_form" />
+<input type="hidden" name="product_id" value="{{ $machine->id }}" />
+<div class="hidden" aria-hidden="true" style="display:none !important;">
+  <input type="text" name="b_name" tabindex="-1" autocomplete="off" />
+</div>
 <div>
 <label class="font-label-caps text-label-caps uppercase text-outline block mb-space-2xs">Machine Model Configuration</label>
-<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-primary font-tech-spec text-tech-spec focus:outline-none cursor-not-allowed" id="modalMachineField" readonly="" type="text" value="ZR-FLM-30W Series Fiber Laser"/>
+<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-primary font-tech-spec text-tech-spec focus:outline-none cursor-not-allowed" id="modalMachineField" readonly="" type="text" name="message" value="{{ $machine->name }} ({{ $machine->model_number ?? 'Standard' }})"/>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
 <div>
 <label class="font-label-caps text-label-caps uppercase text-outline block mb-space-2xs">Your Full Name *</label>
-<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-body-md" placeholder="e.g. Vikram Sharma" required="" type="text"/>
+<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-body-md" name="name" placeholder="e.g. Vikram Sharma" required="" type="text"/>
 </div>
 <div>
 <label class="font-label-caps text-label-caps uppercase text-outline block mb-space-2xs">Phone / WhatsApp *</label>
-<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-tech-spec" placeholder="+91 98765 43210" required="" type="tel"/>
+<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-tech-spec" name="phone" placeholder="+91 98765 43210" required="" type="tel"/>
 </div>
 </div>
 <div>
 <label class="font-label-caps text-label-caps uppercase text-outline block mb-space-2xs">Corporate / Plant Email *</label>
-<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-body-md" placeholder="purchasing@factory.com" required="" type="email"/>
+<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-body-md" name="email" placeholder="purchasing@factory.com" required="" type="email"/>
 </div>
 <div>
 <label class="font-label-caps text-label-caps uppercase text-outline block mb-space-2xs">Delivery Destination Port / City</label>
-<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-body-md" placeholder="e.g. Mundra Port / Ahmedabad GIDC" type="text"/>
+<input class="w-full bg-surface-container px-space-md py-space-xs rounded text-on-surface focus:bg-surface-container-high focus:outline-none font-body-md" name="city" placeholder="e.g. Mundra Port / Ahmedabad GIDC" type="text"/>
 </div>
-<button class="w-full bg-primary hover:bg-primary-fixed-dim text-on-primary py-space-sm rounded font-headline-sm text-headline-sm font-bold mt-space-xs shadow-lg flex items-center justify-center gap-space-xs transition-all" type="submit">
+<button class="w-full bg-primary hover:bg-primary-fixed-dim text-on-primary py-space-sm rounded font-headline-sm text-headline-sm font-bold mt-space-xs shadow-lg flex items-center justify-center gap-space-xs transition-all cursor-pointer" type="submit">
 <span class="material-symbols-outlined text-[18px]">send</span>
 <span>Submit Request to Technical Desk</span>
 </button>
@@ -768,16 +709,11 @@
     btnElement.classList.add('active');
     btnElement.classList.remove('opacity-70');
 
-    // Swap main view image prompt or state
+    // Swap main view image directly
     const mainImg = document.getElementById('mainProductImage');
-    if (viewKey === 'galvo') {
-      mainImg.setAttribute('data-alt', 'Close-up precision macro photograph of high-speed Sino-Galvo galvanometer mirror optical head with dual coaxial guide laser pointers targeting an aluminum fixture plate');
-    } else if (viewKey === 'source') {
-      mainImg.setAttribute('data-alt', 'Engineered chassis bay revealing the MAX Photonics 30W solid-state fiber laser generator housing with fiber optic cable coiled safely in metallic armor conduit');
-    } else if (viewKey === 'rotary') {
-      mainImg.setAttribute('data-alt', 'Heavy-duty 80mm three-jaw rotary chuck chuck fixture mounted on aluminum t-slot bed of fiber laser marker engraving a steel shaft');
-    } else {
-      mainImg.setAttribute('data-alt', 'Industrial heavy-duty fiber laser metal marking machine workstation mounted with high-speed Sino-Galvo scanner head, precision Z-axis motorized column, aluminum T-slot bed, and Raycus fiber source');
+    const thumbImg = btnElement.querySelector('img');
+    if (thumbImg && mainImg) {
+      mainImg.src = thumbImg.src;
     }
   }
 
@@ -805,12 +741,25 @@
     }
 
     // Update displays
-    document.getElementById('configSelectedDisplay').textContent = `ZR-FLM-${watt} High-Precision System`;
-    document.getElementById('modalMachineField').value = `ZR-FLM-${watt} Series High-Speed Precision Fiber Marker`;
+    const displayElem = document.getElementById('configSelectedDisplay');
+    if (displayElem) displayElem.textContent = `ZR-FLM-${watt} High-Precision System`;
+    const fieldElem = document.getElementById('modalMachineField');
+    if (fieldElem) fieldElem.value = `{{ $machine->name }} (Model: ZR-FLM-${watt})`;
 
-    // Update dynamic WhatsApp preview text payload
-    const dynamicMsg = `"Hello ZR IMPEX, I am interested in: Product: LASER Fiber Metal Marking Machine (Model: ZR-FLM-${watt}). Please send latest pricing, FOB/CIF delivery timeline, and PDF catalogue. URL: https://ZR IMPEX.in/machine/laser-fiber-metal-making-machine/"`;
-    document.getElementById('whatsAppPayloadText').textContent = dynamicMsg;
+    // Update dynamic WhatsApp preview text payload and anchor href
+    const machineName = @json($machine->name);
+    const machineUrl = @json(route('machines.show', $machine->slug));
+    const cleanNumber = '{{ preg_replace('/[^0-9]/', '', \App\Models\SiteSetting::get('whatsapp_number', '919876543210')) }}';
+    const dynamicMsg = `Hello ZR Impex,\n\nI am interested in: ${machineName} (Model: ZR-FLM-${watt})\nLink: ${machineUrl}\n\nPlease share the commercial quotation, technical datasheet, and delivery timeline.`;
+    
+    const payloadElem = document.getElementById('whatsAppPayloadText');
+    if (payloadElem) {
+      payloadElem.textContent = dynamicMsg;
+    }
+    const whatsAppLink = document.getElementById('mainWhatsAppLink');
+    if (whatsAppLink) {
+      whatsAppLink.href = `https://wa.me/${cleanNumber}?text=` + encodeURIComponent(dynamicMsg);
+    }
   }
 
   function switchTab(tabId, btnElement) {

@@ -56,6 +56,24 @@ class CategorySeeder extends Seeder
                 'sort_order' => 5,
                 'is_active' => true,
             ],
+            [
+                'name' => 'Fiber Laser Metal Marking',
+                'slug' => 'fiber-laser-metal-marking',
+                'type' => 'machine',
+                'description' => 'High-speed desktop and integrated MOPA fiber laser marking machines for metals, tool steel, jewelry, and barcodes.',
+                'image_path' => 'images/categories/fiber-laser.jpg',
+                'sort_order' => 6,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Multi-Axis Machining Centers',
+                'slug' => 'multi-axis-machining-centers',
+                'type' => 'machine',
+                'description' => '4-Axis and 5-Axis simultaneous CNC gantry centers for aerospace tooling, automotive styling, and complex composite molds.',
+                'image_path' => 'images/categories/multi-head.jpg',
+                'sort_order' => 7,
+                'is_active' => true,
+            ],
 
             // Spare Part Categories
             [

@@ -6,42 +6,102 @@
 @section('content')
 <div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
 
-<!-- BREADCRUMB & HERO CATALOGUE HEADER -->
-<section class="w-full bg-surface py-space-xl relative overflow-hidden">
-<div class="absolute -right-24 -top-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-<div class="max-w-max-width-content mx-auto px-gutter-desktop relative z-10 flex flex-col gap-space-lg">
+<!-- PROPER INDUSTRIAL HERO SECTION -->
+<section class="w-full bg-surface-container-lowest py-space-xl lg:py-space-2xl relative overflow-hidden border-b border-surface-container">
+  <!-- Subtle Industrial Grid & Ambient Accents -->
+  <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(rgba(229,169,16,0.18)_1px,transparent_1px)] [background-size:32px_32px]"></div>
+  <div class="absolute -right-24 -top-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-24 bottom-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
 
-<!-- Main Headline Block -->
-<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-xl">
-<div class="max-w-3xl flex flex-col gap-space-sm">
-<div class="inline-flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
-<span class="material-symbols-outlined text-[16px]">precision_manufacturing</span>
-<span>CNC Router Machines &amp; Precision Fiber Optics</span>
-</div>
-<h1 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight">
-            INDUSTRIAL CNC ROUTERS &amp; PRECISION FIBER LASER SYSTEMS
-          </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">
-            Direct-factory engineered manufacturing systems for sheet metal fabrication, heavy hardwood &amp; nested cabinetry, granite monument 3D carving, and ultra-high-speed laser annealing. All chassis heat-treated, annealed, and laser-interferometer certified.
-          </p>
-</div>
-<!-- Metric KPI Pill -->
-<div class="bg-surface-container-low p-space-md rounded-xl flex items-center gap-space-lg shadow-md shrink-0">
-<div class="flex flex-col">
-<span class="font-label-badge text-label-badge text-outline uppercase tracking-wider">Geometric Rigidity</span>
-<span class="font-tech-telemetry-lg text-tech-telemetry-lg text-primary">8.5 TON</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Annealed Cast Bed</span>
-</div>
-<div class="w-px h-10 bg-surface-container-highest"></div>
-<div class="flex flex-col">
-<span class="font-label-badge text-label-badge text-outline uppercase tracking-wider">Spindle Max Speed</span>
-<span class="font-tech-telemetry-lg text-tech-telemetry-lg text-on-surface">24,000 RPM</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Ceramic Quad Bearings</span>
-</div>
-</div>
-</div>
+  <div class="max-w-max-width-content mx-auto px-gutter-desktop relative z-10 flex flex-col gap-space-xl">
+    <!-- Breadcrumb & Stock Status Row -->
+    <div class="flex flex-wrap items-center justify-between gap-space-sm border-b border-surface-container pb-space-sm">
+      <nav class="flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface-variant">
+        <a class="hover:text-primary transition-colors flex items-center gap-space-2xs" href="{{ route('home') }}">
+          <span class="material-symbols-outlined text-[15px]">home</span>
+          <span>Home</span>
+        </a>
+        <span class="text-outline">/</span>
+        <span class="text-primary font-semibold">CNC Machines &amp; Laser Systems</span>
+      </nav>
+      <div class="flex items-center gap-space-md font-label-badge text-label-badge tracking-widest text-outline uppercase">
+        <div class="flex items-center gap-space-2xs">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-on-surface">FACTORY DIRECT INVENTORY</span>
+        </div>
+        <span class="text-surface-container-highest">|</span>
+        <span class="text-secondary">READY FOR GLOBAL COMMISSIONING</span>
+      </div>
+    </div>
 
-</div>
+    <!-- Main Headline & Telemetry HUD Row -->
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-xl">
+      <!-- Left Content Block -->
+      <div class="max-w-3xl flex flex-col gap-space-md">
+        <div class="flex flex-wrap items-center gap-space-xs">
+          <span class="inline-flex items-center gap-space-2xs bg-primary/10 text-primary border border-primary/25 px-space-sm py-space-2xs rounded font-label-badge text-label-badge uppercase tracking-wider font-bold">
+            <span class="material-symbols-outlined text-[14px]">precision_manufacturing</span>
+            Heavy Machinery Grade
+          </span>
+          <span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-primary border border-primary/30 px-space-sm py-space-2xs rounded font-label-badge text-label-badge uppercase tracking-wider font-semibold">
+            Industrial Machinery Catalogue
+          </span>
+          <span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-on-surface-variant px-space-sm py-space-2xs rounded font-label-badge text-label-badge uppercase tracking-wider">
+            <span class="material-symbols-outlined text-[14px]">verified</span>
+            Factory Direct Commissioning
+          </span>
+          <span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-on-surface-variant px-space-sm py-space-2xs rounded font-label-badge text-label-badge uppercase tracking-wider">
+            <span class="material-symbols-outlined text-[14px]">verified_user</span>
+            ISO 9001:2015 Certified
+          </span>
+        </div>
+
+        <h1 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight">
+          HEAVY INDUSTRIAL CNC ROUTERS &amp; HIGH-PRECISION FIBER LASER SYSTEMS
+        </h1>
+
+        <p class="font-body-lg text-body-lg text-on-surface-variant">
+          Direct-factory engineered manufacturing systems for heavy hardwood furniture, nested sheet cabinetry, granite monument carving, and ultra-high-speed fiber metal fabrication. Stress-relieved steel gantry frames, German helical drive kinematics, and laser-interferometer certified precision.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+          <button @click="quoteModalOpen = true" class="inline-flex items-center gap-space-xs bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm px-space-lg py-space-sm rounded font-bold shadow-lg transition-all hover:scale-[1.01] active:translate-y-[1px]">
+            <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+            <span>Request Technical RFQ</span>
+          </button>
+          <a href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Hello ZR Impex, I am inquiring from the CNC Machinery Catalogue. Please assist me with pricing and machine selection.') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-space-xs bg-[#25D366] hover:bg-[#20ba59] text-[#071d12] font-headline-sm text-headline-sm px-space-lg py-space-sm rounded font-bold shadow-md transition-all">
+            <span class="material-symbols-outlined text-[18px]">chat</span>
+            <span>Talk to Gantry Engineer</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right 4-Point Telemetry HUD -->
+      <div class="grid grid-cols-2 gap-space-sm bg-surface-container p-space-md rounded-xl border border-surface-container-highest shadow-xl shrink-0 lg:max-w-md">
+        <div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col">
+          <span class="font-label-badge text-label-badge text-outline uppercase tracking-wider">Rigidity Metric</span>
+          <span class="font-tech-telemetry-lg text-tech-telemetry-lg text-primary font-bold">8.5 TON</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Annealed Cast Bed</span>
+        </div>
+        <div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col">
+          <span class="font-label-badge text-label-badge text-outline uppercase tracking-wider">Spindle Speed</span>
+          <span class="font-tech-telemetry-lg text-tech-telemetry-lg text-on-surface font-bold">24,000 RPM</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Ceramic Quad Bearings</span>
+        </div>
+        <div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col">
+          <span class="font-label-badge text-label-badge text-outline uppercase tracking-wider">Repeatability</span>
+          <span class="font-tech-telemetry-lg text-tech-telemetry-lg text-secondary font-bold">±0.015 mm</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Interferometer Tested</span>
+        </div>
+        <div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col">
+          <span class="font-label-badge text-label-badge text-outline uppercase tracking-wider">Commissioning</span>
+          <span class="font-tech-telemetry-lg text-tech-telemetry-lg text-tertiary font-bold">100% Turnkey</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">On-Site Setup Included</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- MULTI-DIMENSIONAL INDUSTRIAL FILTER SECTION -->
 <section class="w-full bg-surface-container-low py-space-lg">
@@ -53,35 +113,35 @@
 <span>Category Selector</span>
 </div>
 <span class="font-tech-spec text-tech-spec text-primary bg-surface-container px-space-sm py-space-2xs rounded" id="active-results-badge">
-          Showing 12 Featured Industrial Production Systems
+          Showing 6 Industrial Production Systems
         </span>
 </div>
 <!-- Interactive Category Buttons -->
 <div class="flex flex-wrap gap-space-xs" id="category-filter-group">
 <button class="cat-pill active bg-primary text-on-primary font-headline-sm text-headline-sm px-space-md py-space-xs rounded font-bold transition-all shadow-sm" data-cat="all">
-          All Systems (42)
+          All Systems (6)
         </button>
 <button class="cat-pill bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm px-space-md py-space-xs rounded font-medium transition-all" data-cat="router">
-          Heavy CNC Routers (14)
+          CNC Router Machines (2)
         </button>
 <button class="cat-pill bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm px-space-md py-space-xs rounded font-medium transition-all" data-cat="fiber-laser">
-          Fiber Sheet Lasers (8)
+          Fiber Sheet Lasers (1)
         </button>
 <button class="cat-pill bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm px-space-md py-space-xs rounded font-medium transition-all" data-cat="marking">
-          Fiber Metal Markers (7)
+          Fiber Metal Markers (1)
         </button>
 <button class="cat-pill bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm px-space-md py-space-xs rounded font-medium transition-all" data-cat="co2">
-          CO2 Acrylic &amp; Wood Lasers (9)
+          CO2 Acrylic &amp; Wood Lasers (1)
         </button>
 <button class="cat-pill bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm px-space-md py-space-xs rounded font-medium transition-all" data-cat="multi-axis">
-          4D / 5D Multi-Axis (4)
+          Multi-Axis Centers (1)
         </button>
 </div>
 <!-- Secondary Spec Grids (Material, Power, Bed Size) -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-xs">
 <!-- Target Material Selector -->
 <div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
-<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider flex items-center justify-between" for="filter-material">
 <span>Target Substrate / Material</span>
 <span class="material-symbols-outlined text-[14px]">layers</span>
 </label>
@@ -96,22 +156,21 @@
 </div>
 <!-- Power / Wattage -->
 <div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
-<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider flex items-center justify-between" for="filter-power">
 <span>Spindle / Laser Power Class</span>
 <span class="material-symbols-outlined text-[14px]">bolt</span>
 </label>
 <select class="bg-surface-container-lowest text-on-surface font-tech-spec text-tech-spec p-space-xs rounded focus:outline-none focus:bg-surface-container-high" id="filter-power">
 <option value="all">All Power Configurations</option>
-<option value="light">1.5 kW - 3.2 kW Water-Cooled</option>
-<option value="standard">6.0 kW Air/Water Heavy Spindle</option>
-<option value="atc">9.0 kW HSD / HQD Automatic Tool Change</option>
-<option value="laser-mid">30W - 100W MOPA Laser Source</option>
-<option value="laser-heavy">3 kW - 12 kW Fiber Sheet Resonator</option>
+<option value="standard">6.0 kW / 7.5 kW Heavy Spindle</option>
+<option value="atc">9.0 kW - 12 kW Automatic Tool Change</option>
+<option value="laser-mid">30W - 150W Laser Source</option>
+<option value="laser-heavy">6 kW - 12 kW Fiber Sheet Resonator</option>
 </select>
 </div>
 <!-- Bed Dimensions -->
 <div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
-<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider flex items-center justify-between" for="filter-bed">
 <span>Machine Bed Envelope (X × Y)</span>
 <span class="material-symbols-outlined text-[14px]">aspect_ratio</span>
 </label>
@@ -120,22 +179,17 @@
 <option value="1325">1300 × 2500 mm (Standard 4 × 8 ft)</option>
 <option value="1530">1500 × 3000 mm (Sheet 5 × 10 ft)</option>
 <option value="2040">2000 × 4000 mm (Heavy Gantry Table)</option>
-<option value="compact">300 × 300 mm / 1300 × 900 mm Desk</option>
+<option value="compact">Desktop / 1300 × 900 mm Compact</option>
 </select>
 </div>
 </div>
 <!-- Applied Filters Chips Bar -->
 <div class="flex items-center justify-between flex-wrap gap-space-sm pt-space-2xs text-body-sm">
-<div class="flex items-center gap-space-xs flex-wrap">
+<div class="flex items-center gap-space-xs flex-wrap" id="active-parameters-container">
 <span class="font-label-caps text-label-caps text-outline uppercase">Active Parameters:</span>
-<span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-primary font-tech-spec text-tech-spec px-space-xs py-space-2xs rounded">
-            All Gantry Types <span class="material-symbols-outlined text-[12px] cursor-pointer">close</span>
-</span>
-<span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-on-surface font-tech-spec text-tech-spec px-space-xs py-space-2xs rounded">
-            Industrial Duty 100% <span class="material-symbols-outlined text-[12px] cursor-pointer">close</span>
-</span>
+<span class="text-on-surface-variant/70 text-body-sm italic">All Systems Active (No Filters Applied)</span>
 </div>
-<button class="font-label-caps text-label-caps text-primary hover:text-primary-fixed uppercase tracking-wider transition-colors inline-flex items-center gap-space-2xs" id="reset-filters-btn">
+<button class="font-label-caps text-label-caps text-primary hover:text-primary-fixed uppercase tracking-wider transition-colors inline-flex items-center gap-space-2xs cursor-pointer" id="reset-filters-btn">
 <span class="material-symbols-outlined text-[14px]">restart_alt</span> Reset All Parameters
         </button>
 </div>
@@ -146,10 +200,12 @@
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-space-lg" id="machine-catalog-grid">
 <!-- CARD 1: Heavy Duty ATC Router -->
-<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="router" data-power="atc">
+<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="router" data-power="atc" data-material="wood,acrylic,brass" data-bed="1325">
 <div class="relative h-64 w-full bg-surface-container-lowest overflow-hidden">
+<a href="{{ route('machines.show', 'zr-1325-industrial-cnc-wood-router') }}" class="block w-full h-full">
 <img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Heavy industrial CNC router machine ZR-1325 ATC with automated linear tool changer on factory floor, cutting dark hardwood panel, illuminated by amber warning lights and cool blue status LEDs, high precision mechanical gantry, cast iron base." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWKB9xFhikrWlcviy22VwnDLHZgk-GdUwZNVVaR0Tl7r9_cgpJn8sVimdW4kixVIK4Zl5ZyjihFNDi_tFBf0oNWjxJC-ijF59Q2XsnavFbsDTM-FikkUHVGHBuO2X_FUhJi4SOf1CQacDlFDBltRweE6lH042RJGzfj3NJ3QqekyQ1ymbAl2lMaAt7XQWkFhvJaEZVWNKe1Bjy5yB9770Yxdnc0I1paMI_YFMCq8o9u-MOwV-opm1V"/>
-<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs">
+</a>
+<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs pointer-events-none">
 <span class="bg-primary text-on-primary font-label-badge text-label-badge uppercase px-space-xs py-space-2xs rounded font-bold">
                 HOT SELLER
               </span>
@@ -170,8 +226,10 @@
                 </span>
 </div>
 <h2 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold tracking-tight">
-                ZR-1325 ATC Heavy Wood &amp; Solid Surface Router
-              </h2>
+  <a href="{{ route('machines.show', 'zr-1325-industrial-cnc-wood-router') }}" class="hover:text-primary transition-colors">
+    Industrial Heavy-Duty 1325 CNC Wood Router Machine (ZR-1325 ATC)
+  </a>
+</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
                 High-rigidity welded gantry router equipped with 12-station linear tool carousel, 7.5kW German Becker vacuum hold-down, and Syntec 6MB industrial CNC controller.
               </p>
@@ -208,11 +266,11 @@
 <span class="font-tech-spec text-tech-spec text-outline">72hr Burn-in Passed</span>
 </div>
 <div class="grid grid-cols-2 gap-space-xs">
-<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" data-path="cnc-machines" href="#">
+<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" href="{{ route('machines.show', 'zr-1325-industrial-cnc-wood-router') }}">
 <span class="material-symbols-outlined text-[16px]">overview</span>
 <span>View Specs</span>
 </a>
-<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="https://wa.me/919876543210?text=Inquiry%20for%20ZR-1325%20ATC%20Heavy%20Wood%20CNC%20Router" rel="noopener noreferrer" target="_blank">
+<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Inquiry for ZR-1325 ATC Heavy Wood CNC Router') }}" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[16px]">chat</span>
 <span>WhatsApp Quote</span>
 </a>
@@ -221,10 +279,12 @@
 </div>
 </article>
 <!-- CARD 2: Dual Bed Fiber Sheet Laser 6kW / 12kW -->
-<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="fiber-laser" data-power="laser-heavy">
+<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="fiber-laser" data-power="laser-heavy" data-material="steel,brass" data-bed="1530">
 <div class="relative h-64 w-full bg-surface-container-lowest overflow-hidden">
+<a href="{{ route('machines.show', 'zr-fsc-6000-dual-bed-metal-sheet-laser') }}" class="block w-full h-full">
 <img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Heavy enclosed fiber laser cutting machine Series ZR-FSC-6000 with dual exchange shuttle table, glowing laser beam cutting thick stainless steel sheet producing brilliant gold sparks, heavy industrial slate grey housing with safety optical window." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkTHkTUv5Y6OtNcqkV5AJMUiXKUJ8iQ1K43gyS0X2gJPdIU645xWn2TKl96imt6qCwrLFIcUm52y9IAkxQB7z200LdA0aTGznWqrMluLHsmNc8wAcPRhBH1qN4xMXKUR2yw29-1MjMnAXaI6CX8lRFXMXeNcsCfQfEBp0jIxWqiBNCNSjbv_i229YFZjzWvxaJF5Zqjje-ZO1yRY4jBgKWOnEZ0ii4wWXw4R-TCwVblgt7N7OQ7uEN"/>
-<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs">
+</a>
+<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs pointer-events-none">
 <span class="bg-tertiary-container text-on-tertiary-container font-label-badge text-label-badge uppercase px-space-xs py-space-2xs rounded font-bold">
                 HIGH POWER
               </span>
@@ -245,8 +305,10 @@
                 </span>
 </div>
 <h2 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold tracking-tight">
-                ZR-FSC-6000 Dual-Bed Metal Sheet Laser 6kW / 12kW
-              </h2>
+  <a href="{{ route('machines.show', 'zr-fsc-6000-dual-bed-metal-sheet-laser') }}" class="hover:text-primary transition-colors">
+    ZR-FSC-6000 Dual-Bed Metal Sheet Laser 6kW / 12kW
+  </a>
+</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
                 Full-protection enclosed fiber laser with dual pallet exchange in 15 seconds. Optimized for rapid piercing of 25mm mild steel and 16mm stainless plate with zero burr.
               </p>
@@ -283,11 +345,11 @@
 <span class="font-tech-spec text-tech-spec text-outline">±0.02 mm / 1000mm</span>
 </div>
 <div class="grid grid-cols-2 gap-space-xs">
-<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" data-path="fiber-laser-and-cutting" href="#">
+<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" href="{{ route('machines.show', 'zr-fsc-6000-dual-bed-metal-sheet-laser') }}">
 <span class="material-symbols-outlined text-[16px]">view_in_ar</span>
 <span>Optical Specs</span>
 </a>
-<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="https://wa.me/919876543210?text=Inquiry%20for%20ZR-FSC-6000%20Dual-Bed%20Fiber%20Laser%206kW" rel="noopener noreferrer" target="_blank">
+<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Inquiry for ZR-FSC-6000 Dual-Bed Fiber Laser 6kW') }}" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[16px]">chat</span>
 <span>WhatsApp Quote</span>
 </a>
@@ -296,10 +358,12 @@
 </div>
 </article>
 <!-- CARD 3: High-Speed Fiber Marking Machine -->
-<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="marking" data-power="laser-mid">
+<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="marking" data-power="laser-mid" data-material="steel,brass" data-bed="compact">
 <div class="relative h-64 w-full bg-surface-container-lowest overflow-hidden">
+<a href="{{ route('machines.show', 'laser-fiber-metal-marking-machine') }}" class="block w-full h-full">
 <img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Compact industrial high-speed fiber laser marking machine ZR-FLM-50W on stainless steel workstation, laser galvanometer marking deep serial numbers and QR code on brass automotive gear component with bright sparks and sharp contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClzXQyP_1T7meAueHldHlu5XGXMdBk3sA2z9uCdJgnrH2rPo_FaNG4ERGz_ojyKfAW_iJ0rNFPtOSY9eta8N9jwjY4LYMyoZBzovPUzsDLtBVBxzlwSKP_vVYEYuPPKGdW6JHLmzgG42VuoiHgVv9QhzdqbthQxCo8XuNBLm_OMcvktPUyqX-ncs_SSBJFsFSs0le3OnxbwdM8IKUIwnfQ5wua20VxLqcfBSTlEzimkiw05oMho5v2"/>
-<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs">
+</a>
+<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs pointer-events-none">
 <span class="bg-surface-container-highest text-on-surface font-label-badge text-label-badge uppercase px-space-xs py-space-2xs rounded font-bold">
                 DESKTOP &amp; INTEGRATED
               </span>
@@ -320,8 +384,10 @@
                 </span>
 </div>
 <h2 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold tracking-tight">
-                ZR-FLM-50W High-Speed Precision Fiber Laser Marker
-              </h2>
+  <a href="{{ route('machines.show', 'laser-fiber-metal-marking-machine') }}" class="hover:text-primary transition-colors">
+    ZR-FLM-50W High-Speed Precision Fiber Laser Marker
+  </a>
+</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
                 Direct part marking (DPM), UID barcode generation, and color engraving on stainless &amp; titanium. Equipped with high-speed Sino-Galvo scanner and EzCad2/3 controller.
               </p>
@@ -358,11 +424,11 @@
 <span class="font-tech-spec text-tech-spec text-outline">Zero Maintenance</span>
 </div>
 <div class="grid grid-cols-2 gap-space-xs">
-<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" data-path="spare-parts" href="#">
+<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" href="{{ route('machines.show', 'laser-fiber-metal-marking-machine') }}">
 <span class="material-symbols-outlined text-[16px]">tune</span>
-<span>Parameters</span>
+<span>View Specs</span>
 </a>
-<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="https://wa.me/919876543210?text=Inquiry%20for%20ZR-FLM-50W%20Fiber%20Marker" rel="noopener noreferrer" target="_blank">
+<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Inquiry for ZR-FLM-50W Fiber Marker') }}" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[16px]">chat</span>
 <span>WhatsApp Quote</span>
 </a>
@@ -371,10 +437,12 @@
 </div>
 </article>
 <!-- CARD 4: Stone & Granite 3D Engraver -->
-<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="router" data-power="standard">
+<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="router" data-power="standard" data-material="stone" data-bed="1530">
 <div class="relative h-64 w-full bg-surface-container-lowest overflow-hidden">
+<a href="{{ route('machines.show', 'zr-2030-heavy-stone-granite-cnc-router') }}" class="block w-full h-full">
 <img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Heavy stone and granite carving CNC router Series ZR-STN-1530 with high pressure dual water mist cooling, deep relief carving of ornate temple pillar pattern in black granite block, rigid welded steel structure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ4e4yXBvA1gQ7cWdK3UM7SE3on-za-zPwHlm_1_cwOeMjYteoaA3bCGj7wUPEHcnIzfw__JoLEecLDxwyw2QuAbSiMfrMNnI4sxfqieoTau4i6rvdVs9kzeoWIPtYguqz-DkePfiKi4K91shZErgYgX3jkKJn-4ha_WdoXfaY3mybHZj134hgk8Hwl5X00cMlJgIh3EW1sDTJLS94l_wxKfFz288lxRvf3I_o6vzElXqltwd_kjR_"/>
-<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs">
+</a>
+<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs pointer-events-none">
 <span class="bg-surface-container-highest text-on-surface font-label-badge text-label-badge uppercase px-space-xs py-space-2xs rounded font-bold">
                 WATERPROOF BED
               </span>
@@ -395,8 +463,10 @@
                 </span>
 </div>
 <h2 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold tracking-tight">
-                ZR-STN-1530 Heavy Stone &amp; Granite 3D Engraver
-              </h2>
+  <a href="{{ route('machines.show', 'zr-2030-heavy-stone-granite-cnc-router') }}" class="hover:text-primary transition-colors">
+    ZR-STN-1530 Heavy Stone &amp; Granite 3D Engraver
+  </a>
+</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
                 Engineered for continuous 24/7 wet deep routing of hard granite, sandstone pillars, monument headstones, and quartz slabs with stainless water tank recycling system.
               </p>
@@ -433,11 +503,11 @@
 <span class="font-tech-spec text-tech-spec text-outline">Weight: 2,800 kg</span>
 </div>
 <div class="grid grid-cols-2 gap-space-xs">
-<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" data-path="cnc-machines" href="#">
+<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" href="{{ route('machines.show', 'zr-2030-heavy-stone-granite-cnc-router') }}">
 <span class="material-symbols-outlined text-[16px]">tune</span>
 <span>View Specs</span>
 </a>
-<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="https://wa.me/919876543210?text=Inquiry%20for%20ZR-STN-1530%20Stone%20CNC" rel="noopener noreferrer" target="_blank">
+<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Inquiry for ZR-STN-1530 Stone CNC') }}" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[16px]">chat</span>
 <span>WhatsApp Quote</span>
 </a>
@@ -446,10 +516,12 @@
 </div>
 </article>
 <!-- CARD 5: CO2 Precision Laser 1390 -->
-<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="co2" data-power="laser-mid">
+<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="co2" data-power="laser-mid" data-material="acrylic,wood" data-bed="compact">
 <div class="relative h-64 w-full bg-surface-container-lowest overflow-hidden">
+<a href="{{ route('machines.show', 'zr-1390-co2-laser-cutting-engraving-machine') }}" class="block w-full h-full">
 <img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Industrial CO2 laser cutting and engraving machine Series ZR-CO2-1390 with honeycomb and blade table, cutting intricate clear acrylic display letters with polished edges, exhaust blower running, clean shop environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkBXWxx_lSq0EB-EgGXjfJb4Zr010ZG5g8yi_UH_Dk-_KqJ1frXSupVOsTUFAzA1nKqk4cW9QDr03CoAbiQDx5X1IpllUb6soDdVaIBfAWJgoh1eUm_rODitVF4oYN7uMG2toiJUZZ1ULqJ8F1T0vuXT6jrzotZBI6C8vDR4uaAMkWlv6VOWH1UkU7Gj_URZxDoCA7BFp0QS4YXsF49R3y_sxdzRRZdEV5VqPK8n2eDQ0OqIUpdrjr"/>
-<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs">
+</a>
+<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs pointer-events-none">
 <span class="bg-surface-container-highest text-on-surface font-label-badge text-label-badge uppercase px-space-xs py-space-2xs rounded font-bold">
                 SIGNAGE &amp; ACRYLIC
               </span>
@@ -470,8 +542,10 @@
                 </span>
 </div>
 <h2 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold tracking-tight">
-                ZR-CO2-1390 Precision Acrylic &amp; Wood Laser 130W/150W
-              </h2>
+  <a href="{{ route('machines.show', 'zr-1390-co2-laser-cutting-engraving-machine') }}" class="hover:text-primary transition-colors">
+    ZR-CO2-1390 Precision Acrylic &amp; Wood Laser 130W/150W
+  </a>
+</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
                 Premium sealed glass CO2 laser system with motorized up-down table for signage fabrication, trophy engraving, architectural modeling, and textile die cutting.
               </p>
@@ -508,11 +582,11 @@
 <span class="font-tech-spec text-tech-spec text-outline">Up-down 300mm</span>
 </div>
 <div class="grid grid-cols-2 gap-space-xs">
-<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" data-path="fiber-laser-and-cutting" href="#">
+<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" href="{{ route('machines.show', 'zr-1390-co2-laser-cutting-engraving-machine') }}">
 <span class="material-symbols-outlined text-[16px]">tune</span>
 <span>View Specs</span>
 </a>
-<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="https://wa.me/919876543210?text=Inquiry%20for%20ZR-CO2-1390%20Laser%20System" rel="noopener noreferrer" target="_blank">
+<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Inquiry for ZR-CO2-1390 Laser System') }}" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[16px]">chat</span>
 <span>WhatsApp Quote</span>
 </a>
@@ -521,10 +595,12 @@
 </div>
 </article>
 <!-- CARD 6: 5-Axis Multi-Axis Aerospace Center -->
-<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="multi-axis" data-power="atc">
+<article class="machine-card bg-surface-container rounded-xl overflow-hidden shadow-lg flex flex-col transition-all hover:translate-y-[-2px] hover:shadow-2xl" data-category="multi-axis" data-power="atc" data-material="wood,acrylic,brass" data-bed="2040">
 <div class="relative h-64 w-full bg-surface-container-lowest overflow-hidden">
+<a href="{{ route('machines.show', 'zr-5axis-master-heavy-gantry-center') }}" class="block w-full h-full">
 <img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Ultra high precision 5-axis CNC machining center Series ZR-MULTI-5AXIS with dual swivel head, milling complex contoured aluminium mold billet, coolant nozzles spraying, industrial dark titanium enclosure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzfwJfIW36Vt1vwGSSX1utky7XJMunExZu4VpMQLUuiibkRE2CEe6rX1IpflW9Z1P-EVXv-gqVlDnB4hr53A4owbM2rKZR6BbK0PJkMwnLEJIwLMXTJ0_A8ENpHWdQ6XDiKLV_5H-wM3NLCm7-Hm-Jv3T_e-Sf1wHJcUMzmm8eDq7jjYjxwWYOXDSnYRIWwMJu_DJjCNxqRjoMEmy6BQwsGA8DT5qC29Rkzu2ApWXYrut8TlekxAHm"/>
-<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs">
+</a>
+<div class="absolute top-space-sm left-space-sm flex flex-wrap gap-space-xs pointer-events-none">
 <span class="bg-primary text-on-primary font-label-badge text-label-badge uppercase px-space-xs py-space-2xs rounded font-bold">
                 AEROSPACE GRADE
               </span>
@@ -545,8 +621,10 @@
                 </span>
 </div>
 <h2 class="font-headline-sm text-headline-sm text-on-surface uppercase font-bold tracking-tight">
-                ZR-MULTI-5AXIS Gantry Mold &amp; Composite Center
-              </h2>
+  <a href="{{ route('machines.show', 'zr-5axis-master-heavy-gantry-center') }}" class="hover:text-primary transition-colors">
+    ZR-MULTI-5AXIS Gantry Mold &amp; Composite Center
+  </a>
+</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
                 Full 5-axis simultaneous routing with Italian HSD 2-axis articulation spindle. Built for marine hull patterns, automotive molds, carbon fiber trims, and aluminium extrusions.
               </p>
@@ -583,11 +661,11 @@
 <span class="font-tech-spec text-tech-spec text-outline">Custom Sizing Avail.</span>
 </div>
 <div class="grid grid-cols-2 gap-space-xs">
-<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" data-path="cnc-machines" href="#">
+<a class="inline-flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm py-space-sm px-space-xs rounded text-center transition-colors" href="{{ route('machines.show', 'zr-5axis-master-heavy-gantry-center') }}">
 <span class="material-symbols-outlined text-[16px]">tune</span>
 <span>View Specs</span>
 </a>
-<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="https://wa.me/919876543210?text=Inquiry%20for%20ZR-MULTI-5AXIS%20Center" rel="noopener noreferrer" target="_blank">
+<a class="inline-flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-fixed text-on-primary font-headline-sm text-headline-sm py-space-sm px-space-xs rounded font-bold shadow-md transition-all" href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Inquiry for ZR-MULTI-5AXIS Center') }}" rel="noopener noreferrer" target="_blank">
 <span class="material-symbols-outlined text-[16px]">chat</span>
 <span>WhatsApp Quote</span>
 </a>
@@ -802,24 +880,31 @@
       const cards = document.querySelectorAll('.machine-card');
       const resetBtn = document.getElementById('reset-filters-btn');
       const counterBadge = document.getElementById('active-results-badge');
+      const activeParamsContainer = document.getElementById('active-parameters-container');
 
       let currentCategory = 'all';
 
       function filterCards() {
         const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
-        const selectedPower = powerSelect.value;
+        const selectedMaterial = materialSelect ? materialSelect.value : 'all';
+        const selectedPower = powerSelect ? powerSelect.value : 'all';
+        const selectedBed = bedSelect ? bedSelect.value : 'all';
         let visibleCount = 0;
 
         cards.forEach(card => {
-          const cardCat = card.getAttribute('data-category');
-          const cardPower = card.getAttribute('data-power');
+          const cardCat = card.getAttribute('data-category') || '';
+          const cardPower = card.getAttribute('data-power') || '';
+          const cardMat = (card.getAttribute('data-material') || '').split(',');
+          const cardBed = card.getAttribute('data-bed') || '';
           const textContent = card.innerText.toLowerCase();
 
           const matchesCat = (currentCategory === 'all' || cardCat === currentCategory);
           const matchesPower = (selectedPower === 'all' || cardPower === selectedPower);
+          const matchesMat = (selectedMaterial === 'all' || cardMat.includes(selectedMaterial));
+          const matchesBed = (selectedBed === 'all' || cardBed === selectedBed);
           const matchesSearch = query === '' || textContent.includes(query);
 
-          if (matchesCat && matchesPower && matchesSearch) {
+          if (matchesCat && matchesPower && matchesMat && matchesBed && matchesSearch) {
             card.style.display = 'flex';
             visibleCount++;
           } else {
@@ -830,6 +915,82 @@
         if (counterBadge) {
           counterBadge.textContent = 'Showing ' + visibleCount + ' Industrial Production Systems';
         }
+
+        updateActiveChips();
+      }
+
+      function updateActiveChips() {
+        if (!activeParamsContainer) return;
+        let html = '<span class="font-label-caps text-label-caps text-outline uppercase">Active Parameters:</span>';
+        let hasActive = false;
+
+        if (currentCategory !== 'all') {
+          hasActive = true;
+          const activeBtn = document.querySelector(`.cat-pill[data-cat="${currentCategory}"]`);
+          const catLabel = activeBtn ? activeBtn.innerText.replace(/\s*\(\d+\)/, '').trim() : currentCategory;
+          html += `<span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-primary font-tech-spec text-tech-spec px-space-xs py-space-2xs rounded">
+            Category: ${catLabel}
+            <span class="material-symbols-outlined text-[12px] cursor-pointer hover:text-on-surface" data-clear="cat">close</span>
+          </span>`;
+        }
+
+        if (materialSelect && materialSelect.value !== 'all') {
+          hasActive = true;
+          const matLabel = materialSelect.options[materialSelect.selectedIndex].text.split('&')[0].trim();
+          html += `<span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-on-surface font-tech-spec text-tech-spec px-space-xs py-space-2xs rounded">
+            Material: ${matLabel}
+            <span class="material-symbols-outlined text-[12px] cursor-pointer hover:text-primary" data-clear="mat">close</span>
+          </span>`;
+        }
+
+        if (powerSelect && powerSelect.value !== 'all') {
+          hasActive = true;
+          const pwrLabel = powerSelect.options[powerSelect.selectedIndex].text;
+          html += `<span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-on-surface font-tech-spec text-tech-spec px-space-xs py-space-2xs rounded">
+            Power: ${pwrLabel}
+            <span class="material-symbols-outlined text-[12px] cursor-pointer hover:text-primary" data-clear="pwr">close</span>
+          </span>`;
+        }
+
+        if (bedSelect && bedSelect.value !== 'all') {
+          hasActive = true;
+          const bedLabel = bedSelect.options[bedSelect.selectedIndex].text.split('(')[0].trim();
+          html += `<span class="inline-flex items-center gap-space-2xs bg-surface-container-high text-on-surface font-tech-spec text-tech-spec px-space-xs py-space-2xs rounded">
+            Bed: ${bedLabel}
+            <span class="material-symbols-outlined text-[12px] cursor-pointer hover:text-primary" data-clear="bed">close</span>
+          </span>`;
+        }
+
+        if (!hasActive) {
+          html += `<span class="text-on-surface-variant/70 text-body-sm italic">All Systems Active (No Filters Applied)</span>`;
+        }
+
+        activeParamsContainer.innerHTML = html;
+
+        activeParamsContainer.querySelectorAll('[data-clear]').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const type = e.currentTarget.getAttribute('data-clear');
+            if (type === 'cat') {
+              currentCategory = 'all';
+              catButtons.forEach((b, idx) => {
+                if (idx === 0) {
+                  b.classList.add('bg-primary', 'text-on-primary', 'font-bold');
+                  b.classList.remove('bg-surface-container', 'text-on-surface-variant', 'font-medium');
+                } else {
+                  b.classList.remove('bg-primary', 'text-on-primary', 'font-bold');
+                  b.classList.add('bg-surface-container', 'text-on-surface-variant', 'font-medium');
+                }
+              });
+            } else if (type === 'mat' && materialSelect) {
+              materialSelect.value = 'all';
+            } else if (type === 'pwr' && powerSelect) {
+              powerSelect.value = 'all';
+            } else if (type === 'bed' && bedSelect) {
+              bedSelect.value = 'all';
+            }
+            filterCards();
+          });
+        });
       }
 
       catButtons.forEach(btn => {
@@ -879,6 +1040,9 @@
           filterCards();
         });
       }
+
+      // Initial run
+      filterCards();
     })();
   </script>
 </div></div>

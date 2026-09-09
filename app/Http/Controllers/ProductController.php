@@ -58,6 +58,16 @@ class ProductController extends Controller
             ->take(3)
             ->get();
 
+        if ($relatedMachines->count() < 3) {
+            $fallback = Product::machines()
+                ->published()
+                ->where('id', '!=', $machine->id)
+                ->whereNotIn('id', $relatedMachines->pluck('id'))
+                ->take(3 - $relatedMachines->count())
+                ->get();
+            $relatedMachines = $relatedMachines->concat($fallback);
+        }
+
         return view('machines.show', compact('machine', 'relatedMachines'));
     }
 
