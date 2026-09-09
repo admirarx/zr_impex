@@ -39,6 +39,7 @@ class SiteSettingResource extends Resource
                                         'business' => 'Business Details',
                                         'social' => 'Social Links',
                                         'integrations' => 'Integrations (Maps, Analytics)',
+                                        'seo' => 'SEO & Analytics',
                                     ])
                                     ->default('contact')
                                     ->required()
@@ -67,6 +68,8 @@ class SiteSettingResource extends Resource
                         'contact' => 'primary',
                         'business' => 'info',
                         'social' => 'success',
+                        'integrations' => 'warning',
+                        'seo' => 'warning',
                         default => 'gray',
                     })
                     ->sortable(),
@@ -86,7 +89,8 @@ class SiteSettingResource extends Resource
                         'contact' => 'Contact & Communication',
                         'business' => 'Business Details',
                         'social' => 'Social Links',
-                        'integrations' => 'Integrations',
+                        'integrations' => 'Integrations (Maps, Analytics)',
+                        'seo' => 'SEO & Analytics',
                     ]),
             ])
             ->actions([

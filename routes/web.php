@@ -12,6 +12,17 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 
+// Legal & Compliance Pages
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/terms-and-conditions', [PageController::class, 'terms'])->name('terms');
+Route::get('/cookie-policy', [PageController::class, 'cookiePolicy'])->name('cookie.policy');
+
+// Commercial, Shipping & Operations Pages
+Route::get('/shipping-and-delivery-policy', [PageController::class, 'shippingPolicy'])->name('shipping.policy');
+Route::get('/warranty-and-disclaimers', [PageController::class, 'warranty'])->name('warranty');
+Route::get('/return-and-refund-policy', [PageController::class, 'returnPolicy'])->name('return.policy');
+Route::get('/how-to-buy', [PageController::class, 'howToBuy'])->name('how-to-buy');
+
 // CNC Machinery Catalogue
 Route::get('/cnc-machines', [ProductController::class, 'machinesIndex'])->name('machines.index');
 Route::get('/machines/{slug}', [ProductController::class, 'machineShow'])->name('machines.show');

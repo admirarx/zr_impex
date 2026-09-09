@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 class WhatsAppUrlBuilder
 {
-    public static function build(?Product $product = null, ?string $customMessage = null): string
+    public static function build(Product|string|null $product = null, ?string $customMessage = null): string
     {
         $rawNumber = SiteSetting::get('whatsapp_number', '919876543210');
         $cleanNumber = preg_replace('/[^0-9]/', '', $rawNumber);
@@ -17,9 +17,11 @@ class WhatsAppUrlBuilder
             $cleanNumber = '919876543210';
         }
 
-        if ($customMessage) {
+        if (is_string($product) && empty($customMessage)) {
+            $message = $product;
+        } elseif ($customMessage) {
             $message = $customMessage;
-        } elseif ($product) {
+        } elseif ($product instanceof Product) {
             $routeName = $product->is_machine ? 'machines.show' : 'spare-parts.show';
             $productUrl = Route::has($routeName)
                 ? route($routeName, $product->slug)

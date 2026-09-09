@@ -47,6 +47,22 @@
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 
+    @php
+        $ga4Id = \App\Models\SiteSetting::get('ga4_measurement_id');
+    @endphp
+    @if(!empty($ga4Id) && $ga4Id !== 'G-XXXXXXXXXX')
+        <!-- Google Analytics 4 (GA4) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga4Id }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ $ga4Id }}', {
+                'anonymize_ip': true
+            });
+        </script>
+    @endif
+
     @stack('schema')
     @stack('styles')
 </head>
@@ -66,6 +82,13 @@
         $salesEmail = \App\Models\SiteSetting::get('sales_email', 'sales@zrimpex.com');
         $address = \App\Models\SiteSetting::get('address', 'Plot No. 42, Industrial Area, Phase-2, Near Mayapuri, New Delhi, Delhi 110064, India');
         $generalWaUrl = \App\Services\WhatsAppUrlBuilder::build();
+
+        $socialLinkedin = \App\Models\SiteSetting::get('social_linkedin', 'https://www.linkedin.com/company/zrimpex');
+        $socialYoutube = \App\Models\SiteSetting::get('social_youtube', 'https://www.youtube.com/@zrimpex');
+        $socialInstagram = \App\Models\SiteSetting::get('social_instagram', 'https://www.instagram.com/zrimpex');
+        $socialFacebook = \App\Models\SiteSetting::get('social_facebook', 'https://www.facebook.com/zrimpex');
+        $socialTwitter = \App\Models\SiteSetting::get('social_twitter', 'https://x.com/zrimpex');
+        $socialWhatsapp = \App\Models\SiteSetting::get('social_whatsapp', $generalWaUrl);
     @endphp
 
     <!-- FIXED TOP INDUSTRIAL HEADER -->
@@ -230,10 +253,10 @@
     </div>
 
     <!-- STITCH INDUSTRIAL FOOTER -->
-    <footer class="w-full bg-[#0a0f13]/85 backdrop-blur-md text-on-surface-variant border-t border-surface-container-high mt-space-4xl relative z-10">
+    <footer class="w-full bg-[#0a0f13]/90 backdrop-blur-md text-on-surface-variant border-t border-surface-container-high mt-space-4xl relative z-10">
         <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop py-space-3xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl mb-space-2xl">
-                <!-- Company Bio & Contact Details -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-space-xl mb-space-2xl">
+                <!-- Company Bio & Contact Details (2 cols on lg) -->
                 <div class="lg:col-span-2 flex flex-col gap-space-md">
                     <div class="flex items-center gap-space-md">
                         <span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight uppercase">ZR IMPEX</span>
@@ -242,7 +265,7 @@
                     <p class="font-body-md text-body-md text-on-surface-variant max-w-md leading-relaxed">
                         Precision heavy-machinery manufacturing and direct plant integration. Delivering high-rigidity CNC gantry routers, industrial fiber laser cutters, high-power plasma tables, and genuine European-spec spindles for demanding manufacturing sectors worldwide.
                     </p>
-                    <div class="flex flex-col gap-space-xs mt-space-sm font-tech-spec text-tech-spec">
+                    <div class="flex flex-col gap-space-xs mt-space-xs font-tech-spec text-tech-spec">
                         <div class="flex items-start gap-space-xs">
                             <span class="material-symbols-outlined text-primary text-[18px] shrink-0">factory</span>
                             <span>{{ $address }}</span>
@@ -256,11 +279,79 @@
                             <span>{{ $salesEmail }} | support@zrimpex.com</span>
                         </div>
                     </div>
+
+                    <!-- ISO Certification Badge -->
                     <div class="inline-flex items-center gap-space-sm bg-surface-container px-space-md py-space-sm rounded w-fit mt-space-xs border border-surface-container-highest">
                         <span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
                         <div class="flex flex-col">
                             <span class="font-headline-sm text-headline-sm text-on-surface">ISO 9001:2015</span>
                             <span class="font-label-badge text-label-badge uppercase text-outline">Certified Quality Management System</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Social Media Icons -->
+                    <div class="flex flex-col gap-space-xs mt-space-sm">
+                        <span class="font-label-caps text-label-caps uppercase text-outline tracking-wider">Connect With Us</span>
+                        <div class="flex items-center gap-space-xs flex-wrap">
+                            @if(!empty($socialLinkedin))
+                                <a href="{{ $socialLinkedin }}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+                                   title="LinkedIn" aria-label="ZR IMPEX LinkedIn">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61z"/>
+                                    </svg>
+                                </a>
+                            @endif
+
+                            @if(!empty($socialYoutube))
+                                <a href="{{ $socialYoutube }}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+                                   title="YouTube" aria-label="ZR IMPEX YouTube Channel">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                </a>
+                            @endif
+
+                            @if(!empty($socialInstagram))
+                                <a href="{{ $socialInstagram }}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+                                   title="Instagram" aria-label="ZR IMPEX Instagram">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                                    </svg>
+                                </a>
+                            @endif
+
+                            @if(!empty($socialFacebook))
+                                <a href="{{ $socialFacebook }}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+                                   title="Facebook" aria-label="ZR IMPEX Facebook">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    </svg>
+                                </a>
+                            @endif
+
+                            @if(!empty($socialTwitter))
+                                <a href="{{ $socialTwitter }}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+                                   title="X / Twitter" aria-label="ZR IMPEX on X">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                    </svg>
+                                </a>
+                            @endif
+
+                            @if(!empty($socialWhatsapp))
+                                <a href="{{ $socialWhatsapp }}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-[#25D366] hover:border-[#25D366]/50 hover:bg-[#25D366]/10 transition-all duration-200"
+                                   title="WhatsApp" aria-label="ZR IMPEX WhatsApp Channel">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                    </svg>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -287,33 +378,46 @@
 
                 <!-- Spares & Support Links -->
                 <div class="flex flex-col gap-space-sm">
-                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Spares &amp; Support</span>
+                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Spares Depot</span>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Electrospindles (HSD &amp; HQD)</a>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Yaskawa Servo Drivers &amp; Motors</a>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Hiwin Linear Motion Rails &amp; Blocks</a>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Raytools Cutting Optics &amp; Nozzles</a>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('contact') }}">Schedule On-Site Calibration</a>
                 </div>
+
+                <!-- Commercial & Help Guides Links -->
+                <div class="flex flex-col gap-space-sm">
+                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Commercial &amp; Guides</span>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('how-to-buy') }}">How to Buy Guide</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('shipping.policy') }}">Shipping &amp; Delivery Policy</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('warranty') }}">Warranty &amp; Disclaimers</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('return.policy') }}">Return &amp; Refund Policy</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('contact') }}">Factory Visits &amp; Demos</a>
+                </div>
             </div>
 
-            <!-- Bottom Legal & Attribution Bar -->
+            <!-- Bottom Legal Bar (No admin link) -->
             <div class="pt-space-lg border-t border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-md text-body-sm">
                 <div class="flex items-center gap-space-xs text-outline">
-                    <span class="font-tech-spec text-tech-spec">&copy; {{ date('Y') }} ZR IMPEX Industrial Systems Inc. All rights reserved.</span>
+                    <span class="font-tech-spec text-tech-spec">&copy; {{ date('Y') }} ZR IMPEX Industrial Systems. All rights reserved.</span>
                 </div>
-                <div class="flex flex-wrap items-center gap-space-lg">
-                    <a class="font-body-sm text-body-sm text-outline hover:text-on-surface transition-colors" href="{{ route('about') }}">Company Profile</a>
-                    <a class="font-body-sm text-body-sm text-outline hover:text-on-surface transition-colors" href="{{ route('contact') }}">Factory Visits &amp; Demos</a>
+                <div class="flex flex-wrap items-center gap-space-md sm:gap-space-lg">
+                    <a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="{{ route('privacy') }}">Privacy Policy</a>
+                    <a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="{{ route('terms') }}">Terms &amp; Conditions</a>
+                    <a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="{{ route('cookie.policy') }}">Cookie Policy</a>
                     <button type="button" 
                             onclick="window.openWhatsApp('{{ $generalWaUrl }}')"
-                            class="font-body-sm text-body-sm text-primary hover:text-primary-fixed transition-colors">
+                            class="font-body-sm text-body-sm text-primary hover:text-primary-fixed transition-colors font-medium">
                         Instant WhatsApp RFQ
                     </button>
-                    <a class="font-body-sm text-body-sm text-outline hover:text-on-surface transition-colors" href="/admin" rel="nofollow">Staff Portal</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Popup -->
+    <x-cookie-consent />
 
     @stack('modals')
     @stack('scripts')

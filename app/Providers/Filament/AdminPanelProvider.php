@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile()
             ->brandName('ZR Impex Machinery')
             ->brandLogo(asset('images/brand/logo.jpeg'))
             ->brandLogoHeight('2.75rem')

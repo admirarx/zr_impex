@@ -443,37 +443,32 @@
         </p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
-<!-- Interactive Map Frame with Data Location -->
-<div class="lg:col-span-7 flex flex-col bg-surface-container rounded overflow-hidden">
+@php
+    $mapEmbed = \App\Models\SiteSetting::get('google_maps_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112061.79155986884!2d77.0688975!3d28.63186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0370425a8397%3A0x6d396a84f50684f!2sMayapuri%20Industrial%20Area%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin');
+    $plantAddress = \App\Models\SiteSetting::get('address', 'Plot No. 42, Industrial Area, Phase-2, Near Mayapuri, New Delhi, Delhi 110064, India');
+@endphp
+<!-- Interactive Map Frame with Live Embed -->
+<div class="lg:col-span-7 flex flex-col bg-surface-container rounded overflow-hidden border border-surface-container-high">
 <div class="p-space-md bg-surface-container-high flex flex-wrap items-center justify-between gap-space-sm font-tech-spec text-tech-spec">
 <div class="flex items-center gap-space-xs text-on-surface">
 <span class="material-symbols-outlined text-primary text-[18px]">navigation</span>
-<span class="font-bold">GIDC Phase II, Precision Machine Hub, Ahmedabad</span>
+<span class="font-bold">{{ $plantAddress }}</span>
 </div>
 <div class="flex items-center gap-space-xs text-outline font-label-caps text-label-caps uppercase">
-<span>GPS: 22.9868° N, 72.6315° E</span>
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span>Live Google Maps Embed</span>
 </div>
 </div>
 <!-- Map Container -->
-<div class="w-full h-80 lg:h-96 bg-cover bg-center relative" data-alt="Stylized satellite overview showing GIDC industrial zone Ahmedabad with precision highway connectivity to National Highway 48 and Sardar Patel Ring Road, machinery warehouses, dark night-mode industrial aerial photography with subtle gold grid indicators" data-location="GIDC Phase II Ahmedabad Gujarat India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIGGqF_eeSAYlF0n3oCd9fkgQ9aTZjGru_ZqOfe9qvVVDAl-tU_uRlxZgpTHUCxFydxm7uAY9LqNS4E5Bwx0hOmE1v7myHYbJxgmqKLzOAVwRnRhWVchUsJvP3t_Fay5f5IZ8ohkMN-iIv0R62x5QeNcqTP7V1xS6i6tGbIEHIil9LITGBsS4hPv5oF8ZJl3IOWxAfrD4Jp4hWXn7OQFuMi7wE_0lURkm1BXxIdj-sJUclt4Um7BPL')">
-<!-- Simulated Map HUD Overlay -->
-<div class="absolute inset-0 bg-surface-dim/40 backdrop-blur-[2px] flex flex-col justify-between p-space-md pointer-events-none">
-<div class="flex items-center justify-between">
-<span class="bg-surface-container-lowest/90 px-space-sm py-space-xs rounded text-primary font-tech-spec text-tech-spec font-bold flex items-center gap-space-xs">
-<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                  ZR IMPEX PLANT HEADQUARTERS
-                </span>
-<span class="bg-surface-container-lowest/80 text-on-surface font-label-caps text-label-caps px-space-xs py-space-2xs rounded">Scale: 1:5000</span>
-</div>
-<div class="bg-surface-container-lowest/95 p-space-md rounded max-w-sm flex flex-col gap-space-2xs shadow-xl">
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold text-[14px]">ZR IMPEX Heavy Machine Works</span>
-<span class="text-body-sm text-on-surface-variant">Gate No. 3, High-Tonnage Freight &amp; Customer Demo Center</span>
-<div class="flex items-center gap-space-md pt-space-xs text-[11px] font-tech-spec text-tech-spec text-secondary">
-<span>Open: 09:00 - 18:30</span>
-<span>• Heavy Crane Bay Loaded</span>
-</div>
-</div>
-</div>
+<div class="w-full h-80 lg:h-96 relative bg-surface-container-lowest">
+    <iframe 
+        src="{{ $mapEmbed }}" 
+        class="w-full h-full border-0" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        title="ZR IMPEX Factory Location Map">
+    </iframe>
 </div>
 <!-- Transit Connectivity Chips -->
 <div class="p-space-lg bg-surface-container-low grid grid-cols-1 sm:grid-cols-3 gap-space-md">

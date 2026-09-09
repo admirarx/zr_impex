@@ -60,6 +60,41 @@ class PageController extends Controller
         return view('pages.contact', compact('contactSettings'));
     }
 
+    public function privacy(): View
+    {
+        return view('pages.legal.privacy');
+    }
+
+    public function terms(): View
+    {
+        return view('pages.legal.terms');
+    }
+
+    public function cookiePolicy(): View
+    {
+        return view('pages.legal.cookie');
+    }
+
+    public function shippingPolicy(): View
+    {
+        return view('pages.commercial.shipping');
+    }
+
+    public function warranty(): View
+    {
+        return view('pages.commercial.warranty');
+    }
+
+    public function returnPolicy(): View
+    {
+        return view('pages.commercial.return');
+    }
+
+    public function howToBuy(): View
+    {
+        return view('pages.commercial.how-to-buy');
+    }
+
     public function sitemap(): Response
     {
         $products = Product::where('is_published', true)
