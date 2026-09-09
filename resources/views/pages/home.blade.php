@@ -4,9 +4,9 @@
 @section('meta_description', 'Direct manufacturer and turnkey supplier of multi-axis CNC routers, industrial fiber laser marking, and sheet metal cutting systems across India.')
 
 @section('content')
-<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 <!-- HERO SECTION -->
-<section class="relative w-full overflow-hidden bg-surface-container-lowest">
+<section class="relative w-full overflow-hidden bg-transparent">
 <!-- Subtle Crosshair & Machined Grid Texture -->
 <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#ffc64d_1px,transparent_1px)] [background-size:32px_32px]"></div>
 <div class="absolute -top-40 right-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
@@ -111,7 +111,7 @@
 </div>
 </section>
 <!-- SOCIAL PROOF & HARD METRICS TRUST STRIP -->
-<section class="w-full bg-surface-container-low py-space-xl">
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-xl border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg mb-space-xl">
 <div class="flex items-center gap-space-md bg-surface-container p-space-md rounded shadow-sm">
@@ -167,7 +167,7 @@
 </div>
 </section>
 <!-- THE PROBLEM STATEMENT: DOWNTIME & SUB-STANDARD MACHINERY -->
-<section class="w-full py-space-3xl bg-surface">
+<section class="w-full py-space-3xl bg-transparent">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-space-2xl">
 <div class="flex items-center gap-space-xs bg-error-container/40 px-space-sm py-space-2xs rounded mb-space-sm">
@@ -236,8 +236,8 @@
 </div>
 </div>
 </section>
-<!-- SOLUTION & VALUE: THE ZR IMPEX ENGINEERING STANDARD -->
-<section class="w-full py-space-3xl bg-surface-container-low">
+<!-- ZR IMPEX 4-PILLAR RIGOR SOLUTION -->
+<section class="w-full py-space-3xl bg-[#101419]/60 backdrop-blur-xs border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-lg">
 <div class="flex flex-col max-w-2xl">
@@ -315,8 +315,8 @@
 </div>
 </div>
 </section>
-<!-- FEATURED CNC & LASER MACHINES SHOWCASE -->
-<section class="w-full py-space-3xl bg-surface" id="featured-machines">
+<!-- FEATURED FLAGSHIP CNC & LASER MACHINERY -->
+<section class="w-full py-space-3xl bg-transparent" id="featured-machines">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-lg">
 <div class="flex flex-col">
@@ -533,8 +533,8 @@
 </div>
 </div>
 </section>
-<!-- SPARE PARTS & OPTICAL CONSUMABLES SHOWCASE -->
-<section class="w-full py-space-3xl bg-surface-container-low">
+<!-- VOICE OF FACTORY MANAGERS: CASE STUDIES -->
+<section class="w-full py-space-3xl bg-[#101419]/60 backdrop-blur-xs border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-lg">
 <div class="flex flex-col max-w-2xl">
@@ -715,8 +715,8 @@
 </div>
 </div>
 </section>
-<!-- INDUSTRIAL FAQ (ACCORDION) -->
-<section class="w-full py-space-3xl bg-surface-container-low">
+<!-- INTERACTIVE APPLICATION EXPLORER -->
+<section class="w-full py-space-3xl bg-[#101419]/60 backdrop-blur-xs border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl">
 <div class="lg:col-span-5 flex flex-col gap-space-md">
@@ -782,7 +782,7 @@
 </div>
 </section>
 <!-- HIGH CONVERSION LEAD RFQ & QUICK ACTION -->
-<section class="w-full py-space-3xl bg-surface-container-lowest relative overflow-hidden">
+<section class="w-full py-space-3xl bg-transparent relative overflow-hidden">
 <div class="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="bg-surface-container p-space-xl lg:p-space-2xl rounded-2xl shadow-2xl">

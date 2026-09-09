@@ -4,10 +4,10 @@
 @section('meta_description', 'Certified OEM electrospindles, Raytools laser nozzles, Hiwin linear rails, EzCAD controllers, and S&A chillers. Same-day express dispatch across India.')
 
 @section('content')
-<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 
 <!-- DEPOT HEADER & QUICK SEARCH BAR -->
-<section class="w-full bg-surface py-space-2xl px-gutter-mobile md:px-gutter-desktop relative overflow-hidden">
+<section class="w-full bg-transparent py-space-2xl px-gutter-mobile md:px-gutter-desktop relative overflow-hidden">
 <div class="absolute -right-24 -top-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
 <div class="max-w-max-width-content mx-auto relative z-10 flex flex-col gap-space-lg">
 <div class="flex flex-col gap-space-xs max-w-4xl">
@@ -43,8 +43,8 @@
 </div>
 </div>
 </section>
-<!-- CATEGORY QUICK FILTER TABS -->
-<section class="w-full bg-surface-container-low py-space-md px-gutter-mobile md:px-gutter-desktop shadow-sm">
+<!-- PRIMARY SPARE PART CATEGORIES TAB BAR -->
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-md px-gutter-mobile md:px-gutter-desktop border-y border-surface-container/60 shadow-sm">
 <div class="max-w-max-width-content mx-auto flex flex-col gap-space-md">
 <div class="flex items-center justify-between">
 <span class="font-label-caps text-label-caps uppercase text-outline">Filter By Component Category</span>
@@ -82,8 +82,8 @@
 </div>
 </div>
 </section>
-<!-- STOCK INDICATOR & COMPATIBILITY FILTER BAR -->
-<section class="w-full bg-surface-container py-space-sm px-gutter-mobile md:px-gutter-desktop shadow-sm">
+<!-- ACTIVE SUB-FILTERS CHIP BAR -->
+<section class="w-full bg-transparent py-space-sm px-gutter-mobile md:px-gutter-desktop">
 <div class="max-w-max-width-content mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md text-body-sm">
 <div class="flex flex-wrap items-center gap-space-lg">
 <!-- Machine Filter Dropdown -->
@@ -110,8 +110,8 @@
 </div>
 </div>
 </section>
-<!-- HIGH-DENSITY PRODUCT SHOWCASE GRID -->
-<section class="w-full bg-surface py-space-2xl px-gutter-mobile md:px-gutter-desktop">
+<!-- MAIN SPARE PARTS INVENTORY GRID -->
+<section class="w-full bg-transparent py-space-2xl px-gutter-mobile md:px-gutter-desktop">
 <div class="max-w-max-width-content mx-auto">
 <!-- Component Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg" id="partsGrid">
@@ -476,7 +476,7 @@
 </div>
 </section>
 <!-- COUNTERFEIT ALERT & GENUINE VERIFICATION GUIDE -->
-<section class="w-full bg-surface-container-low py-space-3xl px-gutter-mobile md:px-gutter-desktop shadow-sm">
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-3xl px-gutter-mobile md:px-gutter-desktop border-y border-surface-container/60 shadow-sm">
 <div class="max-w-max-width-content mx-auto flex flex-col gap-space-2xl">
 <div class="flex flex-col gap-space-xs text-center items-center max-w-3xl mx-auto">
 <div class="inline-flex items-center gap-space-xs text-error font-label-caps text-label-caps uppercase tracking-wider">
@@ -586,7 +586,7 @@
 </div>
 </section>
 <!-- 24-HOUR EMERGENCY SLA & DEPOT NETWORK BANNER -->
-<section class="w-full bg-surface py-space-3xl px-gutter-mobile md:px-gutter-desktop">
+<section class="w-full bg-transparent py-space-3xl px-gutter-mobile md:px-gutter-desktop">
 <div class="max-w-max-width-content mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
 <div class="lg:col-span-7 flex flex-col gap-space-md">
 <div class="inline-flex items-center gap-space-xs text-secondary font-label-caps text-label-caps uppercase tracking-wider">

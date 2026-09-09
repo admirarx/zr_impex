@@ -4,10 +4,10 @@
 @section('meta_description', 'Explore ZR IMPEX industrial CNC machinery catalogue: 1325 ATC routers, 12kW fiber laser sheet cutters, 50W Galvo markers, and 5-axis gantry milling centers.')
 
 @section('content')
-<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 
 <!-- PROPER INDUSTRIAL HERO SECTION -->
-<section class="w-full bg-surface-container-lowest py-space-xl lg:py-space-2xl relative overflow-hidden border-b border-surface-container">
+<section class="w-full bg-transparent py-space-xl lg:py-space-2xl relative overflow-hidden border-b border-surface-container">
   <!-- Subtle Industrial Grid & Ambient Accents -->
   <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(rgba(229,169,16,0.18)_1px,transparent_1px)] [background-size:32px_32px]"></div>
   <div class="absolute -right-24 -top-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -85,7 +85,7 @@
   </div>
 </section>
 <!-- MULTI-DIMENSIONAL INDUSTRIAL FILTER SECTION -->
-<section class="w-full bg-surface-container-low py-space-lg">
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-lg border-b border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop flex flex-col gap-space-md">
 <!-- Top Row: Primary Category Chips -->
 <div class="flex items-center justify-between gap-space-md flex-wrap">
@@ -177,7 +177,7 @@
 </div>
 </section>
 <!-- PRODUCT SHOWCASE GRID -->
-<section class="w-full bg-surface py-space-2xl">
+<section class="w-full bg-transparent py-space-2xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-space-lg" id="machine-catalog-grid">
 <!-- CARD 1: Heavy Duty ATC Router -->
@@ -674,7 +674,7 @@
 </div>
 </section>
 <!-- HEAD-TO-HEAD SPECIFICATION COMPARISON MATRIX -->
-<section class="w-full bg-surface-container-lowest py-space-3xl">
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-3xl border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop flex flex-col gap-space-xl">
 <div class="flex flex-col gap-space-xs max-w-2xl">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
@@ -749,7 +749,7 @@
 </div>
 </section>
 <!-- CUSTOM GANTRY & TURNKEY AUTOMATION BANNER -->
-<section class="w-full bg-surface py-space-3xl relative overflow-hidden">
+<section class="w-full bg-transparent py-space-3xl relative overflow-hidden">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="bg-gradient-to-r from-surface-container via-surface-container-high to-surface-container p-space-2xl rounded-2xl shadow-xl flex flex-col lg:flex-row items-center justify-between gap-space-2xl relative">
 <div class="max-w-2xl flex flex-col gap-space-md z-10">
@@ -804,7 +804,7 @@
 </div>
 </section>
 <!-- PROCUREMENT, INSTALLATION & WARRANTY GUARANTEES -->
-<section class="w-full bg-surface-container-low py-space-2xl">
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-2xl border-t border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
 <!-- Guarantee 1 -->

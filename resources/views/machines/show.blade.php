@@ -4,9 +4,9 @@
 @section('meta_description', $machine->short_description ?? 'Heavy-duty industrial CNC router and laser cutting machine engineered by ZR IMPEX with high repeatability and factory direct warranty.')
 
 @section('content')
-<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 <!-- Primary Machine Showcase Stage -->
-<section class="w-full py-space-xl lg:py-space-2xl bg-surface">
+<section class="w-full py-space-xl lg:py-space-2xl bg-transparent">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-space-2xl items-start">
 <!-- Left: Industrial Gallery (7 Cols Desktop) -->
@@ -223,7 +223,7 @@ Rotary Axis
 </div>
 </section>
 <!-- Sample Designs & Machined Workpieces Gallery Carousel Section -->
-<section class="w-full py-space-2xl bg-surface-container-lowest border-y border-surface-container relative">
+<section class="w-full py-space-2xl bg-[#0a0f13]/50 backdrop-blur-sm border-y border-surface-container/80 relative">
   <div class="max-w-max-width-content mx-auto px-gutter-desktop">
     <!-- Section Header with Carousel Navigation -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
@@ -259,130 +259,48 @@ Rotary Axis
     </div>
 
     <!-- Carousel Track Container -->
-    <div id="sampleCarouselTrack" class="flex gap-space-lg overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-space-md pt-space-xs -mx-gutter-desktop px-gutter-desktop">
+    <div id="sampleCarouselTrack" class="flex gap-space-lg overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-space-md pt-space-xs -mx-gutter-desktop px-gutter-desktop" style="scrollbar-width: none; -ms-overflow-style: none;">
       @if($sampleList->isNotEmpty())
         @foreach($sampleList as $sample)
-          <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
-            <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ $sample->url }}" alt="{{ $sample->caption ?? 'Machined Sample Design' }}" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
-                <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
-                <span>Inspect Sample</span>
-              </div>
-            </div>
-            <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
-              <div class="flex flex-col">
-                <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
-                  {{ $sample->caption ?? 'Machined Sample' }}
-                </h4>
-                @if($sample->material)
-                  <span class="font-tech-spec text-tech-spec text-primary font-medium mt-space-2xs">
-                    {{ $sample->material }}
-                  </span>
-                @endif
-              </div>
-              <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
-                <span>View Full Resolution</span>
-                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-              </button>
+          <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] aspect-[4/3] rounded-xl overflow-hidden border border-surface-container hover:border-primary/60 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 group relative bg-surface-container-low" data-material="{{ $sample->material }}" onclick="openLightbox('{{ $sample->url }}', '{{ addslashes($sample->caption ?? 'Sample Design') }}')">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none" src="{{ $sample->url }}" alt="{{ $sample->caption ?? 'Machined Sample Design' }}" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+              <span class="material-symbols-outlined text-primary text-[28px]">zoom_in</span>
+              <span>Inspect Sample</span>
             </div>
           </div>
         @endforeach
       @else
         <!-- Curated Fallback Carousel Cards -->
-        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
-          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX" alt="Deep 3D Brass Seal Relief Engraving" />
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
-              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
-              <span>Inspect Sample</span>
-            </div>
-          </div>
-          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
-            <div class="flex flex-col">
-              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
-                Deep 3D Brass Seal Engraving
-              </h4>
-              <span class="font-tech-spec text-tech-spec text-primary font-medium mt-space-2xs">
-                Solid Brass C36000 • 1.2mm depth
-              </span>
-            </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
-              <span>View Full Resolution</span>
-              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] aspect-[4/3] rounded-xl overflow-hidden border border-surface-container hover:border-primary/60 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 group relative bg-surface-container-low" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX', 'Deep 3D Brass Seal Relief Engraving')">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5xwO6Ln5Vk9jTdZN81vWpiQ07H80oGf1FgkXHPgV7RAnR8mEAoVf_dhqFxdVrfvQmV6LYQhNsFEBNysXdh3-7vNwyXII_-_dveXv4qXLFMf5cb1JGnh-x8V_1e2O_a3W-_3ALdodpaGbUvrsL2NNLLZsoMVXq97ZNUaKHc0Ov2FIY14DxQwhv0QjI5JTM9QEX5Vurost5UkwBh87pNBWSUeBX85tKIRWwfN2w6h00T5EEqBnGi4gX" alt="Deep 3D Brass Seal Relief Engraving" />
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+            <span class="material-symbols-outlined text-primary text-[28px]">zoom_in</span>
+            <span>Inspect Sample</span>
           </div>
         </div>
 
-        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
-          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D" alt="Stainless Steel 304 Color Oxide Annealing" />
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
-              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
-              <span>Inspect Sample</span>
-            </div>
-          </div>
-          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
-            <div class="flex flex-col">
-              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
-                Stainless Color Annealing
-              </h4>
-              <span class="font-tech-spec text-tech-spec text-secondary font-medium mt-space-2xs">
-                Mirror SS304 • Spectral Oxide Layers
-              </span>
-            </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
-              <span>View Full Resolution</span>
-              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] aspect-[4/3] rounded-xl overflow-hidden border border-surface-container hover:border-primary/60 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 group relative bg-surface-container-low" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D', 'Stainless Steel 304 Color Oxide Annealing')">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFvEVpwQ_EpHG8HoZscAgE-ZR-CLvDtFWxqkNYOIxHQJUkOC77Xi04Zeo02HtEUf4bY4dW8KNBomleFMN5AkPPlbz1mvLGEWBR-KCsUTDt2-brvkxHmSTeBk2imq_oU9tWoPJKI_7WeOIblJpnxnWPXS80-hqlT3dyFVrPMgqDX1dpN7XGnvnvmNbTA0gN4quPzwzPyuUA7ku3m3Qsz3hEIAYbFKhKFvx7-RXjzycJ0AvA1eUJrA3D" alt="Stainless Steel 304 Color Oxide Annealing" />
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+            <span class="material-symbols-outlined text-primary text-[28px]">zoom_in</span>
+            <span>Inspect Sample</span>
           </div>
         </div>
 
-        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
-          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz" alt="Anodized Aluminum UID & 2D Data Matrix" />
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
-              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
-              <span>Inspect Sample</span>
-            </div>
-          </div>
-          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
-            <div class="flex flex-col">
-              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
-                Anodized Aluminum 2D Matrix
-              </h4>
-              <span class="font-tech-spec text-tech-spec text-tertiary font-medium mt-space-2xs">
-                MIL-STD-130 Traceability UID
-              </span>
-            </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
-              <span>View Full Resolution</span>
-              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] aspect-[4/3] rounded-xl overflow-hidden border border-surface-container hover:border-primary/60 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 group relative bg-surface-container-low" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz', 'Anodized Aluminum UID & 2D Data Matrix')">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsmtDiYFTMp5kirZsXFaxx2lgZcTDQ8KEEPowHVAFObROaJDg4zOXLBul2znDKbNhD5jShh79Bj0woHHVD3t2h-TfGuz8UALciizKfSv0ygAMeBPYE8vSvvUVW5Eoh1ONfp84a-z5EnZ5Y0UZcHMyfl1-PHPkh_o7NTJVvXRY-WqZGEQJT-JewkzAVHUBal3kOrUM25iEofUZbOy2_4ikCSVpXAx5ffx9a73-XcyYGjQ4NeDfG0qoz" alt="Anodized Aluminum UID & 2D Data Matrix" />
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+            <span class="material-symbols-outlined text-primary text-[28px]">zoom_in</span>
+            <span>Inspect Sample</span>
           </div>
         </div>
 
-        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] bg-surface-container-low border border-surface-container rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 flex flex-col group">
-          <div class="relative aspect-[4/3] bg-surface-container overflow-hidden cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP" alt="Titanium Surgical Dial Micro-Lettering" />
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
-              <span class="material-symbols-outlined text-primary text-[24px]">zoom_in</span>
-              <span>Inspect Sample</span>
-            </div>
-          </div>
-          <div class="p-space-md flex flex-col justify-between flex-1 gap-space-xs">
-            <div class="flex flex-col">
-              <h4 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-1">
-                Titanium Micro-Lettering
-              </h4>
-              <span class="font-tech-spec text-tech-spec text-outline font-medium mt-space-2xs">
-                Grade 5 Titanium • 0.15mm Characters
-              </span>
-            </div>
-            <button type="button" class="mt-space-xs flex items-center gap-space-2xs text-secondary hover:text-primary font-label-caps text-label-caps uppercase transition-colors text-left cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
-              <span>View Full Resolution</span>
-              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </button>
+        <div class="sample-carousel-card snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] aspect-[4/3] rounded-xl overflow-hidden border border-surface-container hover:border-primary/60 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 group relative bg-surface-container-low" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP', 'Titanium Surgical Dial Micro-Lettering')">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkr2GKMgDY-pGv_djjLb0UPEx_krgCjLdaLwn9_6nFvC79G40HXpk3HOEYhk7BE2_TdKx2y9EgcLSgy_skCHe9ZKzMXFKom5CiEbLRz5RNgGMPPfpOLfNsx40rBPusxB_bSdj-AL-sRM8SA14IYwA_2Wk87_LQRxVRshixKOCbSixEnrdhUt4jtYj12nuMd5WAz49a7V1BaQ776-mp6NQgY-kgu83kRXPYUY_TPjE7F2KYG6acNFP" alt="Titanium Surgical Dial Micro-Lettering" />
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-opacity flex items-center justify-center gap-space-xs text-white font-headline-sm text-headline-sm font-semibold">
+            <span class="material-symbols-outlined text-primary text-[28px]">zoom_in</span>
+            <span>Inspect Sample</span>
           </div>
         </div>
       @endif
@@ -393,7 +311,7 @@ Rotary Axis
   </div>
 </section>
 <!-- Technical Specification & Architecture Tabs -->
-<section class="w-full py-space-3xl bg-surface">
+<section class="w-full py-space-3xl bg-transparent">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 
 @if(!empty($machine->description))
@@ -770,7 +688,7 @@ Rotary Axis
 </div>
 </section>
 <!-- Related Industrial Heavy Machinery Section -->
-<section class="w-full py-space-3xl bg-surface-container-lowest">
+<section class="w-full py-space-3xl bg-transparent">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-space-2xl gap-space-sm">
 <div>
@@ -836,7 +754,7 @@ No complementary machines currently listed.
 </div>
 </section>
 <!-- Industrial Support & Warranty Guarantees Ribbon -->
-<section class="w-full py-space-2xl bg-surface-container">
+<section class="w-full py-space-2xl bg-[#0a0f13]/60 backdrop-blur-sm border-y border-surface-container">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
 <div class="flex items-center gap-space-md">
@@ -927,50 +845,60 @@ No complementary machines currently listed.
 </div>
 </div>
 </div>
+@push('modals')
 <!-- Fullscreen Lightbox Modal for High-Resolution Visual Inspection with Interactive Zoom & Pan -->
-<div id="imageLightboxModal" class="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md hidden items-center justify-center p-space-md select-none transition-opacity duration-200" onclick="closeLightbox(event)">
-  <!-- Top Bar: Caption & Zoom Controls -->
-  <div class="absolute top-space-md left-space-md right-space-md flex items-center justify-between pointer-events-none z-20 gap-space-md">
+<div id="imageLightboxModal" class="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-xl hidden flex-col justify-between select-none transition-opacity duration-200" onclick="closeLightbox(event)">
+  <!-- Top Bar: Inspection Badge & Controls -->
+  <div class="w-full px-space-md sm:px-space-lg py-space-sm flex items-center justify-between border-b border-white/10 bg-black/70 backdrop-blur-md z-30 shrink-0 gap-space-md" onclick="event.stopPropagation()">
     <!-- Caption / Inspection Tag -->
-    <div class="bg-surface-dim/90 backdrop-blur-md px-space-md py-space-xs rounded-lg font-tech-spec text-tech-spec text-on-surface flex items-center gap-space-xs pointer-events-auto shadow-xl border border-surface-container-high truncate max-w-[55vw]">
-      <span class="material-symbols-outlined text-primary text-[18px] shrink-0">verified</span>
-      <span id="lightboxCaption" class="truncate">ZR IMPEX Machinery Inspection</span>
+    <div class="flex items-center gap-space-xs font-tech-spec text-tech-spec text-on-surface truncate max-w-[50vw]">
+      <span class="material-symbols-outlined text-primary text-[20px] shrink-0">verified</span>
+      <span id="lightboxCaption" class="truncate font-semibold tracking-wide text-white">ZR IMPEX Machinery Inspection</span>
     </div>
 
     <!-- Zoom & Close Controls -->
-    <div class="flex items-center gap-space-xs pointer-events-auto bg-surface-dim/90 backdrop-blur-md p-1.5 rounded-lg border border-surface-container-high shadow-xl">
-      <button type="button" id="lbZoomOutBtn" onclick="zoomLightbox(-0.25)" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Zoom Out (-)">
-        <span class="material-symbols-outlined text-[20px]">zoom_out</span>
-      </button>
-      <span id="lbZoomBadge" class="font-tech-spec text-tech-spec text-primary px-space-xs py-0.5 rounded bg-surface-container border border-surface-container-highest min-w-[52px] text-center text-xs font-bold">
-        100%
-      </span>
-      <button type="button" id="lbZoomInBtn" onclick="zoomLightbox(0.25)" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Zoom In (+)">
-        <span class="material-symbols-outlined text-[20px]">zoom_in</span>
-      </button>
-      <button type="button" id="lbResetZoomBtn" onclick="resetLightboxZoom()" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Reset Zoom (1:1)">
-        <span class="material-symbols-outlined text-[20px]">restart_alt</span>
-      </button>
-      <div class="w-px h-5 bg-surface-container-highest mx-0.5"></div>
-      <button type="button" class="text-white/80 hover:text-white hover:bg-red-500/20 hover:text-red-400 p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" onclick="closeLightboxDirect()" title="Close (Esc)">
+    <div class="flex items-center gap-space-xs shrink-0">
+      <div class="flex items-center bg-surface-container-high/90 backdrop-blur-md p-1 rounded-lg border border-surface-container-highest shadow-lg">
+        <button type="button" id="lbZoomOutBtn" onclick="zoomLightbox(-0.25)" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Zoom Out (-)">
+          <span class="material-symbols-outlined text-[20px]">zoom_out</span>
+        </button>
+        <button type="button" onclick="resetLightboxZoom()" class="font-tech-spec text-tech-spec text-primary px-space-xs py-0.5 rounded hover:bg-surface-container min-w-[56px] text-center text-xs font-bold transition-all cursor-pointer" title="Click to Reset (100%)">
+          <span id="lbZoomBadge">100%</span>
+        </button>
+        <button type="button" id="lbZoomInBtn" onclick="zoomLightbox(0.25)" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer" title="Zoom In (+)">
+          <span class="material-symbols-outlined text-[20px]">zoom_in</span>
+        </button>
+        <button type="button" id="lbResetZoomBtn" onclick="resetLightboxZoom()" class="text-white/80 hover:text-primary hover:bg-surface-container p-1.5 rounded transition-all flex items-center justify-center cursor-pointer ml-0.5 border-l border-white/10" title="Reset Zoom (1:1)">
+          <span class="material-symbols-outlined text-[20px]">restart_alt</span>
+        </button>
+      </div>
+      
+      <!-- Close Button -->
+      <button type="button" class="text-white/90 hover:text-white hover:bg-red-500/30 text-white bg-surface-container-high/90 border border-surface-container-highest p-2 rounded-lg transition-all flex items-center justify-center cursor-pointer shadow-lg ml-space-xs" onclick="closeLightboxDirect()" title="Close (Esc)">
         <span class="material-symbols-outlined text-[22px]">close</span>
       </button>
     </div>
   </div>
 
-  <!-- Main Lightbox Image Container & Pan-Zoom Viewport -->
-  <div id="lightboxViewport" class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing" onclick="event.stopPropagation()">
-    <img id="lightboxImg" class="max-h-[80vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transition-transform duration-75 select-none pointer-events-auto will-change-transform" src="" alt="Full Resolution Machinery Inspection" draggable="false" />
+  <!-- Main Lightbox Image Viewport & Pan-Zoom Stage -->
+  <div id="lightboxViewport" class="relative flex-1 w-full h-full flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing p-space-md" onclick="handleViewportClick(event)">
+    <img id="lightboxImg" 
+         class="max-w-[90vw] max-h-[78vh] w-auto h-auto object-contain rounded-lg shadow-2xl transition-transform duration-75 select-none pointer-events-auto will-change-transform" 
+         src="" 
+         alt="Full Resolution Machinery Inspection" 
+         draggable="false"
+         style="transform-origin: center center;" />
   </div>
 
   <!-- Bottom Hint Bar -->
-  <div class="absolute bottom-space-md inset-x-0 flex justify-center pointer-events-none z-20">
-    <div class="bg-surface-dim/90 backdrop-blur-md px-space-lg py-space-xs rounded-full font-label-badge text-label-badge text-outline flex items-center gap-space-sm shadow-md border border-surface-container-high">
+  <div class="w-full py-space-xs px-space-md border-t border-white/10 bg-black/70 backdrop-blur-md flex justify-center items-center pointer-events-none z-30 shrink-0">
+    <div class="font-label-badge text-label-badge text-outline flex items-center gap-space-sm flex-wrap justify-center text-center">
       <span class="material-symbols-outlined text-primary text-[14px]">mouse</span>
-      <span>Scroll wheel or buttons to zoom • Drag to pan • Double-click to toggle zoom • <kbd class="px-1.5 py-0.5 bg-surface-container rounded text-primary font-mono text-xs">ESC</kbd> to close</span>
+      <span>Scroll wheel or buttons to zoom • Drag to pan when zoomed • Double-click to toggle 2.5x • Press <kbd class="px-1.5 py-0.5 bg-surface-container rounded text-primary font-mono text-xs">ESC</kbd> or click backdrop to close</span>
     </div>
   </div>
 </div>
+@endpush
 
 <!-- Client-side Interactive Engine -->
 <script>
@@ -1005,25 +933,31 @@ No complementary machines currently listed.
   let lbIsDragging = false;
   let lbStartX = 0;
   let lbStartY = 0;
+  let lbDidDrag = false;
 
   function updateLightboxTransform() {
     const img = document.getElementById('lightboxImg');
     const badge = document.getElementById('lbZoomBadge');
+    const viewport = document.getElementById('lightboxViewport');
     if (img) {
       img.style.transform = `translate(${lbPanX}px, ${lbPanY}px) scale(${lbScale})`;
+      img.style.transition = lbIsDragging ? 'none' : 'transform 0.15s ease-out';
     }
     if (badge) {
       badge.textContent = Math.round(lbScale * 100) + '%';
     }
+    if (viewport) {
+      viewport.style.cursor = lbScale > 1 ? (lbIsDragging ? 'grabbing' : 'grab') : 'zoom-in';
+    }
   }
 
   function zoomLightbox(delta) {
-    const newScale = Math.min(Math.max(1, lbScale + delta), 4);
+    const newScale = Math.min(Math.max(1, Math.round((lbScale + delta) * 100) / 100), 4);
     if (newScale === 1) {
       lbPanX = 0;
       lbPanY = 0;
     }
-    lbScale = Math.round(newScale * 100) / 100;
+    lbScale = newScale;
     updateLightboxTransform();
   }
 
@@ -1032,6 +966,24 @@ No complementary machines currently listed.
     lbPanX = 0;
     lbPanY = 0;
     updateLightboxTransform();
+  }
+
+  function toggleImageZoom(e) {
+    e.stopPropagation();
+    if (lbScale > 1) {
+      resetLightboxZoom();
+    } else {
+      lbScale = 2.5;
+      lbPanX = 0;
+      lbPanY = 0;
+      updateLightboxTransform();
+    }
+  }
+
+  function handleViewportClick(event) {
+    if (event.target.id === 'lightboxViewport' && !lbDidDrag) {
+      closeLightboxDirect();
+    }
   }
 
   function openLightbox(imgUrl, caption) {
@@ -1066,67 +1018,83 @@ No complementary machines currently listed.
   }
 
   // Lightbox Viewport Mouse/Touch Event Listeners
-  const lbViewport = document.getElementById('lightboxViewport');
-  if (lbViewport) {
-    // Wheel to Zoom
-    lbViewport.addEventListener('wheel', function(e) {
-      e.preventDefault();
-      zoomLightbox(e.deltaY < 0 ? 0.25 : -0.25);
-    }, { passive: false });
+  document.addEventListener('DOMContentLoaded', function() {
+    const lbViewport = document.getElementById('lightboxViewport');
+    const lbImg = document.getElementById('lightboxImg');
+    if (lbImg) {
+      lbImg.addEventListener('click', toggleImageZoom);
+    }
 
-    // Double-click to Toggle 2.5x Zoom
-    lbViewport.addEventListener('dblclick', function(e) {
-      e.preventDefault();
-      if (lbScale > 1) {
-        resetLightboxZoom();
-      } else {
-        lbScale = 2.5;
-        updateLightboxTransform();
-      }
-    });
+    if (lbViewport) {
+      // Wheel to Zoom
+      lbViewport.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        zoomLightbox(e.deltaY < 0 ? 0.25 : -0.25);
+      }, { passive: false });
 
-    // Mouse Drag to Pan when Zoomed
-    lbViewport.addEventListener('mousedown', function(e) {
-      if (lbScale > 1) {
-        lbIsDragging = true;
-        lbStartX = e.clientX - lbPanX;
-        lbStartY = e.clientY - lbPanY;
-      }
-    });
+      // Double-click to Toggle 2.5x Zoom
+      lbViewport.addEventListener('dblclick', function(e) {
+        e.preventDefault();
+        toggleImageZoom(e);
+      });
 
-    window.addEventListener('mousemove', function(e) {
-      if (lbIsDragging && lbScale > 1) {
-        lbPanX = e.clientX - lbStartX;
-        lbPanY = e.clientY - lbStartY;
-        updateLightboxTransform();
-      }
-    });
+      // Mouse Drag to Pan when Zoomed
+      lbViewport.addEventListener('mousedown', function(e) {
+        if (lbScale > 1) {
+          lbIsDragging = true;
+          lbDidDrag = false;
+          lbStartX = e.clientX - lbPanX;
+          lbStartY = e.clientY - lbPanY;
+          updateLightboxTransform();
+        }
+      });
 
-    window.addEventListener('mouseup', function() {
-      lbIsDragging = false;
-    });
+      window.addEventListener('mousemove', function(e) {
+        if (lbIsDragging && lbScale > 1) {
+          lbDidDrag = true;
+          const img = document.getElementById('lightboxImg');
+          const maxPanX = img ? (img.offsetWidth * (lbScale - 1)) / 2 + 150 : 350;
+          const maxPanY = img ? (img.offsetHeight * (lbScale - 1)) / 2 + 150 : 350;
+          
+          lbPanX = Math.max(-maxPanX, Math.min(maxPanX, e.clientX - lbStartX));
+          lbPanY = Math.max(-maxPanY, Math.min(maxPanY, e.clientY - lbStartY));
+          updateLightboxTransform();
+        }
+      });
 
-    // Touch Support for Mobile Drag / Pan
-    lbViewport.addEventListener('touchstart', function(e) {
-      if (lbScale > 1 && e.touches.length === 1) {
-        lbIsDragging = true;
-        lbStartX = e.touches[0].clientX - lbPanX;
-        lbStartY = e.touches[0].clientY - lbPanY;
-      }
-    }, { passive: true });
+      window.addEventListener('mouseup', function() {
+        if (lbIsDragging) {
+          lbIsDragging = false;
+          updateLightboxTransform();
+        }
+      });
 
-    lbViewport.addEventListener('touchmove', function(e) {
-      if (lbIsDragging && lbScale > 1 && e.touches.length === 1) {
-        lbPanX = e.touches[0].clientX - lbStartX;
-        lbPanY = e.touches[0].clientY - lbStartY;
-        updateLightboxTransform();
-      }
-    }, { passive: true });
+      // Touch Support for Mobile Drag / Pan
+      lbViewport.addEventListener('touchstart', function(e) {
+        if (lbScale > 1 && e.touches.length === 1) {
+          lbIsDragging = true;
+          lbStartX = e.touches[0].clientX - lbPanX;
+          lbStartY = e.touches[0].clientY - lbPanY;
+        }
+      }, { passive: true });
 
-    lbViewport.addEventListener('touchend', function() {
-      lbIsDragging = false;
-    });
-  }
+      lbViewport.addEventListener('touchmove', function(e) {
+        if (lbIsDragging && lbScale > 1 && e.touches.length === 1) {
+          const img = document.getElementById('lightboxImg');
+          const maxPanX = img ? (img.offsetWidth * (lbScale - 1)) / 2 + 150 : 350;
+          const maxPanY = img ? (img.offsetHeight * (lbScale - 1)) / 2 + 150 : 350;
+          
+          lbPanX = Math.max(-maxPanX, Math.min(maxPanX, e.touches[0].clientX - lbStartX));
+          lbPanY = Math.max(-maxPanY, Math.min(maxPanY, e.touches[0].clientY - lbStartY));
+          updateLightboxTransform();
+        }
+      }, { passive: true });
+
+      lbViewport.addEventListener('touchend', function() {
+        lbIsDragging = false;
+      });
+    }
+  });
 
   // Sample Designs Gallery Carousel Engine
   function slideSampleCarousel(direction) {

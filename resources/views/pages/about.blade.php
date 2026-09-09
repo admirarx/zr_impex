@@ -4,10 +4,10 @@
 @section('meta_description', 'Discover ZR IMPEX manufacturing heritage since 2008: 4-stage build rigor, 600°C stress-annealed frames, laser interferometer calibration, and factory-direct support across India.')
 
 @section('content')
-<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 
 <!-- Hero Section: Mechanical Mastery & Direct Factory OEM -->
-<section class="relative w-full bg-surface py-space-3xl overflow-hidden">
+<section class="relative w-full bg-transparent py-space-3xl overflow-hidden">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
 <div class="lg:col-span-7 flex flex-col gap-space-md">
 <div class="flex items-center gap-space-sm">
@@ -97,8 +97,8 @@
 </div>
 </div>
 </section>
-<!-- Core Mission & Engineering Vision Bento Grid -->
-<section class="w-full bg-surface-container-lowest py-space-3xl">
+<!-- Manufacturing Footprint & Core Metrics Grid -->
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-3xl border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col gap-space-xs mb-space-2xl">
 <div class="flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
@@ -164,8 +164,8 @@
 </div>
 </div>
 </section>
-<!-- 4-Step Technical Rigor: How We Build Our Machines -->
-<section class="w-full bg-surface py-space-4xl" id="rigor-process">
+<!-- The 4-Stage Precision Build Rigor -->
+<section class="w-full bg-transparent py-space-4xl" id="rigor-process">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop flex flex-col gap-space-2xl">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
 <div>
@@ -463,7 +463,7 @@
 </div>
 </section>
 <!-- Engineering Leadership & Plant Directors -->
-<section class="w-full bg-surface py-space-3xl">
+<section class="w-full bg-transparent py-space-3xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col gap-space-xs mb-space-2xl">
 <div class="flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
@@ -544,8 +544,8 @@
 </div>
 </div>
 </section>
-<!-- Quality Certifications & Accreditations Strip -->
-<section class="w-full bg-surface-container-lowest py-space-2xl">
+<!-- Certified Standards & Export Compliance Grid -->
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-2xl border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
 <!-- Cert 1 -->
@@ -590,8 +590,8 @@
 </div>
 </div>
 </section>
-<!-- Live Factory Visit & Material Cut Demonstration CTA -->
-<section class="w-full bg-surface py-space-3xl relative overflow-hidden">
+<!-- Visit Factory & Schedule Live Demo Banner -->
+<section class="w-full bg-transparent py-space-3xl relative overflow-hidden">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop relative z-10">
 <div class="bg-surface-container-high rounded-xl p-space-xl lg:p-space-2xl shadow-xl">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">

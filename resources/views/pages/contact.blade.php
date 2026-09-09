@@ -4,10 +4,10 @@
 @section('meta_description', 'Connect directly with ZR IMPEX factory engineers and technical sales. Schedule live cutting demonstrations, request cycle-time analysis, or visit our manufacturing demo plant.')
 
 @section('content')
-<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-transparent min-h-screen"><div class="flex flex-col w-full">
 
 <!-- Page Header & Industrial Context -->
-<section class="w-full bg-surface-container-low py-space-2xl">
+<section class="w-full bg-transparent py-space-2xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-end">
 <div class="lg:col-span-8 flex flex-col gap-space-sm">
@@ -46,7 +46,7 @@
 </div>
 </section>
 <!-- Primary Contact Channels & Quick-Reach Cards -->
-<section class="w-full bg-surface py-space-2xl">
+<section class="w-full bg-transparent py-space-2xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
 <!-- Card 1: Machine Sales -->
@@ -160,7 +160,7 @@
 </div>
 </section>
 <!-- Interactive Technical Quotation & Feasibility Request Form Section -->
-<section class="w-full bg-surface-container-low py-space-3xl">
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs border-y border-surface-container/60 py-space-3xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
 <!-- Main Form Column (8 Cols) -->
@@ -551,7 +551,7 @@
 </div>
 </section>
 <!-- Nationwide Support & Engineer Deployment Network -->
-<section class="w-full bg-surface-container-low py-space-3xl">
+<section class="w-full bg-[#101419]/60 backdrop-blur-xs border-y border-surface-container/60 py-space-3xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg mb-space-2xl">
 <div class="flex flex-col gap-space-xs">
@@ -654,7 +654,7 @@
 </div>
 </section>
 <!-- Technical Inquiry FAQs -->
-<section class="w-full bg-surface py-space-3xl">
+<section class="w-full bg-transparent py-space-3xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col gap-space-xs mb-space-xl">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
@@ -710,7 +710,7 @@
 </div>
 </section>
 <!-- Final Dispatch Quick Action Banner -->
-<section class="w-full bg-surface-container-highest py-space-xl">
+<section class="w-full bg-[#101419]/80 backdrop-blur-sm border-t border-surface-container/60 py-space-xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-lg">
 <div class="flex flex-col">
 <span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Urgent RFQ or Breakdown Assistance?</span>
