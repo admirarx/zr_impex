@@ -29,4 +29,24 @@ window.openWhatsApp = function (targetUrl, productId = null) {
     window.open(targetUrl, '_blank', 'noopener,noreferrer');
 };
 
+// Smooth scroll for in-page hash links without jittering the global window scroll
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', function (e) {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (anchor) {
+            const href = anchor.getAttribute('href');
+            if (href && href.length > 1 && !href.startsWith('#!')) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    if (history.pushState) {
+                        history.pushState(null, '', href);
+                    }
+                }
+            }
+        }
+    });
+});
+
 Alpine.start();
