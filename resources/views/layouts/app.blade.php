@@ -92,20 +92,12 @@
                         Home
                     </a>
                     <a href="{{ route('machines.index') }}" 
-                       class="px-space-md py-space-xs rounded font-body-md text-body-md transition-colors {{ (request()->routeIs('machines.index') && !request()->has('type')) ? 'bg-primary-container text-on-primary-container font-headline-sm font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low' }}">
+                       class="px-space-md py-space-xs rounded font-body-md text-body-md transition-colors {{ request()->routeIs('machines.*') ? 'bg-primary-container text-on-primary-container font-headline-sm font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low' }}">
                         CNC Machines
-                    </a>
-                    <a href="{{ route('machines.index', ['type' => 'laser']) }}" 
-                       class="px-space-md py-space-xs rounded font-body-md text-body-md transition-colors {{ (request()->routeIs('machines.index') && request()->get('type') === 'laser') ? 'bg-primary-container text-on-primary-container font-headline-sm font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low' }}">
-                        Fiber Laser &amp; Cutting
                     </a>
                     <a href="{{ route('spare-parts.index') }}" 
                        class="px-space-md py-space-xs rounded font-body-md text-body-md transition-colors {{ request()->routeIs('spare-parts.*') ? 'bg-primary-container text-on-primary-container font-headline-sm font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low' }}">
                         Spare Parts
-                    </a>
-                    <a href="{{ route('about') }}#applications" 
-                       class="px-space-md py-space-xs rounded font-body-md text-body-md transition-colors text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low">
-                        Applications
                     </a>
                     <a href="{{ route('about') }}" 
                        class="px-space-md py-space-xs rounded font-body-md text-body-md transition-colors {{ request()->routeIs('about') ? 'bg-primary-container text-on-primary-container font-headline-sm font-semibold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low' }}">
@@ -153,12 +145,8 @@
                 Home
             </a>
             <a href="{{ route('machines.index') }}" 
-               class="block px-space-md py-space-sm rounded font-body-md {{ (request()->routeIs('machines.index') && !request()->has('type')) ? 'bg-primary text-on-primary font-bold' : 'text-on-surface hover:bg-surface-container' }}">
+               class="block px-space-md py-space-sm rounded font-body-md {{ request()->routeIs('machines.*') ? 'bg-primary text-on-primary font-bold' : 'text-on-surface hover:bg-surface-container' }}">
                 CNC Machines
-            </a>
-            <a href="{{ route('machines.index', ['type' => 'laser']) }}" 
-               class="block px-space-md py-space-sm rounded font-body-md {{ (request()->routeIs('machines.index') && request()->get('type') === 'laser') ? 'bg-primary text-on-primary font-bold' : 'text-on-surface hover:bg-surface-container' }}">
-                Fiber Laser &amp; Cutting
             </a>
             <a href="{{ route('spare-parts.index') }}" 
                class="block px-space-md py-space-sm rounded font-body-md {{ request()->routeIs('spare-parts.*') ? 'bg-primary text-on-primary font-bold' : 'text-on-surface hover:bg-surface-container' }}">
