@@ -4,33 +4,8 @@
 @section('meta_description', 'Discover ZR IMPEX manufacturing heritage since 2008: 4-stage build rigor, 600°C stress-annealed frames, laser interferometer calibration, and factory-direct support across India.')
 
 @section('content')
-<main class="w-full pt-[7.5rem] bg-surface min-h-screen"><div class="flex flex-col w-full">
-<!-- Top Industrial Context Breadcrumbs & Telemetry Status Bar -->
-<section class="w-full bg-surface-container-lowest">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-md flex flex-wrap items-center justify-between gap-space-md">
-<div class="flex items-center gap-space-sm text-body-sm">
-<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-xs" href="{{ route('home') }}">
-<span class="material-symbols-outlined text-[15px]">grid_view</span>
-<span>Home</span>
-</a>
-<span class="text-outline-variant font-tech-spec">/</span>
-<span class="text-primary font-headline-sm text-body-sm uppercase tracking-wider">About Us</span>
-</div>
-<div class="flex items-center flex-wrap gap-space-sm font-label-badge text-label-badge uppercase">
-<span class="bg-surface-container px-space-sm py-space-2xs rounded text-primary flex items-center gap-space-xs">
-<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-          EST. 2008 • GUJARAT, INDIA
-        </span>
-<span class="bg-surface-container-high px-space-sm py-space-2xs rounded text-secondary flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[12px] text-secondary">verified</span>
-          AN ISO 9001:2015 CERTIFIED FACILITY
-        </span>
-<span class="bg-surface-container px-space-sm py-space-2xs rounded text-on-surface-variant">
-          45,000 SQ FT INTEGRATION HUB
-        </span>
-</div>
-</div>
-</section>
+<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+
 <!-- Hero Section: Mechanical Mastery & Direct Factory OEM -->
 <section class="relative w-full bg-surface py-space-3xl overflow-hidden">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
@@ -672,5 +647,5 @@
       });
     })();
   </script>
-</div></main>
+</div></div>
 @endsection

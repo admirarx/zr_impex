@@ -4,30 +4,8 @@
 @section('meta_description', 'Connect directly with ZR IMPEX factory engineers and technical sales. Schedule live cutting demonstrations, request cycle-time analysis, or visit our manufacturing demo plant.')
 
 @section('content')
-<main class="w-full pt-[7.5rem] bg-surface min-h-screen"><div class="flex flex-col w-full">
-<!-- Top Technical Breadcrumb & Plant Telemetry Bar -->
-<section class="w-full bg-surface-container-lowest">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-sm flex flex-wrap items-center justify-between gap-space-md">
-<div class="flex items-center gap-space-sm font-label-caps text-label-caps text-outline uppercase tracking-wider">
-<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-2xs" href="{{ route('home') }}">
-<span class="material-symbols-outlined text-[15px]">home</span>
-<span>Home</span>
-</a>
-<span>/</span>
-<span class="text-primary font-semibold">Contact Us &amp; Factory Visits</span>
-</div>
-<div class="flex items-center gap-space-md">
-<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-2xs rounded">
-<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-<span class="font-label-badge text-label-badge uppercase text-primary tracking-wider">Plant Telemetry: Active Dispatch</span>
-</div>
-<div class="flex items-center gap-space-xs bg-surface-container-high px-space-sm py-space-2xs rounded">
-<span class="material-symbols-outlined text-tertiary text-[15px]">timer</span>
-<span class="font-label-badge text-label-badge text-on-surface uppercase">Avg. Engineering Response: &lt; 2 Hours</span>
-</div>
-</div>
-</div>
-</section>
+<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+
 <!-- Page Header & Industrial Context -->
 <section class="w-full bg-surface-container-low py-space-2xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
@@ -762,5 +740,5 @@
       });
     } catch (e) {}
   })();
-</script></main>
+</script></div>
 @endsection

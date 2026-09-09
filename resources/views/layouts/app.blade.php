@@ -64,40 +64,6 @@
 
     <!-- FIXED TOP INDUSTRIAL HEADER -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-surface-dim/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.6)] border-b border-surface-container-high">
-        <!-- Top Telemetry & Hotline Bar -->
-        <div class="bg-surface-container-lowest border-b border-surface-container/60">
-            <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop h-10 flex items-center justify-between text-body-sm">
-                <div class="flex items-center gap-space-md sm:gap-space-lg text-on-surface-variant">
-                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phone) }}" class="flex items-center gap-space-xs hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-primary text-[15px]">call</span>
-                        <span class="font-tech-spec text-tech-spec text-on-surface font-medium">{{ $phone }}</span>
-                        <span class="font-label-caps text-label-caps text-outline uppercase hidden sm:inline ml-space-xs">(Sales Hotline)</span>
-                    </a>
-                    <a href="mailto:{{ $salesEmail }}" class="hidden md:flex items-center gap-space-xs hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-primary text-[15px]">mail</span>
-                        <span class="font-tech-spec text-tech-spec text-on-surface-variant">{{ $salesEmail }}</span>
-                    </a>
-                    <div class="hidden xl:flex items-center gap-space-xs bg-surface-container px-space-sm py-space-2xs rounded">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                        <span class="font-label-badge text-label-badge uppercase tracking-wider text-primary">24/7 CNC Field Service Support</span>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-space-sm sm:gap-space-md">
-                    <div class="hidden lg:flex items-center gap-space-xs text-on-surface-variant">
-                        <span class="material-symbols-outlined text-secondary text-[14px]">verified</span>
-                        <span class="font-label-caps text-label-caps uppercase text-secondary">ISO 9001:2015 Registered Plant</span>
-                    </div>
-                    <button type="button" 
-                            onclick="window.openWhatsApp('{{ $generalWaUrl }}')"
-                            class="inline-flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-primary hover:text-primary-fixed px-space-sm py-space-2xs rounded font-label-caps text-label-caps uppercase transition-colors">
-                        <span class="material-symbols-outlined text-[14px]">chat</span>
-                        <span>WhatsApp Quick Quote</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <!-- Main Nav Bar -->
         <div class="h-20 bg-surface/95">
             <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop h-full flex items-center justify-between gap-space-lg">
@@ -225,7 +191,7 @@
     </header>
 
     <!-- Main Content Area with Header Offset -->
-    <main class="flex-grow pt-[120px]">
+    <main class="flex-grow pt-20">
         <!-- Flash Notifications -->
         @if(session('success'))
             <div class="max-w-max-width-content mx-auto px-gutter-desktop pt-space-md">

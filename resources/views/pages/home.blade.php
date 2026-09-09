@@ -4,7 +4,7 @@
 @section('meta_description', 'Direct manufacturer and turnkey supplier of multi-axis CNC routers, industrial fiber laser marking, and sheet metal cutting systems across India.')
 
 @section('content')
-<main class="w-full pt-[7.5rem] bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
 <!-- HERO SECTION -->
 <section class="relative w-full overflow-hidden bg-surface-container-lowest">
 <!-- Subtle Crosshair & Machined Grid Texture -->
@@ -908,5 +908,5 @@
       }
     });
   });
-</script></main>
+</script></div>
 @endsection

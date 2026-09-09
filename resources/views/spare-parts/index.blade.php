@@ -4,27 +4,8 @@
 @section('meta_description', 'Certified OEM electrospindles, Raytools laser nozzles, Hiwin linear rails, EzCAD controllers, and S&A chillers. Same-day express dispatch across India.')
 
 @section('content')
-<main class="w-full pt-[7.5rem] bg-surface min-h-screen"><div class="flex flex-col w-full">
-<!-- BREADCRUMB & REAL-TIME DISPATCH TELEMETRY BANNER -->
-<section class="w-full bg-surface-container-lowest py-space-sm px-gutter-mobile md:px-gutter-desktop shadow-sm">
-<div class="max-w-max-width-content mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
-<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-body-sm font-body-sm">
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="{{ route('home') }}">Home</a>
-<span class="text-outline font-tech-spec text-tech-spec">/</span>
-<span class="text-on-surface font-semibold font-tech-spec text-tech-spec">Original Spare Parts &amp; Optical Consumables Depot</span>
-</nav>
-<div class="flex flex-wrap items-center gap-space-md font-label-badge text-label-badge uppercase tracking-wider">
-<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-2xs rounded">
-<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-<span class="text-primary">DEPOT DISPATCH: AHMEDABAD &amp; PUNE HUB 100% OPERATIONAL</span>
-</div>
-<div class="flex items-center gap-space-xs bg-surface-container-high px-space-sm py-space-2xs rounded text-secondary">
-<span class="material-symbols-outlined text-[14px]">bolt</span>
-<span>SLA: &lt;24HR SAME-DAY COURIER FOR ALL CRITICAL SKUS</span>
-</div>
-</div>
-</div>
-</section>
+<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+
 <!-- DEPOT HEADER & QUICK SEARCH BAR -->
 <section class="w-full bg-surface py-space-2xl px-gutter-mobile md:px-gutter-desktop relative overflow-hidden">
 <div class="absolute -right-24 -top-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -788,5 +769,5 @@
 
     })();
   </script>
-</div></main>
+</div></div>
 @endsection

@@ -4,43 +4,13 @@
 @section('meta_description', 'Explore ZR IMPEX industrial CNC machinery catalogue: 1325 ATC routers, 12kW fiber laser sheet cutters, 50W Galvo markers, and 5-axis gantry milling centers.')
 
 @section('content')
-<main class="w-full pt-[7.5rem] bg-surface min-h-screen"><div class="flex flex-col w-full">
-<!-- TOP TELEMETRY & BANNER STRIP -->
-<section class="w-full bg-surface-container-lowest py-space-xs shadow-sm">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop flex flex-wrap items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-md">
-<div class="inline-flex items-center gap-space-xs bg-surface-container px-space-sm py-space-2xs rounded">
-<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-<span class="font-label-badge text-label-badge text-primary uppercase tracking-widest">PLANT INVENTORY: 42 SYSTEMS READY FOR DISPATCH</span>
-</div>
-<div class="hidden md:inline-flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase">
-<span class="material-symbols-outlined text-secondary text-[14px]">tune</span>
-<span>CUSTOM GANTRY SIZES AVAILABLE ON DEMAND (UP TO 12000MM TRAVEL)</span>
-</div>
-</div>
-<div class="flex items-center gap-space-md font-tech-spec text-tech-spec text-secondary">
-<span class="inline-flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-primary text-[15px]">verified</span> CALIBRATED ±0.015mm
-        </span>
-<span class="text-outline">/</span>
-<span class="inline-flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-primary text-[15px]">electric_bolt</span> 415V 3-PHASE READY
-        </span>
-</div>
-</div>
-</section>
+<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
+
 <!-- BREADCRUMB & HERO CATALOGUE HEADER -->
 <section class="w-full bg-surface py-space-xl relative overflow-hidden">
 <div class="absolute -right-24 -top-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
 <div class="max-w-max-width-content mx-auto px-gutter-desktop relative z-10 flex flex-col gap-space-lg">
-<!-- Breadcrumb -->
-<nav class="flex items-center gap-space-xs font-label-caps text-label-caps uppercase text-outline">
-<a class="hover:text-primary transition-colors" href="{{ route('home') }}">Home</a>
-<span class="material-symbols-outlined text-[12px]">chevron_right</span>
-<span class="text-on-surface">Industrial Machinery Catalogue</span>
-<span class="text-outline">/</span>
-<span class="text-primary font-bold">2025 Production Series</span>
-</nav>
+
 <!-- Main Headline Block -->
 <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-xl">
 <div class="max-w-3xl flex flex-col gap-space-sm">
@@ -70,23 +40,7 @@
 </div>
 </div>
 </div>
-<!-- Quick Action Toolbar -->
-<div class="bg-surface-container p-space-sm rounded-xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md shadow-md">
-<div class="relative flex-1">
-<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
-<input class="w-full bg-surface-container-lowest text-on-surface font-tech-spec text-tech-spec pl-11 pr-space-md py-space-sm rounded focus:outline-none focus:bg-surface-container-high transition-colors" id="catalogue-search-input" placeholder="Search machine by model, wattage (e.g. 6kW), or material (Steel, MDF, Granite)..." type="text"/>
-</div>
-<div class="flex flex-wrap items-center gap-space-sm shrink-0">
-<button class="inline-flex items-center gap-space-xs bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm px-space-lg py-space-sm rounded font-bold shadow-[0_0_16px_rgba(229,169,16,0.3)] transition-all hover:scale-[1.01] active:translate-y-[1px]">
-<span class="material-symbols-outlined text-[18px]">download</span>
-<span>Download Dossier PDF</span>
-</button>
-<a class="inline-flex items-center gap-space-xs bg-secondary-container hover:bg-surface-bright text-on-surface font-headline-sm text-headline-sm px-space-md py-space-sm rounded font-semibold transition-all" href="https://wa.me/919876543210?text=Hello%20ZR%20IMPEX%2C%20I%20want%20to%20consult%20a%20Gantry%20Engineer%20about%20CNC%2FLaser%20specifications" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined text-primary text-[18px]">chat</span>
-<span>Talk to Gantry Engineer</span>
-</a>
-</div>
-</div>
+
 </div>
 </section>
 <!-- MULTI-DIMENSIONAL INDUSTRIAL FILTER SECTION -->
@@ -852,7 +806,7 @@
       let currentCategory = 'all';
 
       function filterCards() {
-        const query = (searchInput.value || '').toLowerCase().trim();
+        const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
         const selectedPower = powerSelect.value;
         let visibleCount = 0;
 
@@ -927,5 +881,5 @@
       }
     })();
   </script>
-</div></main>
+</div></div>
 @endsection

@@ -4,7 +4,7 @@
 @section('meta_description', $machine->short_description ?? 'Heavy-duty industrial CNC router and laser cutting machine engineered by ZR IMPEX with high repeatability and factory direct warranty.')
 
 @section('content')
-<main class="w-full pt-[7.5rem] bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full bg-surface min-h-screen"><div class="flex flex-col w-full">
 <!-- Top Specimen & Breadcrumb Gantry Strip -->
 <div class="w-full bg-surface-container-lowest">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-sm flex flex-wrap items-center justify-between gap-space-sm">
@@ -849,5 +849,5 @@
     alert('Thank you. Your quotation request has been routed directly to the ZR IMPEX plant engineering team. A formal proposal will be dispatched via WhatsApp and Email.');
     toggleQuoteModal(false);
   }
-</script></main>
+</script></div>
 @endsection
