@@ -29,7 +29,7 @@
 @section('content')
     @php
         $waUrl = \App\Services\WhatsAppUrlBuilder::build($sparePart);
-        $phone = \App\Models\SiteSetting::get('primary_phone', '+91 98765 43210');
+        $phone = \App\Models\SiteSetting::get('primary_phone', '+91 9899639380');
     @endphp
 
     <!-- Breadcrumb Bar -->
@@ -126,13 +126,36 @@
                         </p>
                     @endif
 
+                    <!-- Key Features & Engineering Highlights -->
+                    @if(!empty($sparePart->key_features) && is_array($sparePart->key_features))
+                        <div class="bg-surface-container border border-surface-container-highest rounded-xl p-4 space-y-2.5">
+                            <span class="font-label-caps text-label-caps uppercase text-primary font-semibold tracking-wider flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Key Features &amp; Engineering Highlights
+                            </span>
+                            <ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant">
+                                @foreach($sparePart->key_features as $feature)
+                                    @php
+                                        $featureText = is_array($feature) ? ($feature['feature'] ?? '') : $feature;
+                                    @endphp
+                                    @if(!empty($featureText))
+                                        <li class="flex items-start gap-2">
+                                            <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
+                                            <span>{{ $featureText }}</span>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <!-- Specs Snapshot -->
                     @if($sparePart->specifications->count() > 0)
                         <div class="bg-surface-container border border-surface-container-highest rounded p-4 space-y-2">
                             <span class="font-label-caps text-label-caps uppercase text-primary font-semibold block mb-2">
                                 Technical Parameters &amp; Ratings
                             </span>
-                            @foreach($sparePart->specifications->take(5) as $spec)
+                            @foreach($sparePart->specifications->filter(fn($s) => filled($s->spec_value))->take(5) as $spec)
                                 <div class="flex items-center justify-between text-xs border-b border-surface-container-high/60 pb-2 last:border-b-0 last:pb-0">
                                     <span class="text-on-surface-variant font-tech-spec">{{ $spec->spec_name }}:</span>
                                     <span class="font-tech-spec text-on-surface font-semibold">{{ $spec->spec_value }}</span>
@@ -203,15 +226,63 @@
 
     <!-- Description / Operational Notes -->
     @if($sparePart->description)
-        <section class="py-16 bg-surface-dim">
+        <section class="py-16 bg-surface-dim border-b border-surface-container-high">
             <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop">
                 <div class="max-w-3xl mb-8">
                     <span class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-semibold">Part Details</span>
-                    <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-1">Installation &amp; Operational Notes</h2>
+                    <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-1">Spare Part Overview &amp; Technical Description</h2>
                 </div>
 
-                <div class="bg-surface-container border border-surface-container-highest rounded p-6 sm:p-10 text-on-surface-variant leading-relaxed font-body-md">
+                <div class="bg-surface-container border border-surface-container-highest rounded-xl p-6 sm:p-10 text-on-surface-variant leading-relaxed font-body-md space-y-4 prose prose-invert max-w-none">
                     {!! $sparePart->description !!}
+                </div>
+            </div>
+        </section>
+    @endif
+
+    <!-- Target Applications Section -->
+    @if(!empty($sparePart->applications) && is_array($sparePart->applications))
+        <section class="py-16 bg-surface-container-low border-b border-surface-container-high">
+            <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop">
+                <div class="max-w-3xl mb-8">
+                    <span class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-semibold">Industrial Applications</span>
+                    <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-1">Target Applications &amp; Use Cases</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    @foreach($sparePart->applications as $app)
+                        <div class="bg-surface-container p-6 rounded-xl border border-surface-container-highest flex flex-col gap-2.5 shadow-sm hover:border-primary/40 transition-colors">
+                            <div class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-primary text-[22px]">precision_manufacturing</span>
+                                <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">{{ $app['title'] ?? '' }}</h3>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{{ $app['description'] ?? '' }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    <!-- Engineering & Production Benefits Section -->
+    @if(!empty($sparePart->benefits) && is_array($sparePart->benefits))
+        <section class="py-16 bg-surface-container-lowest border-b border-surface-container-high">
+            <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop">
+                <div class="max-w-3xl mb-8">
+                    <span class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-semibold">Operational Advantages</span>
+                    <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface mt-1">Engineering &amp; Production Benefits</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    @foreach($sparePart->benefits as $benefit)
+                        <div class="bg-surface-container p-6 rounded-xl border border-surface-container-highest flex flex-col gap-2.5 shadow-sm hover:border-emerald-500/40 transition-colors">
+                            <div class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-emerald-400 text-[22px]">verified</span>
+                                <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">{{ $benefit['title'] ?? '' }}</h3>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{{ $benefit['description'] ?? '' }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>

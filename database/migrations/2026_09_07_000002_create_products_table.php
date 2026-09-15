@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
-            $table->string('primary_image')->nullable();
-            $table->string('brochure_path')->nullable();
+            $table->text('primary_image')->nullable();
+            $table->text('brochure_path')->nullable();
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_published')->default(true);
             $table->integer('sort_order')->default(0);

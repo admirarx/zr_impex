@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\MachineCategoryResource\Pages;
 
-use App\Filament\Resources\UserResource;
+use App\Filament\Resources\MachineCategoryResource;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
 
-class EditUser extends EditRecord
+class EditMachineCategory extends EditRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = MachineCategoryResource::class;
 
     protected function getHeaderActions(): array
     {

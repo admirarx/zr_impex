@@ -179,7 +179,7 @@
                     <div class="bg-surface-container p-space-lg rounded-xl border border-surface-container-high flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
                         <div>
                             <span class="font-headline-sm text-headline-sm text-on-surface font-semibold block">Compliance Officer</span>
-                            <span class="font-body-sm text-body-sm text-on-surface-variant block">ZR IMPEX Machinery, Plot No. 42, Industrial Area Phase-2, New Delhi 110064</span>
+                            <span class="font-body-sm text-body-sm text-on-surface-variant block">ZR IMPEX Machinery, {{ \App\Models\SiteSetting::get('address', 'W-116, S-Block, PVC Market, Paschim Vihar, New Delhi, Delhi 110087, India') }}</span>
                         </div>
                         <a href="mailto:{{ \App\Models\SiteSetting::get('sales_email', 'sales@zrimpex.com') }}" class="px-space-md py-space-sm rounded bg-primary text-on-primary font-tech-spec text-tech-spec font-bold hover:bg-primary-hover transition-colors whitespace-nowrap">
                             Contact Compliance

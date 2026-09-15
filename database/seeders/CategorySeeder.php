@@ -148,6 +148,15 @@ class CategorySeeder extends Seeder
                 'sort_order' => 17,
                 'is_active' => true,
             ],
+            [
+                'name' => 'CNC Router Spare Parts',
+                'slug' => 'cnc-router-spare-parts',
+                'type' => 'spare_part',
+                'description' => 'Genuine industrial CNC router spare parts, motion control systems, high-speed electrospindles, hybrid stepper drives, cable carriers, and precision rack assemblies.',
+                'image_path' => 'images/categories/cnc-spare-parts.jpg',
+                'sort_order' => 9,
+                'is_active' => true,
+            ],
         ];
 
         foreach ($categories as $data) {

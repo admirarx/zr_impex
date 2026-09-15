@@ -10,6 +10,7 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -28,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->profile()
+            ->maxContentWidth(MaxWidth::Full)
             ->brandName('ZR Impex Machinery')
             ->brandLogo(asset('images/brand/logo.jpeg'))
             ->brandLogoHeight('2.75rem')
@@ -38,6 +40,8 @@ class AdminPanelProvider extends PanelProvider
                 'gray' => Color::Zinc,
             ])
             ->navigationGroups([
+                'Products',
+                'Categories',
                 'Catalogue Management',
                 'Leads & Inquiries',
                 'Settings & Analytics',

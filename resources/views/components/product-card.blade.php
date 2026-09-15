@@ -7,11 +7,18 @@
 
 <div class="group bg-surface border border-border hover:border-gold/60 rounded-lg overflow-hidden transition-all duration-300 flex flex-col hover:shadow-xl hover:shadow-black/60">
     <!-- Thumbnail Image Container -->
-    <a href="{{ $detailRoute }}" class="block relative aspect-[4/3] bg-ink overflow-hidden border-b border-border">
-        <img src="{{ $product->primary_image_url }}" 
-             alt="{{ $product->name }}" 
-             loading="lazy"
-             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+    <a href="{{ $detailRoute }}" class="block relative aspect-[4/3] bg-ink overflow-hidden border-b border-border flex items-center justify-center">
+        @if(!empty($product->primary_image))
+            <img src="{{ $product->primary_image_url }}" 
+                 alt="{{ $product->name }}" 
+                 loading="lazy"
+                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+        @else
+            <div class="w-full h-full flex flex-col items-center justify-center p-6 bg-surface-container-low text-center">
+                <img src="{{ asset('images/brand/logo.jpeg') }}" alt="ZR IMPEX" class="max-h-16 max-w-[140px] object-contain opacity-75">
+                <span class="mt-2 text-[10px] font-mono uppercase tracking-wider text-steel">ZR IMPEX Industrial</span>
+            </div>
+        @endif
         
         <!-- Category & Model Chips -->
         <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
@@ -52,7 +59,7 @@
             <!-- Key Specs Snapshot (First 3 specifications) -->
             @if($product->specifications->count() > 0)
                 <div class="mt-4 pt-3 border-t border-border/80 space-y-1.5">
-                    @foreach($product->specifications->take(3) as $spec)
+                    @foreach($product->specifications->filter(fn($s) => filled($s->spec_value))->take(3) as $spec)
                         <div class="flex items-baseline justify-between text-xs gap-2">
                             <span class="text-steel shrink-0">{{ $spec->spec_name }}:</span>
                             <span class="font-mono text-white/90 text-right truncate">{{ $spec->spec_value }}</span>

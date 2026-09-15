@@ -15,12 +15,53 @@
     <meta property="og:description" content="@yield('meta_description', 'High-performance CNC router machines, fiber laser cutters, and genuine spare parts for Indian manufacturing.')">
     <meta property="og:image" content="@yield('og_image', asset('images/brand/logo.jpeg'))">
 
-    <!-- Google Fonts & Material Symbols -->
+    <!-- Local & Google Fonts -->
+    <link rel="preload" href="{{ asset('fonts/material-symbols-outlined.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+
+    <!-- Critical CSS for Material Symbols to prevent Ligature FOUT & Layout Shifts -->
+    <style>
+        @font-face {
+            font-family: 'Material Symbols Outlined';
+            font-style: normal;
+            font-weight: 100 700;
+            font-display: block;
+            src: url('{{ asset('fonts/material-symbols-outlined.woff2') }}') format('woff2');
+        }
+
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined' !important;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            width: 1em;
+            height: 1em;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            flex-shrink: 0;
+            overflow: hidden;
+            font-feature-settings: 'liga';
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html:not(.material-symbols-loaded) .material-symbols-outlined {
+            color: transparent !important;
+            text-shadow: none !important;
+            user-select: none;
+        }
+    </style>
 
     <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -33,17 +74,14 @@
         'name' => 'ZR IMPEX Machinery',
         'image' => asset('images/brand/logo.jpeg'),
         'url' => url('/'),
-        'telephone' => '+91-98765-43210',
+        'telephone' => \App\Models\SiteSetting::get('primary_phone', '+91 9899639380'),
         'priceRange' => '₹₹₹',
         'address' => [
             '@type' => 'PostalAddress',
-            'streetAddress' => 'Plot No. 42, Industrial Area, Phase-2, Near Mayapuri',
-            'addressLocality' => 'New Delhi',
-            'addressRegion' => 'Delhi',
-            'postalCode' => '110064',
+            'streetAddress' => \App\Models\SiteSetting::get('address', 'W-116, S-Block, PVC Market, Paschim Vihar, New Delhi, Delhi 110087, India'),
             'addressCountry' => 'IN',
         ],
-        'description' => 'Direct manufacturer and turnkey supplier of industrial CNC router machines, fiber laser cutters, and genuine spare parts across India.',
+        'description' => \App\Models\SiteSetting::get('tagline', 'Direct manufacturer and turnkey supplier of industrial CNC router machines, fiber laser cutters, and genuine spare parts across India.'),
     ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 
@@ -63,31 +101,79 @@
         </script>
     @endif
 
+    <!-- Synchronous Theme Setup & Font Readiness Script -->
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('zr_theme');
+            if (savedTheme !== 'light' && savedTheme !== 'dark') {
+                savedTheme = 'dark';
+            }
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+            }
+
+            // Material Symbols Font Load Detector
+            if ('fonts' in document) {
+                document.fonts.load('24px "Material Symbols Outlined"').then(function() {
+                    document.documentElement.classList.add('material-symbols-loaded');
+                }).catch(function() {
+                    document.documentElement.classList.add('material-symbols-loaded');
+                });
+            } else {
+                document.documentElement.classList.add('material-symbols-loaded');
+            }
+        })();
+    </script>
+
     @stack('schema')
     @stack('styles')
 </head>
-<body class="bg-[#0a0f13] text-on-surface min-h-screen flex flex-col font-sans selection:bg-primary selection:text-on-primary antialiased relative"
-      x-data="{ mobileMenuOpen: false, quoteModalOpen: false, activeQuoteProduct: null }">
+<body class="bg-surface-container-lowest text-on-surface min-h-screen flex flex-col font-sans selection:bg-primary selection:text-on-primary antialiased relative"
+      x-data="{ 
+          mobileMenuOpen: false, 
+          quoteModalOpen: false, 
+          activeQuoteProduct: null,
+          currentTheme: (function() {
+              var t = localStorage.getItem('zr_theme');
+              return (t === 'light') ? 'light' : 'dark';
+          })(),
+          toggleTheme() {
+              this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+              localStorage.setItem('zr_theme', this.currentTheme);
+              document.documentElement.setAttribute('data-theme', this.currentTheme);
+              if (this.currentTheme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+              } else {
+                  document.documentElement.classList.add('light');
+                  document.documentElement.classList.remove('dark');
+              }
+          }
+      }">
 
     <!-- GLOBAL INDUSTRIAL AMBIANCE (HOMEPAGE HERO THEME ACROSS ENTIRE WEBSITE) -->
     <div class="fixed inset-0 pointer-events-none bg-machined-grid z-0"></div>
-    <div class="fixed -top-40 right-1/4 w-[650px] h-[650px] rounded-full bg-primary/10 blur-[140px] pointer-events-none z-0"></div>
-    <div class="fixed top-1/2 -left-28 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[160px] pointer-events-none z-0"></div>
-    <div class="fixed -bottom-20 right-1/3 w-[600px] h-[600px] rounded-full bg-secondary/5 blur-[150px] pointer-events-none z-0"></div>
+    <div class="fixed -top-40 right-1/4 w-[650px] h-[650px] rounded-full bg-primary/10 blur-[140px] pointer-events-none z-0 dark:block hidden"></div>
+    <div class="fixed top-1/2 -left-28 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[160px] pointer-events-none z-0 dark:block hidden"></div>
+    <div class="fixed -bottom-20 right-1/3 w-[600px] h-[600px] rounded-full bg-secondary/5 blur-[150px] pointer-events-none z-0 dark:block hidden"></div>
 
     @php
-        $phone = \App\Models\SiteSetting::get('primary_phone', '+91 98765 43210');
-        $supportPhone = \App\Models\SiteSetting::get('support_phone', '+91 98123 45678');
-        $waNum = \App\Models\SiteSetting::get('whatsapp_number', '+91 98765 43210');
+        $phone = \App\Models\SiteSetting::get('primary_phone', '+91 9899639380');
+        $supportPhone = \App\Models\SiteSetting::get('support_phone', '+91 9899639380');
+        $waNum = \App\Models\SiteSetting::get('whatsapp_number', '+919250630381');
         $salesEmail = \App\Models\SiteSetting::get('sales_email', 'sales@zrimpex.com');
-        $address = \App\Models\SiteSetting::get('address', 'Plot No. 42, Industrial Area, Phase-2, Near Mayapuri, New Delhi, Delhi 110064, India');
+        $supportEmail = \App\Models\SiteSetting::get('support_email', 'support@zrimpex.com');
+        $address = \App\Models\SiteSetting::get('address', 'W-116, S-Block, PVC Market, Paschim Vihar, New Delhi, Delhi 110087, India');
         $generalWaUrl = \App\Services\WhatsAppUrlBuilder::build();
 
-        $socialLinkedin = \App\Models\SiteSetting::get('social_linkedin', 'https://www.linkedin.com/company/zrimpex');
-        $socialYoutube = \App\Models\SiteSetting::get('social_youtube', 'https://www.youtube.com/@zrimpex');
-        $socialInstagram = \App\Models\SiteSetting::get('social_instagram', 'https://www.instagram.com/zrimpex');
-        $socialFacebook = \App\Models\SiteSetting::get('social_facebook', 'https://www.facebook.com/zrimpex');
-        $socialTwitter = \App\Models\SiteSetting::get('social_twitter', 'https://x.com/zrimpex');
+        $socialYoutube = \App\Models\SiteSetting::get('social_youtube', 'https://youtube.com/@zrimpex?si=YJQ-40xDaUAEeX0r');
+        $socialInstagram = \App\Models\SiteSetting::get('social_instagram', 'https://www.instagram.com/zr.impex?stkn=b2Q2Nnd4NmdkdjFz');
+        $socialFacebook = \App\Models\SiteSetting::get('social_facebook', 'https://www.facebook.com/share/1BimaQySE9/');
         $socialWhatsapp = \App\Models\SiteSetting::get('social_whatsapp', $generalWaUrl);
     @endphp
 
@@ -140,9 +226,21 @@
 
                 <!-- Actions & CTAs -->
                 <div class="flex items-center gap-space-sm sm:gap-space-md">
+                    <!-- Single-Click Theme Toggle Button (Light / Dark) -->
+                    <button type="button" 
+                            id="theme-toggle-btn"
+                            @click="toggleTheme()"
+                            class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all font-tech-spec text-xs cursor-pointer shadow-sm"
+                            :title="currentTheme === 'dark' ? 'Switch to Clean Light Mode' : 'Switch to Luxury Dark Mode'"
+                            aria-label="Toggle website theme">
+                        <span class="material-symbols-outlined text-[18px] text-primary" x-show="currentTheme === 'dark'">light_mode</span>
+                        <span class="material-symbols-outlined text-[18px] text-primary" x-show="currentTheme === 'light'" style="display: none;">dark_mode</span>
+                        <span class="hidden md:inline font-semibold" x-text="currentTheme === 'dark' ? 'Light' : 'Dark'"></span>
+                    </button>
+
                     <button type="button" 
                             @click="quoteModalOpen = true; activeQuoteProduct = null"
-                            class="hidden sm:inline-flex items-center gap-space-xs bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm px-space-lg py-space-sm rounded font-bold shadow-[0_0_16px_rgba(229,169,16,0.3)] transition-all hover:scale-[1.01] active:translate-y-[1px]">
+                            class="hidden sm:inline-flex items-center gap-space-xs bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm px-space-lg py-space-sm rounded font-bold shadow-[0_0_16px_rgba(212,175,55,0.3)] transition-all hover:scale-[1.01] active:translate-y-[1px]">
                         <span class="material-symbols-outlined text-[18px]">precision_manufacturing</span>
                         <span>Request Quote</span>
                     </button>
@@ -191,6 +289,22 @@
             </a>
 
             <div class="pt-space-sm border-t border-surface-container flex flex-col gap-space-xs">
+                <!-- Mobile Theme Toggle -->
+                <div class="flex items-center justify-between bg-surface-container p-2.5 rounded-lg border border-surface-container-highest mb-1">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[18px]" x-show="currentTheme === 'dark'">dark_mode</span>
+                        <span class="material-symbols-outlined text-primary text-[18px]" x-show="currentTheme === 'light'" style="display: none;">light_mode</span>
+                        <span class="text-xs font-semibold text-on-surface" x-text="currentTheme === 'dark' ? 'Dark Industrial' : 'Clean Light Mode'"></span>
+                    </div>
+                    <button type="button" 
+                            id="mobile-theme-toggle-btn"
+                            @click="toggleTheme()"
+                            class="px-2.5 py-1 rounded bg-surface-container-high border border-surface-container-highest text-xs font-bold text-primary hover:text-on-surface transition-colors cursor-pointer flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">swap_horiz</span>
+                        <span x-text="currentTheme === 'dark' ? 'Switch to Light' : 'Switch to Dark'"></span>
+                    </button>
+                </div>
+
                 <button type="button" 
                         @click="mobileMenuOpen = false; quoteModalOpen = true;"
                         class="w-full bg-primary hover:bg-primary-fixed-dim text-on-primary font-bold py-space-sm rounded text-center uppercase tracking-wider font-tech-spec text-tech-spec flex items-center justify-center gap-space-xs shadow-md">
@@ -253,11 +367,11 @@
     </div>
 
     <!-- STITCH INDUSTRIAL FOOTER -->
-    <footer class="w-full bg-[#0a0f13]/90 backdrop-blur-md text-on-surface-variant border-t border-surface-container-high mt-space-4xl relative z-10">
+    <footer class="w-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface-variant border-t border-surface-container-high mt-space-4xl relative z-10">
         <div class="max-w-max-width-content mx-auto px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop py-space-3xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-space-xl mb-space-2xl">
-                <!-- Company Bio & Contact Details (2 cols on lg) -->
-                <div class="lg:col-span-2 flex flex-col gap-space-md">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-xl mb-space-2xl">
+                <!-- Company Bio & Contact Details (4 cols on lg) -->
+                <div class="lg:col-span-4 flex flex-col gap-space-md">
                     <div class="flex items-center gap-space-md">
                         <span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight uppercase">ZR IMPEX</span>
                         <span class="font-label-caps text-label-caps text-primary bg-surface-container px-space-xs py-space-2xs rounded">CNC &amp; LASER</span>
@@ -276,16 +390,7 @@
                         </div>
                         <div class="flex items-center gap-space-xs">
                             <span class="material-symbols-outlined text-primary text-[18px] shrink-0">mail</span>
-                            <span>{{ $salesEmail }} | support@zrimpex.com</span>
-                        </div>
-                    </div>
-
-                    <!-- ISO Certification Badge -->
-                    <div class="inline-flex items-center gap-space-sm bg-surface-container px-space-md py-space-sm rounded w-fit mt-space-xs border border-surface-container-highest">
-                        <span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
-                        <div class="flex flex-col">
-                            <span class="font-headline-sm text-headline-sm text-on-surface">ISO 9001:2015</span>
-                            <span class="font-label-badge text-label-badge uppercase text-outline">Certified Quality Management System</span>
+                            <span>{{ $salesEmail }} | {{ $supportEmail }}</span>
                         </div>
                     </div>
 
@@ -293,16 +398,6 @@
                     <div class="flex flex-col gap-space-xs mt-space-sm">
                         <span class="font-label-caps text-label-caps uppercase text-outline tracking-wider">Connect With Us</span>
                         <div class="flex items-center gap-space-xs flex-wrap">
-                            @if(!empty($socialLinkedin))
-                                <a href="{{ $socialLinkedin }}" target="_blank" rel="noopener noreferrer" 
-                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
-                                   title="LinkedIn" aria-label="ZR IMPEX LinkedIn">
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61z"/>
-                                    </svg>
-                                </a>
-                            @endif
-
                             @if(!empty($socialYoutube))
                                 <a href="{{ $socialYoutube }}" target="_blank" rel="noopener noreferrer" 
                                    class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
@@ -333,16 +428,6 @@
                                 </a>
                             @endif
 
-                            @if(!empty($socialTwitter))
-                                <a href="{{ $socialTwitter }}" target="_blank" rel="noopener noreferrer" 
-                                   class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
-                                   title="X / Twitter" aria-label="ZR IMPEX on X">
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                    </svg>
-                                </a>
-                            @endif
-
                             @if(!empty($socialWhatsapp))
                                 <a href="{{ $socialWhatsapp }}" target="_blank" rel="noopener noreferrer" 
                                    class="w-9 h-9 rounded-lg bg-surface-container border border-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-[#25D366] hover:border-[#25D366]/50 hover:bg-[#25D366]/10 transition-all duration-200"
@@ -356,48 +441,59 @@
                     </div>
                 </div>
 
-                <!-- CNC Machines Links -->
-                <div class="flex flex-col gap-space-sm">
-                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">CNC Machines</span>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index') }}">Heavy Duty ATC Routers</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index') }}">Multi-Axis 4D &amp; 5D Systems</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index') }}">Stone &amp; Granite Carving CNC</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index') }}">Woodworking Vacuum Table CNC</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index') }}">Advertising Acrylic Engravers</a>
-                </div>
-
-                <!-- Fiber & Laser Systems Links -->
-                <div class="flex flex-col gap-space-sm">
-                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Fiber &amp; Laser</span>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index', ['type' => 'laser']) }}">Sheet Metal Fiber Cutters (12kW)</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index', ['type' => 'laser']) }}">Dual Exchange Platform Laser</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index', ['type' => 'laser']) }}">Tube &amp; Pipe Fiber Cutting Systems</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index', ['type' => 'laser']) }}">Handheld Laser Welding &amp; Cleaning</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index', ['type' => 'laser']) }}">CO2 Precision Laser Engravers</a>
-                </div>
-
-                <!-- Spares & Support Links -->
-                <div class="flex flex-col gap-space-sm">
-                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Spares Depot</span>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Electrospindles (HSD &amp; HQD)</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Yaskawa Servo Drivers &amp; Motors</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Hiwin Linear Motion Rails &amp; Blocks</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Raytools Cutting Optics &amp; Nozzles</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('contact') }}">Schedule On-Site Calibration</a>
+                <!-- Navigation Menu Links (like in navbar) -->
+                <div class="lg:col-span-2 flex flex-col gap-space-sm">
+                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Menu</span>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('home') }}">Home</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('machines.index') }}">CNC Machines</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('spare-parts.index') }}">Spare Parts</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('contact') }}">Contact Us</a>
                 </div>
 
                 <!-- Commercial & Help Guides Links -->
-                <div class="flex flex-col gap-space-sm">
+                <div class="lg:col-span-2 flex flex-col gap-space-sm">
                     <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Commercial &amp; Guides</span>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('how-to-buy') }}">How to Buy Guide</a>
-                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('shipping.policy') }}">Shipping &amp; Delivery Policy</a>
+                    <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('shipping.policy') }}">Shipping &amp; Delivery</a>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('warranty') }}">Warranty &amp; Disclaimers</a>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('return.policy') }}">Return &amp; Refund Policy</a>
                     <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="{{ route('contact') }}">Factory Visits &amp; Demos</a>
                 </div>
+
+                <!-- Right Side: Newsletter Section -->
+                <div class="lg:col-span-4 flex flex-col gap-space-sm" x-data="{ email: '', subscribed: false, submitting: false }">
+                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Newsletter</span>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Subscribe for technical machinery updates, factory clearance alerts, and CNC operational guides.
+                    </p>
+                    <form @submit.prevent="if(email) { submitting = true; setTimeout(() => { submitting = false; subscribed = true; }, 500); }" class="flex flex-col gap-space-xs mt-space-xs">
+                        <div x-show="!subscribed" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-xs">
+                            <div class="relative flex-1">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">mail</span>
+                                <input type="email" 
+                                       x-model="email" 
+                                       required 
+                                       placeholder="Enter your email" 
+                                       class="w-full bg-surface-container text-on-surface font-body-md text-body-md pl-10 pr-space-sm py-2.5 rounded border border-surface-container-highest focus:outline-none focus:border-primary text-sm">
+                            </div>
+                            <button type="submit" 
+                                    :disabled="submitting"
+                                    class="px-space-md py-2.5 bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm font-bold rounded transition-colors shrink-0 flex items-center justify-center gap-1.5 shadow-sm text-sm">
+                                <span x-show="!submitting">Subscribe</span>
+                                <span x-show="submitting" style="display:none;" class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span>
+                            </button>
+                        </div>
+                        <div x-show="subscribed" style="display: none;" class="p-space-sm bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 text-body-sm rounded flex items-center gap-space-xs">
+                            <span class="material-symbols-outlined text-emerald-400 text-[18px]">check_circle</span>
+                            <span>Thank you for subscribing to our industrial newsletter!</span>
+                        </div>
+                        <span class="text-[11px] text-outline">We respect your privacy. No spam, unsubscribe anytime.</span>
+                    </form>
+                </div>
             </div>
 
-            <!-- Bottom Legal Bar (No admin link) -->
+            <!-- Bottom Legal Bar (No admin link, No WhatsApp RFQ button) -->
             <div class="pt-space-lg border-t border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-md text-body-sm">
                 <div class="flex items-center gap-space-xs text-outline">
                     <span class="font-tech-spec text-tech-spec">&copy; {{ date('Y') }} ZR IMPEX Industrial Systems. All rights reserved.</span>
@@ -406,11 +502,6 @@
                     <a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="{{ route('privacy') }}">Privacy Policy</a>
                     <a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="{{ route('terms') }}">Terms &amp; Conditions</a>
                     <a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="{{ route('cookie.policy') }}">Cookie Policy</a>
-                    <button type="button" 
-                            onclick="window.openWhatsApp('{{ $generalWaUrl }}')"
-                            class="font-body-sm text-body-sm text-primary hover:text-primary-fixed transition-colors font-medium">
-                        Instant WhatsApp RFQ
-                    </button>
                 </div>
             </div>
         </div>

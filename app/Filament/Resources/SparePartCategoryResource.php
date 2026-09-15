@@ -2,29 +2,42 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\SparePartCategoryResource\Pages;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
-class CategoryResource extends Resource
+class SparePartCategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationGroup = 'Catalogue Management';
+    protected static ?string $slug = 'spare-part-categories';
+
+    protected static ?string $navigationGroup = 'Categories';
 
     protected static ?string $navigationIcon = 'heroicon-o-folder';
 
+    protected static ?string $modelLabel = 'Spare Part Category';
+
+    protected static ?string $pluralModelLabel = 'Spare Part Categories';
+
     protected static ?int $navigationSort = 2;
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->spareParts();
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Hidden::make('type')->default('spare_part'),
                 Forms\Components\Section::make('Category Details')
                     ->schema([
                         Forms\Components\Grid::make(2)
@@ -43,15 +56,8 @@ class CategoryResource extends Resource
                                     ->maxLength(120)
                                     ->unique(Category::class, 'slug', ignoreRecord: true),
                             ]),
-                        Forms\Components\Grid::make(3)
+                        Forms\Components\Grid::make(2)
                             ->schema([
-                                Forms\Components\Select::make('type')
-                                    ->options([
-                                        'machine' => 'CNC Machine Category',
-                                        'spare_part' => 'Spare Part Category',
-                                    ])
-                                    ->required()
-                                    ->native(false),
                                 Forms\Components\TextInput::make('sort_order')
                                     ->numeric()
                                     ->default(0),
@@ -79,33 +85,25 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image_path')
                     ->label('Thumbnail')
-                    ->circular(),
+                    ->square()
+                    ->defaultImageUrl('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMSAxNUYxNiAxMC41IDEyIDE0bS0zLTNMMiAxNSIvPjxwYXRoIGQ9Ik0yMSAxNXY0YTIgMiAwIDAgMS0yIDJIMUMzIDIxIDIgMjAgMiAxOHYtNG0xOS0zVjZhMiAyIDAgMCAwLTItMkgzYTIgMiAwIDAgMC0yIDJ2NG0xOS0zSDE5bS00IDBIMSIvPjwvc3ZnPg=='),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable()
-                    ->weight('bold'),
-                Tables\Columns\TextColumn::make('type')
-                    ->badge()
-                    ->formatStateUsing(fn (string $state): string => match ($state) {
-                        'machine' => 'CNC Machine',
-                        'spare_part' => 'Spare Part',
-                        default => $state,
-                    })
-                    ->color(fn (string $state): string => match ($state) {
-                        'machine' => 'primary',
-                        'spare_part' => 'info',
-                        default => 'gray',
-                    })
-                    ->sortable(),
+                    ->weight('bold')
+                    ->limit(50),
                 Tables\Columns\TextColumn::make('products_count')
                     ->counts('products')
                     ->label('Products')
                     ->badge()
-                    ->color('gray'),
+                    ->color('gray')
+                    ->visibleFrom('md'),
                 Tables\Columns\ToggleColumn::make('is_active')
-                    ->label('Active'),
+                    ->label('Active')
+                    ->visibleFrom('sm'),
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime('d M Y')
                     ->sortable()
@@ -113,11 +111,6 @@ class CategoryResource extends Resource
             ])
             ->defaultSort('sort_order', 'asc')
             ->filters([
-                Tables\Filters\SelectFilter::make('type')
-                    ->options([
-                        'machine' => 'CNC Machines',
-                        'spare_part' => 'Spare Parts',
-                    ]),
                 Tables\Filters\TernaryFilter::make('is_active')
                     ->label('Active Status'),
             ])
@@ -142,9 +135,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListSparePartCategories::route('/'),
+            'create' => Pages\CreateSparePartCategory::route('/create'),
+            'edit' => Pages\EditSparePartCategory::route('/{record}/edit'),
         ];
     }
 }

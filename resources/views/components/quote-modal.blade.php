@@ -73,7 +73,7 @@
                         <input type="text" 
                                name="name" 
                                required
-                               placeholder="e.g. Rajesh Kumar"
+                               placeholder="Enter your full name"
                                class="w-full bg-surface-container-lowest border border-surface-container-high focus:border-primary focus:ring-1 focus:ring-primary rounded px-3 py-2 text-sm text-on-surface placeholder-outline/60 font-body-md">
                     </div>
 
@@ -82,7 +82,7 @@
                         <input type="tel" 
                                name="phone" 
                                required
-                               placeholder="e.g. +91 98765 43210"
+                               placeholder="Enter your phone number"
                                class="w-full bg-surface-container-lowest border border-surface-container-high focus:border-primary focus:ring-1 focus:ring-primary rounded px-3 py-2 text-sm text-on-surface placeholder-outline/60 font-tech-spec">
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                         <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5">Email Address</label>
                         <input type="email" 
                                name="email" 
-                               placeholder="name@company.com"
+                               placeholder="Enter your email address"
                                class="w-full bg-surface-container-lowest border border-surface-container-high focus:border-primary focus:ring-1 focus:ring-primary rounded px-3 py-2 text-sm text-on-surface placeholder-outline/60 font-body-md">
                     </div>
 
@@ -100,7 +100,7 @@
                         <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5">City / State</label>
                         <input type="text" 
                                name="city" 
-                               placeholder="e.g. Delhi, Surat, Pune"
+                               placeholder="Enter your city/state"
                                class="w-full bg-surface-container-lowest border border-surface-container-high focus:border-primary focus:ring-1 focus:ring-primary rounded px-3 py-2 text-sm text-on-surface placeholder-outline/60 font-body-md">
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5">Company / Workshop Name</label>
                     <input type="text" 
                            name="company_name" 
-                           placeholder="e.g. Precision CNC Works Pvt Ltd"
+                           placeholder="Enter your company name"
                            class="w-full bg-surface-container-lowest border border-surface-container-high focus:border-primary focus:ring-1 focus:ring-primary rounded px-3 py-2 text-sm text-on-surface placeholder-outline/60 font-body-md">
                 </div>
 
@@ -117,7 +117,7 @@
                     <label class="block font-label-caps text-label-caps uppercase text-outline mb-1.5">Cutting Application / Substrate Details</label>
                     <textarea name="message" 
                               rows="3" 
-                              placeholder="Describe your cutting material (wood, sheet metal, granite), thickness (mm), or desired table dimensions..."
+                              placeholder="Describe your material and cutting requirements"
                               class="w-full bg-surface-container-lowest border border-surface-container-high focus:border-primary focus:ring-1 focus:ring-primary rounded px-3 py-2 text-sm text-on-surface placeholder-outline/60 font-body-md"></textarea>
                 </div>
 

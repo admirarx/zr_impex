@@ -49,118 +49,56 @@
 <section class="w-full bg-transparent py-space-2xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-<!-- Card 1: Machine Sales -->
-<div class="flex flex-col bg-surface-container rounded p-space-lg relative overflow-hidden group hover:bg-surface-container-high transition-all">
-<div class="flex items-center justify-between mb-space-md">
-<div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-[28px]">precision_manufacturing</span>
-</div>
-<span class="font-label-badge text-label-badge uppercase bg-primary-container/20 text-primary px-space-xs py-space-2xs rounded">
-              Channel 01 • Sales
-            </span>
-</div>
-<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Machine Sales &amp; Commercial Quotations</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
-            Consult on gantry spans, laser wattage sizing, servo drive options, and turn-key factory commissioning pricing.
-          </p>
-<div class="flex flex-col gap-space-sm mt-auto font-tech-spec text-tech-spec pt-space-md bg-surface-container-lowest/50 p-space-sm rounded">
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">Hotline 1:</span>
-<a class="text-primary hover:underline font-bold" href="tel:+919876543210">+91 98765 43210</a>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">Hotline 2:</span>
-<a class="text-on-surface hover:underline" href="tel:+919876543211">+91 98765 43211</a>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">Direct Sales:</span>
-<a class="text-secondary hover:underline" href="mailto:sales@zrimpex.com">sales@zrimpex.com</a>
-</div>
-<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
-<span class="text-outline font-label-caps text-label-caps uppercase">Hours:</span>
-<span>Mon–Sat, 09:00–19:30 IST</span>
-</div>
-</div>
-<a class="mt-space-md w-full py-space-sm px-space-md bg-surface-container-highest hover:bg-surface-bright text-primary font-headline-sm text-headline-sm font-bold rounded flex items-center justify-center gap-space-xs transition-colors" href="https://wa.me/919876543210?text=Hello%20ZR%20IMPEX,%20please%20share%20the%20industrial%20catalog" rel="noopener" target="_blank">
-<span class="material-symbols-outlined text-[20px]">chat</span>
-<span>WhatsApp Quick Catalog &amp; Pricing</span>
-</a>
-</div>
-<!-- Card 2: 24/7 Field Service & Spares -->
-<div class="flex flex-col bg-surface-container rounded p-space-lg relative overflow-hidden group hover:bg-surface-container-high transition-all">
-<div class="flex items-center justify-between mb-space-md">
-<div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-[28px]">handyman</span>
-</div>
-<span class="font-label-badge text-label-badge uppercase bg-tertiary-container/20 text-tertiary px-space-xs py-space-2xs rounded">
-              Channel 02 • 24/7 Service
-            </span>
-</div>
-<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">24/7 Field Service &amp; Spares Depot</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
-            Emergency breakdown support for machine owners, optical lenses, HQD/HSD spindles, servo pack diagnostics, and air-assist spares.
-          </p>
-<div class="flex flex-col gap-space-sm mt-auto font-tech-spec text-tech-spec pt-space-md bg-surface-container-lowest/50 p-space-sm rounded">
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">Emergency:</span>
-<a class="text-tertiary hover:underline font-bold" href="tel:+919876543219">+91 98765 43219</a>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">Spares Desk:</span>
-<a class="text-secondary hover:underline" href="mailto:spares@zrimpex.com">spares@zrimpex.com</a>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">SLA Window:</span>
-<span class="text-primary font-bold">24-Hour Dispatch SLA</span>
-</div>
-<div class="flex items-center justify-between text-body-sm text-on-surface-variant">
-<span class="text-outline font-label-caps text-label-caps uppercase">Coverage:</span>
-<span>All Tier 1–3 Industrial Zones</span>
-</div>
-</div>
-<a class="mt-space-md w-full py-space-sm px-space-md bg-surface-container-highest hover:bg-surface-bright text-tertiary font-headline-sm text-headline-sm font-bold rounded flex items-center justify-center gap-space-xs transition-colors" href="tel:+919876543219">
-<span class="material-symbols-outlined text-[20px]">support_agent</span>
-<span>Call Service Hotline Now</span>
-</a>
-</div>
-<!-- Card 3: Factory HQ & Demo Plant -->
-<div class="flex flex-col bg-surface-container rounded p-space-lg relative overflow-hidden group hover:bg-surface-container-high transition-all">
-<div class="flex items-center justify-between mb-space-md">
-<div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-[28px]">domain</span>
-</div>
-<span class="font-label-badge text-label-badge uppercase bg-surface-variant text-outline px-space-xs py-space-2xs rounded">
-              Channel 03 • HQ Plant
-            </span>
-</div>
-<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Factory Headquarters &amp; Demo Plant</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
-            Experience 12kW fiber cutting, multi-axis 3D wood relief, and stone carving firsthand. Walk the assembly floor with our production heads.
-          </p>
-<div class="flex flex-col gap-space-sm mt-auto font-tech-spec text-tech-spec pt-space-md bg-surface-container-lowest/50 p-space-sm rounded">
-<div class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5">location_on</span>
-<span class="text-on-surface text-body-sm">Plot 48-A, Precision Machine Hub, GIDC Phase II, Ahmedabad, Gujarat 382445</span>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">Test Materials:</span>
-<span class="text-on-surface">Steel, SS, Brass, Wood</span>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-outline font-label-caps text-label-caps uppercase">Plant Visits:</span>
-<span class="text-primary font-bold">Appointment Recommended</span>
-</div>
-</div>
-<a class="mt-space-md w-full py-space-sm px-space-md bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm font-bold rounded flex items-center justify-center gap-space-xs transition-colors" href="#visit-schedule-section">
-<span class="material-symbols-outlined text-[20px]">calendar_month</span>
-<span>Schedule In-Person Plant Visit</span>
-</a>
-</div>
+      <!-- Card 1: Machine Sales -->
+      <div class="flex flex-col bg-surface-container rounded p-space-lg relative overflow-hidden group hover:bg-surface-container-high transition-all">
+        <div class="flex items-center justify-between mb-space-md">
+          <div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+            <span class="material-symbols-outlined text-[28px]">precision_manufacturing</span>
+          </div>
+          <span class="font-label-badge text-label-badge uppercase bg-primary-container/20 text-primary px-space-xs py-space-2xs rounded">
+            Channel 01 • Sales
+          </span>
+        </div>
+        <h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Machine Sales &amp; Commercial Quotations</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Consult on gantry spans, laser wattage sizing, servo drive options, and turn-key factory commissioning pricing.
+        </p>
+      </div>
+      <!-- Card 2: 24/7 Field Service & Spares -->
+      <div class="flex flex-col bg-surface-container rounded p-space-lg relative overflow-hidden group hover:bg-surface-container-high transition-all">
+        <div class="flex items-center justify-between mb-space-md">
+          <div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform">
+            <span class="material-symbols-outlined text-[28px]">handyman</span>
+          </div>
+          <span class="font-label-badge text-label-badge uppercase bg-tertiary-container/20 text-tertiary px-space-xs py-space-2xs rounded">
+            Channel 02 • 24/7 Service
+          </span>
+        </div>
+        <h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">24/7 Field Service &amp; Spares Depot</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Emergency breakdown support for machine owners, optical lenses, HQD/HSD spindles, servo pack diagnostics, and air-assist spares.
+        </p>
+      </div>
+      <!-- Card 3: Factory HQ & Demo Plant -->
+      <div class="flex flex-col bg-surface-container rounded p-space-lg relative overflow-hidden group hover:bg-surface-container-high transition-all">
+        <div class="flex items-center justify-between mb-space-md">
+          <div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+            <span class="material-symbols-outlined text-[28px]">domain</span>
+          </div>
+          <span class="font-label-badge text-label-badge uppercase bg-surface-variant text-outline px-space-xs py-space-2xs rounded">
+            Channel 03 • HQ Plant
+          </span>
+        </div>
+        <h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Factory Headquarters &amp; Demo Plant</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Experience 12kW fiber cutting, multi-axis 3D wood relief, and stone carving firsthand. Walk the assembly floor with our production heads.
+        </p>
+      </div>
 </div>
 </div>
 </section>
 <!-- Interactive Technical Quotation & Feasibility Request Form Section -->
-<section class="w-full bg-[#101419]/60 backdrop-blur-xs border-y border-surface-container/60 py-space-3xl">
+<section class="w-full bg-surface-dim/60 backdrop-blur-xs border-y border-surface-container/60 py-space-3xl">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
 <!-- Main Form Column (8 Cols) -->
@@ -188,7 +126,7 @@
 </label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">person</span>
-<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="contact-name" name="name" value="{{ old('name') }}" placeholder="e.g., Rajesh Patel" required="" type="text"/>
+<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="contact-name" name="name" value="{{ old('name') }}" placeholder="Enter your full name" required="" type="text"/>
 </div>
 </div>
 <div class="flex flex-col gap-space-xs">
@@ -198,7 +136,7 @@
 </label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">corporate_fare</span>
-<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="company-name" name="company_name" value="{{ old('company_name') }}" placeholder="e.g., Apex Precision Fabrication LLP" required="" type="text"/>
+<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="company-name" name="company_name" value="{{ old('company_name') }}" placeholder="Enter your company name" required="" type="text"/>
 </div>
 </div>
 </div>
@@ -211,7 +149,7 @@
 </label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">mail</span>
-<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="work-email" name="email" value="{{ old('email') }}" placeholder="procurement@apexlaser.com" required="" type="email"/>
+<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="work-email" name="email" value="{{ old('email') }}" placeholder="Enter your work email" required="" type="email"/>
 </div>
 </div>
 <div class="flex flex-col gap-space-xs">
@@ -225,7 +163,7 @@
                   </div>
 <div class="relative flex-1 flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">phone_iphone</span>
-<input class="w-full bg-surface-container-lowest text-on-surface font-tech-spec text-tech-spec pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="whatsapp-num" name="phone" value="{{ old('phone') }}" placeholder="98250 12345" required="" type="tel"/>
+<input class="w-full bg-surface-container-lowest text-on-surface font-tech-spec text-tech-spec pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="whatsapp-num" name="phone" value="{{ old('phone') }}" placeholder="Enter your mobile number" required="" type="tel"/>
 </div>
 </div>
 </div>
@@ -238,7 +176,7 @@
                 </label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">location_city</span>
-<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="factory-city" name="city" value="{{ old('city') }}" placeholder="e.g., Pune, Maharashtra or Sharjah, UAE" required="" type="text"/>
+<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="factory-city" name="city" value="{{ old('city') }}" placeholder="Enter your city, state or country" required="" type="text"/>
 </div>
 </div>
 <div class="flex flex-col gap-space-xs">
@@ -270,7 +208,7 @@
                 </label>
 <div class="relative flex items-center">
 <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">layers</span>
-<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="material-thickness" placeholder="e.g., 6mm Mild Steel, 25mm MDF, 3mm Brass" type="text"/>
+<input class="w-full bg-surface-container-lowest text-on-surface font-body-md text-body-md pl-10 pr-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" id="material-thickness" name="material_thickness" placeholder="Enter material and thickness specifications" type="text"/>
 </div>
 </div>
 <div class="flex flex-col gap-space-xs">
@@ -298,7 +236,7 @@
 <p class="text-body-sm text-on-surface-variant">
                 Include a link (Google Drive / WeTransfer / Dropbox) to your CAD drawings, nesting profiles, or component photos for accurate cycle time, gas consumption, and kerf simulation by our plant CAM operators:
               </p>
-<input class="w-full bg-surface-container text-on-surface font-tech-spec text-tech-spec px-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" placeholder="https://drive.google.com/your-cad-file-folder" type="url"/>
+<input class="w-full bg-surface-container text-on-surface font-tech-spec text-tech-spec px-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary" name="file_link" placeholder="Enter file link (optional)" type="url"/>
 </div>
 <!-- Preferred Communication Method -->
 <div class="flex flex-col gap-space-xs">
@@ -400,32 +338,13 @@
 </div>
 </div>
 </div>
-<!-- Quick Telemetry Card -->
-<div class="bg-surface-container rounded p-space-lg flex flex-col gap-space-sm">
-<div class="flex items-center gap-space-xs text-secondary font-label-caps text-label-caps uppercase">
-<span class="material-symbols-outlined text-[16px]">verified</span>
-<span>Factory Quality Certified</span>
-</div>
-<div class="font-headline-sm text-headline-sm text-on-surface">ISO 9001:2015 Registered Plant</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-              Every CNC table is vibration-stress-relieved and test-machined for 72 continuous run-hours before logistics clearance.
-            </p>
-<div class="pt-space-xs flex items-center justify-between font-tech-spec text-tech-spec text-outline">
-<span>Machining Precision:</span>
-<span class="text-primary font-bold">±0.02 mm</span>
-</div>
-</div>
-<!-- Visual Factory Assembly Floor Asset -->
-<div class="bg-surface-container rounded overflow-hidden flex flex-col">
-<img class="w-full h-48 object-cover" data-alt="Heavy industrial CNC router and fiber laser manufacturing assembly line at ZR IMPEX plant, high ceilings, yellow gantry cranes, precision granite surface plates, dark industrial cast-iron tones with amber accent machinery lighting and engineers in safety gear measuring bed tolerances" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzWtfIUhLFjXcI68pBZIZKPU-hHcYV4V74wvEan63dNSDKhKa93VvniKnaqBLWNxn1rcEYZX36MvrxxybhaWBEfPDX1yRvq9liod8wdCXO1LorsTD9KTMHyQxB2sjUQSvJ0QxUp3X24yXVaJ7F3He2-OPidHXe1zlYbis73LQuI8DHX1OZ1MfCDOZh4bz7LmxoktBsH0tPkp79t1gO3GslOpRtQm5aNkCMFdMMjYJN4iipnQpDc_bi"/>
-<div class="p-space-sm bg-surface-container-lowest flex items-center justify-between text-body-sm text-outline">
-<span class="font-label-caps text-label-caps uppercase">Ahmedabad Gantry Line Bay 2</span>
-<span class="text-primary font-tech-spec text-tech-spec">Live Operations</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+        <!-- Visual Factory Assembly Floor Asset -->
+        <div class="bg-surface-container rounded overflow-hidden flex flex-col">
+          <img class="w-full h-48 object-cover" data-alt="Heavy industrial CNC router and fiber laser manufacturing assembly line at ZR IMPEX plant, high ceilings, yellow gantry cranes, precision granite surface plates, dark industrial cast-iron tones with amber accent machinery lighting and engineers in safety gear measuring bed tolerances" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzWtfIUhLFjXcI68pBZIZKPU-hHcYV4V74wvEan63dNSDKhKa93VvniKnaqBLWNxn1rcEYZX36MvrxxybhaWBEfPDX1yRvq9liod8wdCXO1LorsTD9KTMHyQxB2sjUQSvJ0QxUp3X24yXVaJ7F3He2-OPidHXe1zlYbis73LQuI8DHX1OZ1MfCDOZh4bz7LmxoktBsH0tPkp79t1gO3GslOpRtQm5aNkCMFdMMjYJN4iipnQpDc_bi"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- Factory Location, Map & Visiting Guide -->
 <section class="w-full bg-surface py-space-3xl" id="visit-schedule-section">
@@ -433,19 +352,19 @@
 <div class="flex flex-col gap-space-xs mb-space-xl">
 <div class="inline-flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
 <span class="material-symbols-outlined text-[16px]">pin_drop</span>
-<span>Ahmedabad Plant Demonstration Complex</span>
+<span>New Delhi Plant Demonstration Complex</span>
 </div>
 <h2 class="font-headline-xl text-headline-xl text-on-surface uppercase">
           Factory Location &amp; Visiting Logistics
         </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-          Located inside Gujarat's core machinery fabrication belt. We welcome client delegations, engineering consultants, and workshop owners for real-time live cutting benchmarks.
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          Located at Paschim Vihar, New Delhi. We welcome client delegations, engineering consultants, and workshop owners for real-time live cutting benchmarks.
         </p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
 @php
-    $mapEmbed = \App\Models\SiteSetting::get('google_maps_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112061.79155986884!2d77.0688975!3d28.63186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0370425a8397%3A0x6d396a84f50684f!2sMayapuri%20Industrial%20Area%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin');
-    $plantAddress = \App\Models\SiteSetting::get('address', 'Plot No. 42, Industrial Area, Phase-2, Near Mayapuri, New Delhi, Delhi 110064, India');
+    $mapEmbedUrl = \App\Models\SiteSetting::getGoogleMapsEmbedUrl();
+    $plantAddress = $contactSettings['address'] ?? \App\Models\SiteSetting::get('address', 'W-116, S-Block, PVC Market, Paschim Vihar, New Delhi, Delhi 110087, India');
 @endphp
 <!-- Interactive Map Frame with Live Embed -->
 <div class="lg:col-span-7 flex flex-col bg-surface-container rounded overflow-hidden border border-surface-container-high">
@@ -460,39 +379,15 @@
 </div>
 </div>
 <!-- Map Container -->
-<div class="w-full h-80 lg:h-96 relative bg-surface-container-lowest">
+<div class="w-full flex-1 min-h-[380px] lg:min-h-[440px] relative bg-surface-container-lowest">
     <iframe 
-        src="{{ $mapEmbed }}" 
+        src="{{ $mapEmbedUrl }}" 
         class="w-full h-full border-0" 
         allowfullscreen="" 
         loading="lazy" 
         referrerpolicy="no-referrer-when-downgrade"
         title="ZR IMPEX Factory Location Map">
     </iframe>
-</div>
-<!-- Transit Connectivity Chips -->
-<div class="p-space-lg bg-surface-container-low grid grid-cols-1 sm:grid-cols-3 gap-space-md">
-<div class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[20px] shrink-0">flight</span>
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-on-surface text-[14px] font-semibold">Ahmedabad Airport (AMD)</span>
-<span class="text-body-sm text-on-surface-variant">35 mins via S.P. Ring Road</span>
-</div>
-</div>
-<div class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[20px] shrink-0">train</span>
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-on-surface text-[14px] font-semibold">Kalupur Railway Junction</span>
-<span class="text-body-sm text-on-surface-variant">25 mins direct arterial transit</span>
-</div>
-</div>
-<div class="flex items-start gap-space-xs">
-<span class="material-symbols-outlined text-primary text-[20px] shrink-0">local_shipping</span>
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-on-surface text-[14px] font-semibold">Freight Corridor NH-48</span>
-<span class="text-body-sm text-on-surface-variant">Direct container truck access</span>
-</div>
-</div>
 </div>
 </div>
 <!-- Plant Visit Demo Booking Card (5 Cols) -->
@@ -536,9 +431,9 @@
 <span>Plant Protocol:</span>
 <span class="text-on-surface">Safety eyewear provided at Gate 1</span>
 </div>
-<a class="w-full py-space-sm px-space-md bg-surface-container-highest hover:bg-surface-bright text-on-surface font-headline-sm text-headline-sm font-semibold rounded flex items-center justify-center gap-space-xs transition-colors" href="tel:+919876543210">
+<a class="w-full py-space-sm px-space-md bg-surface-container-highest hover:bg-surface-bright text-on-surface font-headline-sm text-headline-sm font-semibold rounded flex items-center justify-center gap-space-xs transition-colors" href="tel:{{ preg_replace('/[^0-9+]/', '', $contactSettings['phone']) }}">
 <span class="material-symbols-outlined text-primary text-[20px]">call</span>
-<span>Call Visit Coordinator (+91 98765 43210)</span>
+<span>Call Visit Coordinator ({{ $contactSettings['phone'] }})</span>
 </a>
 </div>
 </div>
@@ -546,107 +441,92 @@
 </div>
 </section>
 <!-- Nationwide Support & Engineer Deployment Network -->
-<section class="w-full bg-[#101419]/60 backdrop-blur-xs border-y border-surface-container/60 py-space-3xl">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg mb-space-2xl">
-<div class="flex flex-col gap-space-xs">
-<div class="inline-flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
-<span class="material-symbols-outlined text-[16px]">hub</span>
-<span>Pan-India Field Engineering Grid</span>
-</div>
-<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase">
-            Nationwide Spares &amp; Service Depots
-          </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-            Under 24-hour on-site engineer dispatch across major industrial production corridors with localized spares inventory.
-          </p>
-</div>
-<div class="bg-surface-container px-space-lg py-space-sm rounded flex items-center gap-space-md">
-<div class="flex flex-col">
-<span class="font-label-badge text-label-badge uppercase text-outline">Emergency Dispatch SLA</span>
-<span class="font-tech-telemetry-lg text-tech-telemetry-lg text-primary font-bold">≤ 24 Hours</span>
-</div>
-<div class="w-px h-8 bg-surface-container-highest"></div>
-<div class="flex flex-col">
-<span class="font-label-badge text-label-badge uppercase text-outline">Registered Technicians</span>
-<span class="font-tech-telemetry-lg text-tech-telemetry-lg text-on-surface font-bold">42 Engineers</span>
-</div>
-</div>
-</div>
-<!-- Hubs Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md">
-<!-- Hub 1: Ahmedabad -->
-<div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-badge text-label-badge uppercase bg-primary/20 text-primary px-space-xs py-space-2xs rounded">Central HQ</span>
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Ahmedabad</h3>
-<span class="text-body-sm text-outline">Gujarat Manufacturing Base</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Full gantry casting, heavy CNC assembly line &amp; national master parts depot.</p>
-<div class="mt-auto pt-space-xs font-tech-spec text-tech-spec text-primary text-[12px] flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-[14px]">phone</span>
-<span>+91 98765 43210</span>
-</div>
-</div>
-<!-- Hub 2: Delhi NCR -->
-<div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-badge text-label-badge uppercase bg-surface-variant text-on-surface-variant px-space-xs py-space-2xs rounded">North Hub</span>
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Delhi NCR / Manesar</h3>
-<span class="text-body-sm text-outline">Automotive &amp; Sheet Metal</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Fiber laser rapid service center, cutting nozzle kits &amp; optical repairs.</p>
-<div class="mt-auto pt-space-xs font-tech-spec text-tech-spec text-on-surface text-[12px] flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-[14px]">phone</span>
-<span>+91 98765 43212</span>
-</div>
-</div>
-<!-- Hub 3: Pune -->
-<div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-badge text-label-badge uppercase bg-surface-variant text-on-surface-variant px-space-xs py-space-2xs rounded">West Depot</span>
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Pune &amp; Chakan</h3>
-<span class="text-body-sm text-outline">Maharashtra Industrial Belt</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Heavy fabrication tooling, servo calibration &amp; Yaskawa electronics depot.</p>
-<div class="mt-auto pt-space-xs font-tech-spec text-tech-spec text-on-surface text-[12px] flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-[14px]">phone</span>
-<span>+91 98765 43213</span>
-</div>
-</div>
-<!-- Hub 4: Bengaluru -->
-<div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-badge text-label-badge uppercase bg-surface-variant text-on-surface-variant px-space-xs py-space-2xs rounded">South Depot</span>
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Bengaluru / Peenya</h3>
-<span class="text-body-sm text-outline">Karnataka &amp; Tamil Nadu</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Woodworking routers, multi-axis 5D service desk &amp; vacuum pump spares.</p>
-<div class="mt-auto pt-space-xs font-tech-spec text-tech-spec text-on-surface text-[12px] flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-[14px]">phone</span>
-<span>+91 98765 43214</span>
-</div>
-</div>
-<!-- Hub 5: Rajkot -->
-<div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-badge text-label-badge uppercase bg-surface-variant text-on-surface-variant px-space-xs py-space-2xs rounded">Tooling Hub</span>
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Rajkot &amp; Morbi</h3>
-<span class="text-body-sm text-outline">Saurashtra Precision Cluster</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Stone granite CNC bits, diamond tool re-tipping &amp; linear guide rail stocks.</p>
-<div class="mt-auto pt-space-xs font-tech-spec text-tech-spec text-on-surface text-[12px] flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-[14px]">phone</span>
-<span>+91 98765 43215</span>
-</div>
-</div>
-</div>
-</div>
+<section class="w-full bg-surface-dim/60 backdrop-blur-xs border-y border-surface-container/60 py-space-3xl">
+  <div class="max-w-max-width-content mx-auto px-gutter-desktop">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg mb-space-2xl">
+      <div class="flex flex-col gap-space-xs">
+        <div class="inline-flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
+          <span class="material-symbols-outlined text-[16px]">public</span>
+          <span>Pan-India &amp; Cross-Border Grid</span>
+        </div>
+        <h2 class="font-headline-xl text-headline-xl text-on-surface uppercase">
+          Nationwide Spares &amp; Service Depots
+        </h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          Comprehensive All-India CNC machine delivery, express spare parts fulfillment, and rapid on-site engineer dispatch. Full machine sales, genuine spares, and field services extended across India, Nepal, and Bhutan.
+        </p>
+      </div>
+      <div class="bg-surface-container px-space-lg py-space-sm rounded flex flex-wrap items-center gap-space-md">
+        <div class="flex flex-col">
+          <span class="font-label-badge text-label-badge uppercase text-outline">Network Coverage</span>
+          <span class="font-tech-telemetry-lg text-tech-telemetry-lg text-primary font-bold">India • Nepal • Bhutan</span>
+        </div>
+        <div class="hidden sm:block w-px h-8 bg-surface-container-highest"></div>
+        <div class="flex flex-col">
+          <span class="font-label-badge text-label-badge uppercase text-outline">Emergency Dispatch SLA</span>
+          <span class="font-tech-telemetry-lg text-tech-telemetry-lg text-on-surface font-bold">&le; 24 Hours</span>
+        </div>
+        <div class="hidden sm:block w-px h-8 bg-surface-container-highest"></div>
+        <div class="flex flex-col">
+          <span class="font-label-badge text-label-badge uppercase text-outline">Field Technicians</span>
+          <span class="font-tech-telemetry-lg text-tech-telemetry-lg text-on-surface font-bold">42+ Engineers</span>
+        </div>
+      </div>
+    </div>
+    <!-- Hubs Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md">
+      <!-- Hub 1: All-India Machine Delivery -->
+      <div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-badge text-label-badge uppercase bg-primary/20 text-primary px-space-xs py-space-2xs rounded">Machine Delivery</span>
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">All-India Machine Delivery</h3>
+        <span class="text-body-sm text-outline">Doorstep Transit &amp; Rigging</span>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Safe turnkey delivery of heavy CNC routers, fiber laser cutters &amp; stone centers across all Indian states with transit insurance and offloading guidance.</p>
+      </div>
+      <!-- Hub 2: All-India Spare Parts Delivery -->
+      <div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-badge text-label-badge uppercase bg-primary/20 text-primary px-space-xs py-space-2xs rounded">Spares Delivery</span>
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">All-India Spares Delivery</h3>
+        <span class="text-body-sm text-outline">Express Same-Day Dispatch</span>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Ready-to-ship stock of genuine spindles, DSP/NC controllers, stepper &amp; servo drives, laser optics, nozzles, and tooling delivered pan-India.</p>
+      </div>
+      <!-- Hub 3: All-India Service & Support -->
+      <div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-badge text-label-badge uppercase bg-primary/20 text-primary px-space-xs py-space-2xs rounded">Service &amp; Support</span>
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">All-India Service &amp; Support</h3>
+        <span class="text-body-sm text-outline">&le;24-Hr Engineer Deployment</span>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Factory-certified technicians for on-site commissioning, laser alignment, servo calibration, preventative maintenance &amp; breakdown repairs.</p>
+      </div>
+      <!-- Hub 4: Nepal Machine, Spares & Service -->
+      <div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-badge text-label-badge uppercase bg-surface-variant text-on-surface-variant px-space-xs py-space-2xs rounded">Nepal Hub</span>
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Nepal Sales &amp; Service</h3>
+        <span class="text-body-sm text-outline">Kathmandu &amp; Industrial Belts</span>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Full CNC machine sales &amp; delivery, rapid genuine spare parts supply, plus on-site engineering installation, training &amp; maintenance support.</p>
+      </div>
+      <!-- Hub 5: Bhutan Machine, Spares & Service -->
+      <div class="bg-surface-container rounded p-space-md flex flex-col gap-space-sm hover:bg-surface-container-high transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-badge text-label-badge uppercase bg-surface-variant text-on-surface-variant px-space-xs py-space-2xs rounded">Bhutan Hub</span>
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Bhutan Sales &amp; Service</h3>
+        <span class="text-body-sm text-outline">Thimphu &amp; Phuntsholing</span>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Turnkey CNC machinery sales &amp; cross-border transport, genuine spare parts fulfillment, with certified technician setup, training &amp; service support.</p>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- Technical Inquiry FAQs -->
 <section class="w-full bg-transparent py-space-3xl">
@@ -703,25 +583,24 @@
 </div>
 </div>
 </div>
-</section>
 <!-- Final Dispatch Quick Action Banner -->
-<section class="w-full bg-[#101419]/80 backdrop-blur-sm border-t border-surface-container/60 py-space-xl">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-lg">
-<div class="flex flex-col">
-<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Urgent RFQ or Breakdown Assistance?</span>
-<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">Talk directly with a Senior Machine Specialist right now.</h3>
-</div>
-<div class="flex items-center gap-space-md shrink-0">
-<a class="px-space-lg py-space-sm bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm font-bold rounded transition-colors flex items-center gap-space-xs" href="tel:+919876543210">
-<span class="material-symbols-outlined text-[20px]">call</span>
-<span>+91 98765 43210</span>
-</a>
-<a class="px-space-lg py-space-sm bg-surface-container hover:bg-surface-bright text-on-surface font-headline-sm text-headline-sm font-semibold rounded transition-colors flex items-center gap-space-xs" href="https://wa.me/919876543210" rel="noopener" target="_blank">
-<span class="material-symbols-outlined text-primary text-[20px]">chat</span>
-<span>WhatsApp Chat</span>
-</a>
-</div>
-</div>
+<section class="w-full bg-surface-dim/80 backdrop-blur-sm border-t border-surface-container/60 py-space-xl">
+  <div class="max-w-max-width-content mx-auto px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-lg">
+    <div class="flex flex-col">
+      <span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Urgent RFQ or Breakdown Assistance?</span>
+      <h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">Talk directly with a Senior Machine Specialist right now.</h3>
+    </div>
+    <div class="flex items-center gap-space-md shrink-0">
+      <a class="px-space-lg py-space-sm bg-primary hover:bg-primary-fixed-dim text-on-primary font-headline-sm text-headline-sm font-bold rounded transition-colors flex items-center gap-space-xs" href="tel:{{ preg_replace('/[^0-9+]/', '', $contactSettings['phone']) }}">
+        <span class="material-symbols-outlined text-[20px]">call</span>
+        <span>{{ $contactSettings['phone'] }}</span>
+      </a>
+      <a class="px-space-lg py-space-sm bg-surface-container hover:bg-surface-bright text-on-surface font-headline-sm text-headline-sm font-semibold rounded transition-colors flex items-center gap-space-xs" href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contactSettings['whatsapp']) }}" rel="noopener" target="_blank">
+        <span class="material-symbols-outlined text-primary text-[20px]">chat</span>
+        <span>WhatsApp Chat</span>
+      </a>
+    </div>
+  </div>
 </section>
 </div>
 <script>

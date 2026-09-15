@@ -5,53 +5,171 @@
 @source '../views/**/*.blade.php';
 @source '../js/**/*.js';
 
+/* ==========================================================================
+   THEME DEFINITIONS & COLOR TOKENS
+   Theme 1 (Default): Dark Luxury Black, Silver & Gold (data-theme="dark")
+   Theme 2: Clean High-Contrast Industrial Light Mode (data-theme="light")
+   ========================================================================== */
+
+:root,
+html.dark,
+html[data-theme="dark"],
+html[data-theme="black-silver-gold"] {
+    /* Rich Black & Dark Charcoal Surfaces */
+    --theme-surface-dim: #050505;
+    --theme-surface-bright: #26262b;
+    --theme-surface-container-lowest: #000000;
+    --theme-surface-container-low: #0b0b0e;
+    --theme-surface-container: #121216;
+    --theme-surface-container-high: #1a1a20;
+    --theme-surface-container-highest: #262630;
+    --theme-surface: #050505;
+    --theme-background: #050505;
+    --theme-on-surface: #f8fafc;
+    --theme-on-surface-variant: #cbd5e1;
+    --theme-outline: #94a3b8;
+    --theme-outline-variant: #334155;
+
+    /* Metallic Gold Primary Palette */
+    --theme-primary: #d4af37;
+    --theme-primary-container: #aa820a;
+    --theme-primary-fixed: #fff0b3;
+    --theme-primary-fixed-dim: #e6c254;
+    --theme-on-primary: #120d00;
+    --theme-on-primary-container: #2e2100;
+
+    /* Sterling Silver Secondary Palette */
+    --theme-secondary: #c0c0c0;
+    --theme-secondary-container: #262930;
+    --theme-secondary-fixed: #f1f5f9;
+    --theme-secondary-fixed-dim: #94a3b8;
+    --theme-on-secondary: #0f172a;
+    --theme-on-secondary-container: #e2e8f0;
+
+    /* Champagne Gold Tertiary Palette */
+    --theme-tertiary: #e5c365;
+    --theme-tertiary-container: #4d3d10;
+    --theme-tertiary-fixed: #fff5d6;
+    --theme-tertiary-fixed-dim: #d9b552;
+    --theme-on-tertiary: #191300;
+
+    /* System Status & Errors */
+    --theme-error: #ffb4ab;
+    --theme-error-container: #93000a;
+    --theme-on-error: #690005;
+
+    /* Compatibility & Styling Tokens */
+    --theme-ink: #000000;
+    --theme-gold: #d4af37;
+    --theme-gold-bright: #f3e5ab;
+    --theme-steel: #94a3b8;
+    --theme-steel-light: #e2e8f0;
+    --theme-border: #1e1e26;
+    --theme-grid-dot: rgba(255, 198, 77, 0.15);
+}
+
+html.light,
+html[data-theme="light"] {
+    /* Clean High-Contrast Precision Architectural Surfaces */
+    --theme-surface-dim: #f1f5f9;
+    --theme-surface-bright: #ffffff;
+    --theme-surface-container-lowest: #ffffff;
+    --theme-surface-container-low: #f8fafc;
+    --theme-surface-container: #ffffff;
+    --theme-surface-container-high: #f1f5f9;
+    --theme-surface-container-highest: #e2e8f0;
+    --theme-surface: #f8fafc;
+    --theme-background: #f8fafc;
+    --theme-on-surface: #0f172a;
+    --theme-on-surface-variant: #334155;
+    --theme-outline: #64748b;
+    --theme-outline-variant: #cbd5e1;
+
+    /* High-Contrast Industrial Amber Gold Primary */
+    --theme-primary: #b45309;
+    --theme-primary-container: #fef3c7;
+    --theme-primary-fixed: #fde68a;
+    --theme-primary-fixed-dim: #92400e;
+    --theme-on-primary: #ffffff;
+    --theme-on-primary-container: #78350f;
+
+    /* Slate Steel Secondary Palette */
+    --theme-secondary: #475569;
+    --theme-secondary-container: #e2e8f0;
+    --theme-secondary-fixed: #f1f5f9;
+    --theme-secondary-fixed-dim: #64748b;
+    --theme-on-secondary: #ffffff;
+    --theme-on-secondary-container: #0f172a;
+
+    /* Technical Cobalt Tertiary Palette */
+    --theme-tertiary: #1d4ed8;
+    --theme-tertiary-container: #dbeafe;
+    --theme-tertiary-fixed: #eff6ff;
+    --theme-tertiary-fixed-dim: #1e40af;
+    --theme-on-tertiary: #ffffff;
+
+    /* System Status & Errors */
+    --theme-error: #dc2626;
+    --theme-error-container: #fee2e2;
+    --theme-on-error: #ffffff;
+
+    /* Compatibility & Styling Tokens */
+    --theme-ink: #0f172a;
+    --theme-gold: #b45309;
+    --theme-gold-bright: #d97706;
+    --theme-steel: #64748b;
+    --theme-steel-light: #334155;
+    --theme-border: #cbd5e1;
+    --theme-grid-dot: rgba(100, 116, 139, 0.12);
+}
+
 @theme {
-    /* Stitch Industrial Color Palette */
-    --color-surface-dim: #101419;
-    --color-surface-bright: #36393f;
-    --color-surface-container-lowest: #0a0f13;
-    --color-surface-container-low: #181c21;
-    --color-surface-container: #1c2025;
-    --color-surface-container-high: #262a30;
-    --color-surface-container-highest: #31353b;
-    --color-surface: #101419;
-    --color-background: #101419;
-    --color-on-surface: #e0e2ea;
-    --color-on-surface-variant: #d4c4ad;
-    --color-outline: #9c8f79;
-    --color-outline-variant: #504533;
+    /* Stitch Color Tokens tied to dynamic theme variables */
+    --color-surface-dim: var(--theme-surface-dim);
+    --color-surface-bright: var(--theme-surface-bright);
+    --color-surface-container-lowest: var(--theme-surface-container-lowest);
+    --color-surface-container-low: var(--theme-surface-container-low);
+    --color-surface-container: var(--theme-surface-container);
+    --color-surface-container-high: var(--theme-surface-container-high);
+    --color-surface-container-highest: var(--theme-surface-container-highest);
+    --color-surface: var(--theme-surface);
+    --color-background: var(--theme-background);
+    --color-on-surface: var(--theme-on-surface);
+    --color-on-surface-variant: var(--theme-on-surface-variant);
+    --color-outline: var(--theme-outline);
+    --color-outline-variant: var(--theme-outline-variant);
 
-    --color-primary: #ffc64d;
-    --color-primary-container: #e5a910;
-    --color-primary-fixed: #ffdea4;
-    --color-primary-fixed-dim: #fbbc2b;
-    --color-on-primary: #412d00;
-    --color-on-primary-container: #5b4100;
+    --color-primary: var(--theme-primary);
+    --color-primary-container: var(--theme-primary-container);
+    --color-primary-fixed: var(--theme-primary-fixed);
+    --color-primary-fixed-dim: var(--theme-primary-fixed-dim);
+    --color-on-primary: var(--theme-on-primary);
+    --color-on-primary-container: var(--theme-on-primary-container);
 
-    --color-secondary: #b9c8de;
-    --color-secondary-container: #39485a;
-    --color-secondary-fixed: #d4e4fa;
-    --color-secondary-fixed-dim: #b9c8de;
-    --color-on-secondary: #233143;
-    --color-on-secondary-container: #a7b6cc;
+    --color-secondary: var(--theme-secondary);
+    --color-secondary-container: var(--theme-secondary-container);
+    --color-secondary-fixed: var(--theme-secondary-fixed);
+    --color-secondary-fixed-dim: var(--theme-secondary-fixed-dim);
+    --color-on-secondary: var(--theme-on-secondary);
+    --color-on-secondary-container: var(--theme-on-secondary-container);
 
-    --color-tertiary: #93d7ff;
-    --color-tertiary-container: #3bbffa;
-    --color-tertiary-fixed: #c4e7ff;
-    --color-tertiary-fixed-dim: #7bd0ff;
-    --color-on-tertiary: #00354a;
+    --color-tertiary: var(--theme-tertiary);
+    --color-tertiary-container: var(--theme-tertiary-container);
+    --color-tertiary-fixed: var(--theme-tertiary-fixed);
+    --color-tertiary-fixed-dim: var(--theme-tertiary-fixed-dim);
+    --color-on-tertiary: var(--theme-on-tertiary);
 
-    --color-error: #ffb4ab;
-    --color-error-container: #93000a;
-    --color-on-error: #690005;
+    --color-error: var(--theme-error);
+    --color-error-container: var(--theme-error-container);
+    --color-on-error: var(--theme-on-error);
 
     /* Legacy compatibility tokens */
-    --color-ink: #0a0f13;
-    --color-gold: #ffc64d;
-    --color-gold-bright: #fbbc2b;
-    --color-steel: #9c8f79;
-    --color-steel-light: #e0e2ea;
-    --color-border: #262a30;
+    --color-ink: var(--theme-ink);
+    --color-gold: var(--theme-gold);
+    --color-gold-bright: var(--theme-gold-bright);
+    --color-steel: var(--theme-steel);
+    --color-steel-light: var(--theme-steel-light);
+    --color-border: var(--theme-border);
 
     /* Spacings */
     --spacing-space-2xs: 0.125rem;
@@ -89,13 +207,47 @@
     }
 }
 
-/* Material Symbols alignment helper */
+/* Local Material Symbols Outlined Font Definition */
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 100 700;
+    font-display: block;
+    src: url('/fonts/material-symbols-outlined.woff2') format('woff2');
+}
+
+/* Material Symbols Outlined Icon Styling & Strict Containment */
 .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-family: 'Material Symbols Outlined' !important;
+    font-weight: normal;
+    font-style: normal;
+    font-size: inherit;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    flex-shrink: 0;
+    overflow: hidden;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Hide unstyled ligature text strings (e.g. "precision_manufacturing") before font resolves */
+html:not(.material-symbols-loaded) .material-symbols-outlined {
+    color: transparent !important;
+    text-shadow: none !important;
+    user-select: none;
 }
 
 /* Stitch Technical Typography Utility Classes */
@@ -139,7 +291,7 @@
 .bg-machined-grid {
     background-size: 32px 32px;
     background-image: 
-        radial-gradient(circle, rgba(255, 198, 77, 0.18) 1.25px, transparent 1.25px);
+        radial-gradient(circle, var(--theme-grid-dot, rgba(255, 198, 77, 0.15)) 1.25px, transparent 1.25px);
 }
 
 .bg-industrial-lines {

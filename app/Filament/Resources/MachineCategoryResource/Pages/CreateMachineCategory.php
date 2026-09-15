@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\WhatsAppClickResource\Pages;
+namespace App\Filament\Resources\MachineCategoryResource\Pages;
 
-use App\Filament\Resources\WhatsAppClickResource;
+use App\Filament\Resources\MachineCategoryResource;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateWhatsAppClick extends CreateRecord
+class CreateMachineCategory extends CreateRecord
 {
-    protected static string $resource = WhatsAppClickResource::class;
+    protected static string $resource = MachineCategoryResource::class;
 
     protected function getHeaderActions(): array
     {

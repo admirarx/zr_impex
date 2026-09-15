@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Product extends Model
@@ -147,12 +148,8 @@ class Product extends Model
             return $this->primary_image;
         }
 
-        if ($this->primary_image && file_exists(public_path('storage/'.$this->primary_image))) {
-            return asset('storage/'.$this->primary_image);
-        }
-
-        if ($this->primary_image && file_exists(public_path($this->primary_image))) {
-            return asset($this->primary_image);
+        if ($this->primary_image) {
+            return Storage::disk('public')->url($this->primary_image);
         }
 
         return asset('images/brand/logo.jpeg');
@@ -168,7 +165,7 @@ class Product extends Model
             return $this->brochure_path;
         }
 
-        return asset('storage/'.$this->brochure_path);
+        return Storage::disk('public')->url($this->brochure_path);
     }
 
     public function getCertificateUrlAttribute(): ?string
@@ -181,7 +178,7 @@ class Product extends Model
             return $this->certificate_path;
         }
 
-        return asset('storage/'.$this->certificate_path);
+        return Storage::disk('public')->url($this->certificate_path);
     }
 
     public function getManualUrlAttribute(): ?string
@@ -194,7 +191,7 @@ class Product extends Model
             return $this->manual_path;
         }
 
-        return asset('storage/'.$this->manual_path);
+        return Storage::disk('public')->url($this->manual_path);
     }
 
     public function getIsMachineAttribute(): bool

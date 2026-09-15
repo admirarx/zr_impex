@@ -54,8 +54,8 @@
 
                     <div class="mt-space-xl pt-space-lg border-t border-surface-container-high">
                         <span class="font-tech-spec text-tech-spec text-outline block mb-space-xs">Service Engineering Desk:</span>
-                        <a href="tel:{{ \App\Models\SiteSetting::get('support_phone', '+91 98123 45678') }}" class="font-tech-spec text-tech-spec text-primary font-bold block mb-1">
-                            {{ \App\Models\SiteSetting::get('support_phone', '+91 98123 45678') }}
+                        <a href="tel:{{ \App\Models\SiteSetting::get('support_phone', '+91 9899639380') }}" class="font-tech-spec text-tech-spec text-primary font-bold block mb-1">
+                            {{ \App\Models\SiteSetting::get('support_phone', '+91 9899639380') }}
                         </a>
                         <span class="text-on-surface-variant text-body-sm">Available Mon-Sat: 9:00 AM - 7:00 PM</span>
                     </div>

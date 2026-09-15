@@ -38,3 +38,8 @@ boost.json
 /tests/
 phpunit.xml
 .phpunit.result.cache
+
+# Database & Backup Archives
+*.sql
+*.zip
+

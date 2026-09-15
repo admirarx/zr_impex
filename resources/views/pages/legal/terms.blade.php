@@ -56,7 +56,7 @@
                     <div class="mt-space-xl pt-space-lg border-t border-surface-container-high">
                         <span class="font-tech-spec text-tech-spec text-outline block mb-space-xs">Official Inquiries:</span>
                         <span class="font-tech-spec text-tech-spec text-on-surface block">ZR IMPEX Machinery</span>
-                        <span class="font-tech-spec text-tech-spec text-primary block mt-1">+91 98765 43210</span>
+                        <span class="font-tech-spec text-tech-spec text-primary block mt-1">{{ \App\Models\SiteSetting::get('primary_phone', '+91 9899639380') }}</span>
                     </div>
                 </div>
             </div>

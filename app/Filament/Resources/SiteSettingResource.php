@@ -48,7 +48,10 @@ class SiteSettingResource extends Resource
                         Forms\Components\Textarea::make('value')
                             ->label('Setting Value (Phone number, embed code, address text)')
                             ->rows(4)
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->helperText(fn (?SiteSetting $record) => $record?->key === 'google_maps_embed'
+                                ? 'You can paste either the complete Google Maps <iframe> code or just the embed URL.'
+                                : null),
                     ]),
             ]);
     }

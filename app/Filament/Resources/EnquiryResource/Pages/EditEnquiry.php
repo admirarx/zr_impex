@@ -4,6 +4,7 @@ namespace App\Filament\Resources\EnquiryResource\Pages;
 
 use App\Filament\Resources\EnquiryResource;
 use Filament\Actions;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
 
 class EditEnquiry extends EditRecord
@@ -13,6 +14,7 @@ class EditEnquiry extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            Action::make('save')->label('Save changes')->action('save'),
             Actions\DeleteAction::make(),
         ];
     }

@@ -17,7 +17,7 @@ class PageController extends Controller
             ->featured()
             ->with(['category', 'specifications'])
             ->orderBy('sort_order', 'asc')
-            ->take(6)
+            ->take(8)
             ->get();
 
         $machineCategories = Category::machines()
@@ -47,14 +47,14 @@ class PageController extends Controller
     public function contact(): View
     {
         $contactSettings = [
-            'phone' => SiteSetting::get('primary_phone', '+91 98765 43210'),
-            'support_phone' => SiteSetting::get('support_phone', '+91 98123 45678'),
-            'whatsapp' => SiteSetting::get('whatsapp_number', '+91 98765 43210'),
+            'phone' => SiteSetting::get('primary_phone', '+91 9899639380'),
+            'support_phone' => SiteSetting::get('support_phone', '+91 9899639380'),
+            'whatsapp' => SiteSetting::get('whatsapp_number', '+919250630381'),
             'sales_email' => SiteSetting::get('sales_email', 'sales@zrimpex.com'),
             'support_email' => SiteSetting::get('support_email', 'support@zrimpex.com'),
-            'address' => SiteSetting::get('address', 'Plot No. 42, Industrial Area, Phase-2, Near Mayapuri, New Delhi, Delhi 110064, India'),
+            'address' => SiteSetting::get('address', 'W-116, S-Block, PVC Market, Paschim Vihar, New Delhi, Delhi 110087, India'),
             'business_hours' => SiteSetting::get('business_hours', 'Monday – Saturday: 9:00 AM – 7:00 PM (Sunday Closed)'),
-            'maps_embed' => SiteSetting::get('google_maps_embed'),
+            'maps_embed' => SiteSetting::getGoogleMapsEmbedUrl(),
         ];
 
         return view('pages.contact', compact('contactSettings'));

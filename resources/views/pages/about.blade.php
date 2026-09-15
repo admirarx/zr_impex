@@ -98,7 +98,7 @@
 </div>
 </section>
 <!-- Manufacturing Footprint & Core Metrics Grid -->
-<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-3xl border-y border-surface-container/60">
+<section class="w-full bg-surface-dim/60 backdrop-blur-xs py-space-3xl border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="flex flex-col gap-space-xs mb-space-2xl">
 <div class="flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
@@ -462,90 +462,9 @@
 </div>
 </div>
 </section>
-<!-- Engineering Leadership & Plant Directors -->
-<section class="w-full bg-transparent py-space-3xl">
-<div class="max-w-max-width-content mx-auto px-gutter-desktop">
-<div class="flex flex-col gap-space-xs mb-space-2xl">
-<div class="flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
-<span class="material-symbols-outlined text-[16px]">groups</span>
-<span>Technical Leadership</span>
-</div>
-<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight">
-          Automation Engineers Behind Every Frame
-        </h2>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
-          Led by mechanical fabricators and mechatronics specialists with over 3 decades of cumulative experience building machines capable of handling extreme continuous factory shifts.
-        </p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-<!-- Leader 1 -->
-<div class="bg-surface-container-low rounded-xl overflow-hidden shadow-md group">
-<div class="h-64 overflow-hidden relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Experienced chief mechanical engineering director in dark industrial safety jacket standing in an advanced CNC router assembly factory bay, smiling with technical competence, industrial lighting with amber workshop sparks in background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBznI-Af2Nhy1swtRbwTfkZLjGEdIK_LVPYCWegZ0k3XFk3fhc6gyqnfJb_3pxBSQBV7PylnDd7v0J4_BkxzdiESp9f12dUB6ny8xM0JZylqljbUW6SlbsiPi40rZTheeOuPwWXDZ2lgj_wlrfXQXiLgc0F6ICXY_VTZkzsnxP3j6mlm8J0btrxE0Ypui7x8NQHffnAH0SETg-3N7urKmbkTf0kLPRQd746qcAqodkRmcL3-PXfLyUl"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
-<div class="absolute bottom-space-sm left-space-md">
-<span class="font-label-badge text-label-badge text-primary bg-surface-container-lowest px-space-xs py-space-2xs rounded uppercase">Managing Director • Founder</span>
-</div>
-</div>
-<div class="p-space-lg flex flex-col gap-space-xs">
-<h3 class="font-headline-md text-headline-md text-on-surface font-bold uppercase">Rajesh V. Sharma</h3>
-<p class="font-label-caps text-label-caps text-tertiary">22+ Years in Heavy Structural Tooling</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
-              Pioneered stress-relieved bed manufacturing standards for Indian marble and granite CNC machines. Oversees direct procurement partnerships across Germany, Italy, and Taiwan.
-            </p>
-<div class="flex items-center gap-space-xs mt-space-md text-outline font-tech-spec text-body-sm">
-<span class="material-symbols-outlined text-primary text-[16px]">badge</span>
-<span>B.E. Mechanical Engineering • Tool &amp; Die</span>
-</div>
-</div>
-</div>
-<!-- Leader 2 -->
-<div class="bg-surface-container-low rounded-xl overflow-hidden shadow-md group">
-<div class="h-64 overflow-hidden relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Sharp female head of fiber laser optics and automation standing next to an enclosed 12kW fiber laser cutting unit holding a digital diagnostic tablet, high tech dark machine background with blue specular reflection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBntL4mnoar0UNBlE6iecV4X4QIZf4fBMyRQL6xWbpB14q2luHBERYcZ5j8L4nmcyz5lN9dOfz5mI-4nOumvqXqil_JV_yHNGQkHN-wWir7E_pheAOndzRvpYWtlcOWuvcp2bKA8Gh2eKfHy-264wb108y0wiAycht5s-kqmns5WEbD0879bEtqv_IUrnpcpZsM134g4XZ6jDJFeiHHkAk21z4DHwR1FPWLK7TQZZSfwoHG2P4jyLWj"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
-<div class="absolute bottom-space-sm left-space-md">
-<span class="font-label-badge text-label-badge text-tertiary bg-surface-container-lowest px-space-xs py-space-2xs rounded uppercase">Chief Automation Engineer</span>
-</div>
-</div>
-<div class="p-space-lg flex flex-col gap-space-xs">
-<h3 class="font-headline-md text-headline-md text-on-surface font-bold uppercase">Dr. Priya M. Patel</h3>
-<p class="font-label-caps text-label-caps text-tertiary">14+ Years in Laser Physics &amp; Motion Control</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
-              Specialist in laser beam polarization, assist-gas dynamics, and high-frequency servo synchronicity. Manages the 72-hour factory burn-in and laser interferometer calibration lines.
-            </p>
-<div class="flex items-center gap-space-xs mt-space-md text-outline font-tech-spec text-body-sm">
-<span class="material-symbols-outlined text-tertiary text-[16px]">science</span>
-<span>M.Tech Mechatronics • Ph.D Laser Applications</span>
-</div>
-</div>
-</div>
-<!-- Leader 3 -->
-<div class="bg-surface-container-low rounded-xl overflow-hidden shadow-md group">
-<div class="h-64 overflow-hidden relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Experienced plant commissioning and CNC field service director holding micrometer measuring tool on a heavy milled machine rail inside machine tool plant, high contrast industrial workshop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf4eycU3m4alxcwhe1H8wDoRrYaEjMx4IaoE9RF0jFQpRjAuHQpo2Qcn476aI2bycIvpXbGKXlBOMDeJMoAzkIGZWD76UjoKsUt9hWSIeS7_p_6ZWalcj6Wmy9G2V9xkN0iF0GBtHHNCNPy4Skmp5LH5tYywnzEgeBhIkx9zJ91ZKwzcK2RuH23C6m_CV2ykaoVXqzffZOtEnhxdkDzYCzGHyLK4MBp78NzwOrspaX_GK4oRAy-gwY"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
-<div class="absolute bottom-space-sm left-space-md">
-<span class="font-label-badge text-label-badge text-secondary bg-surface-container-lowest px-space-xs py-space-2xs rounded uppercase">Head of Commissioning &amp; Field Ops</span>
-</div>
-</div>
-<div class="p-space-lg flex flex-col gap-space-xs">
-<h3 class="font-headline-md text-headline-md text-on-surface font-bold uppercase">Manish K. Chawla</h3>
-<p class="font-label-caps text-label-caps text-tertiary">18+ Years Field Commissioning Lead</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
-              Directs our rapid-response team of 38 field engineers stationed across key manufacturing hubs, ensuring 24/7 on-site operator training, setup, and immediate preventative servicing.
-            </p>
-<div class="flex items-center gap-space-xs mt-space-md text-outline font-tech-spec text-body-sm">
-<span class="material-symbols-outlined text-secondary text-[16px]">support_agent</span>
-<span>Over 800+ Turnkey Factory Commissionings</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+
 <!-- Certified Standards & Export Compliance Grid -->
-<section class="w-full bg-[#101419]/60 backdrop-blur-xs py-space-2xl border-y border-surface-container/60">
+<section class="w-full bg-surface-dim/60 backdrop-blur-xs py-space-2xl border-y border-surface-container/60">
 <div class="max-w-max-width-content mx-auto px-gutter-desktop">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
 <!-- Cert 1 -->
@@ -598,10 +517,10 @@
 <div class="lg:col-span-8 flex flex-col gap-space-md">
 <div class="flex items-center gap-space-xs text-primary font-label-caps text-label-caps uppercase tracking-wider">
 <span class="material-symbols-outlined text-[16px]">location_on</span>
-<span>GIDC Phase II • Gujarat Experience Center</span>
+<span>Paschim Vihar • New Delhi Experience Center</span>
 </div>
 <h2 class="font-headline-xl text-headline-xl text-on-surface uppercase tracking-tight">
-              Test Cut Your Raw Materials at Our 45,000 Sq.Ft Plant
+              Test Cut Your Raw Materials at Our Plant
             </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
               Bring your AutoCAD or SolidWorks files along with your production material: 12mm stainless steel, brass, thick acrylic, or solid teak. Our application engineers will run test parts on live production spindles and fiber lasers so you evaluate real cycle times and edge squareness before booking.
@@ -611,7 +530,7 @@
 <span class="material-symbols-outlined text-[20px]">calendar_today</span>
 <span>Book Live Factory Cut Demo</span>
 </a>
-<a class="inline-flex items-center gap-space-xs bg-surface-container hover:bg-surface-container-highest text-primary font-headline-sm text-headline-sm px-space-lg py-space-md rounded transition-colors" href="https://wa.me/919876543210" target="_blank">
+<a class="inline-flex items-center gap-space-xs bg-surface-container hover:bg-surface-container-highest text-primary font-headline-sm text-headline-sm px-space-lg py-space-md rounded transition-colors" href="{{ \App\Services\WhatsAppUrlBuilder::build(null, 'Hello ZR IMPEX, I would like to speak to an engineer regarding machinery specs.') }}" target="_blank" rel="noopener noreferrer">
 <span class="material-symbols-outlined text-[20px]">chat</span>
 <span>Direct WhatsApp Engineering Hotline</span>
 </a>
@@ -619,16 +538,16 @@
 </div>
 <!-- Location Map Visual / Facility Coordinates Box -->
 <div class="lg:col-span-4 flex flex-col gap-space-sm">
-<div class="w-full h-52 bg-surface-container-low rounded-xl overflow-hidden relative shadow-md" data-location="GIDC Industrial Estate, Gujarat, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-aVBJgXohg2tc6ZC3FMIeRWtxON1a_lMVOyUsJaIt16tf-l9_XJ-7jC0vB4w7CarVyUeS_omgmK1y5ZYb0ZtxD_WM9V35p7QBB0mV50YPfRpMzXN2BfckRFoe1KU9tsTCm7YdkzTCVuc3nXotgJitX8muj6K9tdcIyQL5ZXFRiQbW984kEB-StPwnB9baYzY_2Bl7Prap8heiOVUYWWJZ3vxQ1f5IBUSV5PQL28Ar1WfniylyFlRM')">
+<div class="w-full h-52 bg-surface-container-low rounded-xl overflow-hidden relative shadow-md" data-location="{{ \App\Models\SiteSetting::get('address', 'W-116, S-Block, PVC Market, Paschim Vihar, New Delhi, Delhi 110087, India') }}" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-aVBJgXohg2tc6ZC3FMIeRWtxON1a_lMVOyUsJaIt16tf-l9_XJ-7jC0vB4w7CarVyUeS_omgmK1y5ZYb0ZtxD_WM9V35p7QBB0mV50YPfRpMzXN2BfckRFoe1KU9tsTCm7YdkzTCVuc3nXotgJitX8muj6K9tdcIyQL5ZXFRiQbW984kEB-StPwnB9baYzY_2Bl7Prap8heiOVUYWWJZ3vxQ1f5IBUSV5PQL28Ar1WfniylyFlRM')">
 <div class="absolute inset-0 bg-surface-dim/40 backdrop-blur-[1px] flex flex-col items-center justify-center p-space-md text-center">
 <span class="material-symbols-outlined text-primary text-[36px] mb-space-2xs animate-bounce">location_on</span>
 <span class="font-headline-sm text-headline-sm text-on-surface font-bold uppercase">ZR IMPEX Campus</span>
-<span class="font-tech-spec text-tech-spec text-on-surface-variant">Plot 48-A, Precision Machine Hub, GIDC Phase II</span>
+<span class="font-tech-spec text-tech-spec text-on-surface-variant text-xs">{{ \App\Models\SiteSetting::get('address', 'W-116, S-Block, PVC Market, Paschim Vihar, New Delhi, Delhi 110087, India') }}</span>
 </div>
 </div>
 <div class="bg-surface-container-low p-space-md rounded flex items-center justify-between font-tech-spec text-tech-spec">
 <span class="text-on-surface-variant">Coordinates:</span>
-<span class="text-primary font-bold">22.2587° N, 70.8022° E</span>
+<span class="text-primary font-bold">28.6719° N, 77.0781° E</span>
 </div>
 </div>
 </div>

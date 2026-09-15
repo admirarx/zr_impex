@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Filament\RelationManagers;
+use App\Filament\Resources\SparePartResource\Pages;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,52 +13,48 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
-class ProductResource extends Resource
+class SparePartResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationGroup = 'Catalogue Management';
+    protected static ?string $slug = 'spare-parts';
 
-    protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
+    protected static ?string $navigationGroup = 'Products';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationIcon = 'heroicon-o-cog';
+
+    protected static ?string $modelLabel = 'Spare Part';
+
+    protected static ?int $navigationSort = 2;
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->spareParts();
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Tabs::make('Product Information')
+                Forms\Components\Hidden::make('type')->default('spare_part'),
+                Forms\Components\Tabs::make('Spare Part Information')
                     ->tabs([
                         Forms\Components\Tabs\Tab::make('General')
                             ->icon('heroicon-o-information-circle')
                             ->schema([
-                                Forms\Components\Grid::make(3)
+                                Forms\Components\Grid::make(2)
                                     ->schema([
-                                        Forms\Components\Select::make('type')
-                                            ->label('Product Type')
-                                            ->options([
-                                                'machine' => 'CNC Machine',
-                                                'spare_part' => 'Spare Part / Accessory',
-                                            ])
-                                            ->default('machine')
-                                            ->required()
-                                            ->native(false)
-                                            ->live(),
                                         Forms\Components\Select::make('category_id')
                                             ->label('Catalogue Category')
-                                            ->relationship('category', 'name', modifyQueryUsing: function (Builder $query, Forms\Get $get) {
-                                                if ($type = $get('type')) {
-                                                    $query->where('type', $type);
-                                                }
-
-                                                return $query->where('is_active', true);
+                                            ->relationship('category', 'name', modifyQueryUsing: function (Builder $query) {
+                                                return $query->spareParts()->where('is_active', true);
                                             })
                                             ->searchable()
                                             ->preload()
                                             ->required(),
                                         Forms\Components\TextInput::make('model_number')
                                             ->label('Model / Part Number')
-                                            ->placeholder('e.g. ZR-1325-PRO')
+                                            ->placeholder('e.g. SP-3KW-AIR')
                                             ->maxLength(100),
                                     ]),
                                 Forms\Components\Grid::make(2)
@@ -100,17 +96,9 @@ class ProductResource extends Resource
                                     ->placeholder('Short engineering summary for catalogue cards and preview boxes')
                                     ->columnSpanFull(),
                                 Forms\Components\RichEditor::make('description')
-                                    ->label('Machine Overview & Technical Description')
+                                    ->label('Spare Part Overview & Technical Description')
                                     ->toolbarButtons([
-                                        'bold',
-                                        'bulletList',
-                                        'heading',
-                                        'italic',
-                                        'link',
-                                        'orderedList',
-                                        'redo',
-                                        'strike',
-                                        'undo',
+                                        'bold', 'bulletList', 'heading', 'italic', 'link', 'orderedList', 'redo', 'strike', 'undo',
                                     ])
                                     ->columnSpanFull(),
                             ]),
@@ -121,7 +109,7 @@ class ProductResource extends Resource
                                     ->label('Key Features & Engineering Highlights (Bulleted Specs)')
                                     ->simple(
                                         Forms\Components\TextInput::make('feature')
-                                            ->placeholder('e.g. High-Speed Galvo: Up to 7000mm/s, 0.001mm resolution')
+                                            ->placeholder('e.g. High precision bearing, low noise')
                                             ->required()
                                     )
                                     ->addActionLabel('+ Add Feature Bullet Point')
@@ -140,11 +128,9 @@ class ProductResource extends Resource
                                             ->schema([
                                                 Forms\Components\TextInput::make('title')
                                                     ->label('Application Sector')
-                                                    ->placeholder('e.g. Industrial Marking, Jewelry Engraving')
                                                     ->required(),
                                                 Forms\Components\TextInput::make('description')
                                                     ->label('Details / Materials')
-                                                    ->placeholder('e.g. Serial numbers, barcodes on automotive parts')
                                                     ->required(),
                                             ])
                                             ->columns(1)
@@ -157,11 +143,9 @@ class ProductResource extends Resource
                                             ->schema([
                                                 Forms\Components\TextInput::make('title')
                                                     ->label('Benefit')
-                                                    ->placeholder('e.g. High Precision, Cost-Effective')
                                                     ->required(),
                                                 Forms\Components\TextInput::make('description')
                                                     ->label('Advantage Explanation')
-                                                    ->placeholder('e.g. Crisp, detailed marks for professional results')
                                                     ->required(),
                                             ])
                                             ->columns(1)
@@ -177,29 +161,18 @@ class ProductResource extends Resource
                                 Forms\Components\Repeater::make('specifications')
                                     ->relationship('specifications')
                                     ->schema([
-                                        Forms\Components\TextInput::make('spec_group')
-                                            ->label('Group')
-                                            ->placeholder('e.g. Laser Source, Galvo, Dimensions')
-                                            ->default('General')
-                                            ->required(),
                                         Forms\Components\TextInput::make('spec_name')
-                                            ->label('Parameter / Metric')
-                                            ->placeholder('e.g. Wavelength, Marking Area, Speed')
+                                            ->label('Specification Name')
                                             ->required(),
                                         Forms\Components\TextInput::make('spec_value')
                                             ->label('Specification Value')
-                                            ->placeholder('e.g. 1064nm, 200 x 200 mm, 7000 mm/s')
                                             ->required(),
-                                        Forms\Components\TextInput::make('sort_order')
-                                            ->label('Order')
-                                            ->numeric()
-                                            ->default(0),
                                     ])
-                                    ->columns(4)
-                                    ->addActionLabel('+ Add Specification Metric')
+                                    ->columns(2)
+                                    ->addActionLabel('+ Add Specification')
                                     ->reorderable('sort_order')
                                     ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => isset($state['spec_name']) ? "{$state['spec_group']}: {$state['spec_name']} = {$state['spec_value']}" : null)
+                                    ->itemLabel(fn (array $state): ?string => isset($state['spec_name']) ? "{$state['spec_name']} = {$state['spec_value']}" : null)
                                     ->columnSpanFull(),
                             ]),
                         Forms\Components\Tabs\Tab::make('Media & Documents')
@@ -217,21 +190,18 @@ class ProductResource extends Resource
                                     ->acceptedFileTypes(['application/pdf'])
                                     ->disk('public')
                                     ->directory('brochures')
-                                    ->visible(fn (Forms\Get $get) => $get('type') === 'machine')
                                     ->columnSpanFull(),
                                 Forms\Components\FileUpload::make('certificate_path')
                                     ->label('CE Conformity & Quality Audit Certificate PDF')
                                     ->acceptedFileTypes(['application/pdf'])
                                     ->disk('public')
                                     ->directory('certificates')
-                                    ->visible(fn (Forms\Get $get) => $get('type') === 'machine')
                                     ->columnSpanFull(),
                                 Forms\Components\FileUpload::make('manual_path')
                                     ->label('Operation, Safety & Programming Manual PDF')
                                     ->acceptedFileTypes(['application/pdf'])
                                     ->disk('public')
                                     ->directory('manuals')
-                                    ->visible(fn (Forms\Get $get) => $get('type') === 'machine')
                                     ->columnSpanFull(),
                             ]),
                     ])
@@ -250,44 +220,39 @@ class ProductResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->weight('bold')
-                    ->wrap(),
-                Tables\Columns\TextColumn::make('type')
-                    ->badge()
-                    ->formatStateUsing(fn (string $state): string => match ($state) {
-                        'machine' => 'CNC Machine',
-                        'spare_part' => 'Spare Part',
-                        default => $state,
-                    })
-                    ->color(fn (string $state): string => match ($state) {
-                        'machine' => 'primary',
-                        'spare_part' => 'info',
-                        default => 'gray',
-                    })
-                    ->sortable(),
+                    ->limit(50)
+                    ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
+                        $state = $column->getState();
+                        if (strlen($state) <= $column->getCharacterLimit()) {
+                            return null;
+                        }
+
+                        return $state;
+                    }),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category')
                     ->sortable()
                     ->badge()
-                    ->color('gray'),
+                    ->color('gray')
+                    ->visibleFrom('md'),
                 Tables\Columns\TextColumn::make('model_number')
                     ->label('Model')
-                    ->searchable(),
+                    ->searchable()
+                    ->visibleFrom('md'),
                 Tables\Columns\ToggleColumn::make('is_featured')
-                    ->label('Featured'),
+                    ->label('Featured')
+                    ->visibleFrom('lg'),
                 Tables\Columns\ToggleColumn::make('is_published')
-                    ->label('Published'),
+                    ->label('Published')
+                    ->visibleFrom('sm'),
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('sort_order', 'asc')
             ->filters([
-                Tables\Filters\SelectFilter::make('type')
-                    ->options([
-                        'machine' => 'CNC Machines',
-                        'spare_part' => 'Spare Parts',
-                    ]),
                 Tables\Filters\SelectFilter::make('category_id')
-                    ->relationship('category', 'name'),
+                    ->relationship('category', 'name', modifyQueryUsing: fn (Builder $query) => $query->spareParts()),
                 Tables\Filters\TernaryFilter::make('is_featured')
                     ->label('Featured Status'),
                 Tables\Filters\TernaryFilter::make('is_published')
@@ -299,7 +264,7 @@ class ProductResource extends Resource
                     ->label('View Public')
                     ->icon('heroicon-o-arrow-top-right-on-square')
                     ->color('gray')
-                    ->url(fn (Product $record) => $record->type === 'machine' ? route('machines.show', $record->slug) : route('spare-parts.show', $record->slug))
+                    ->url(fn (Product $record) => route('spare-parts.show', $record->slug))
                     ->openUrlInNewTab(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -322,9 +287,9 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListSpareParts::route('/'),
+            'create' => Pages\CreateSparePart::route('/create'),
+            'edit' => Pages\EditSparePart::route('/{record}/edit'),
         ];
     }
 }
